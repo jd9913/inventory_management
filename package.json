@@ -8,5 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "repository": "https://github.com/jd9913/inventory_mangement"
+  "repository": "https://github.com/jd9913/inventory_mangement",
+  "dependencies": {
+    "react-hook-form": "^6.15.1",
+    "react-router-dom": "^5.2.0"
+  }
 }
