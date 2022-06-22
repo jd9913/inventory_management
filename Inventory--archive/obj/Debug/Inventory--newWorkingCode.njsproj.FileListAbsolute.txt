@@ -1,0 +1,3 @@
+C:\Users\Jennifer.Schlierman\source\repos\Resource Management System--new version\Inventory--newWorkingCode\obj\Debug\Inventory--newWorkingCode.njsproj.AssemblyReference.cache
+C:\Users\Jennifer.Schlierman\source\repos\Resource Management System--new version\Inventory--newWorkingCode\obj\Debug\Inventory--newWorkingCode.njsproj.CoreCompileInputs.cache
+C:\Users\Jennifer.Schlierman\source\repos\Resource Management System--new version\Inventory--newWorkingCode\bin\Microsoft.NodejsTools.WebRole.dll

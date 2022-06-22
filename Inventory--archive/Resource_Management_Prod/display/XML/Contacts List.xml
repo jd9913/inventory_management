@@ -1,0 +1,77 @@
+<html lang="en">
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+      <link href="css/8.3.0.0/boards.css" rel="stylesheet" media="screen"></link>
+    </head>
+    <body>
+      <table class="webeoc-header" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="webeoc-header-logo" rowspan="2" width="1%">
+            <agencyinfo type="primarylogo"></agencyinfo>
+          </td>
+          <td class="webeoc-header-board" selected="false">
+            Board Name
+          </td>
+          <td class="webeoc-header-actions" align="right" rowspan="2" selected="false">
+            <returnbutton>Back</returnbutton>
+            <viewlink class="webeoc-create" name="Contacts Input" target="dialog">
+              <i class="icon-plus"></i>Create            </viewlink>
+            <space></space>
+            <div class="webeoc-dropdown">
+              <a href="#" class="webeoc-dropdown-toggle" onclick="if(this.webeocOpen) {{this.blur();this.webeocOpen=false;}} else {{this.webeocOpen=true;}}">              Actions              <span class="caret"></span></a>
+              <ul class="webeoc-dropdown-menu">
+                <li>
+                  <pdflink class="webeoc-actions-link">
+                    <i class="icon-print"></i>Print PDF                </pdflink>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="webeoc-header-incident" selected="false">
+            <incidentname></incidentname>
+          </td>
+        </tr>
+      </table>
+      <table class="webeoc-datagrid" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="webeoc-search" colSpan="4">
+            <search>
+              <field name="field1"></field>
+            </search>
+            <searchbutton class="webeoc-btn webeoc-btn-small"></searchbutton>
+          </td>
+        </tr>
+        <tr>
+          <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1">
+            <sortlink field="field1">Name</sortlink>
+          </td>
+          <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1" width="">Email</td>
+          <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1" width="">Agency</td>
+          <td class="webeoc-header" selected="" rowSpan="1" colSpan="1" width=""></td>
+        </tr>
+        <eocrepeatallrecords>
+          <tr>
+            <td selected="true" rowSpan="1" colSpan="1">
+              <eocfield name="first_name"></eocfield>
+              <eocfield name="last_name"></eocfield>
+            </td>
+            <td selected="false" rowSpan="1" colSpan="1" width="">
+              <eocfield name="email_address"></eocfield>
+            </td>
+            <td selected="false" rowSpan="1" colSpan="1" width="">
+              <eocfield name="agency_list"></eocfield>
+            </td>
+            <td selected="false">
+              <boardpermission name="Edit">
+                <viewlink class="webeoc-link" type="link" name="Contacts Input" target="dialog">
+                  <i class="icon-edit"></i>Edit              </viewlink>
+              </boardpermission>
+            </td>
+          </tr>
+        </eocrepeatallrecords>
+      </table>
+    </body>
+  </html>

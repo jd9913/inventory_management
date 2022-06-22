@@ -1,0 +1,147 @@
+<html>
+<head>
+    <style type="text/css">
+        body {
+            background-color: #d1d2d4;
+            color: #000;
+            font: normal 0.9em arial;
+            margin: 1.0em;
+        }
+
+        div.container {
+            border: solid 1px #48156d;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.heading {
+            border: solid 1px;
+            border-collapse: collapse;
+            empty-cells: show;
+            margin: 0;
+            padding: 3px;
+            width: 100%;
+        }
+
+            table.heading td, table.heading th {
+                padding: 0.1em 0.5em 0.1em 0.5em;
+            }
+
+            table.heading th {
+                text-align: center;
+            }
+
+        #tdFilter {
+            text-align: right;
+        }
+
+        #tdBoard {
+            text-align: center;
+        }
+
+        table.display {
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 100%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+            font-size: 12pt;
+            font-weight: bold;
+        }
+
+            table.display td, table.display th {
+                border-right: solid 1px;
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.display td {
+                border-top: solid 1px;
+                border-color: #ccc;
+            }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var ifr = parent.parent.document.getElementById("resourcesembed")
+            ifr.style.height = document.getElementById("content").offsetHeight + 90;
+
+            ifr.parentNode.style.margin = ifr.parentNode.style.margin;
+        }
+    </script>
+</head>
+<body>
+    <div id="content">
+        <div id="filters">
+            View by Category:
+            <filterdropdown defaulttext="All"><filter name="Category Ambulance">Ambulance</filter><filter name="Category Fire">Fire</filter><filter name="Category Generator">Generators</filter><filter name="Category Helicopter">Helicopter</filter><filter name="Category Police">Police</filter><filter name="Category Water Truck">Water Truck</filter></filterdropdown>
+        </div>
+        <table class="display">
+            <thead>
+                <tr class="agencytemplate_tableheader">
+                    <th style="width:25%;">Resource Name</th>
+                    <th style="width:15%;">Resource Category</th>
+                    <th>Owner</th>
+                    <th>Location</th>
+                    <th style="width:15%;">Assign</th>
+                </tr>
+            </thead>
+            <tbody>
+                <eocrepeatallrecords rowcount="0" sort="Resource_Category">
+                    <tr class="agencytemplate_tableentry">
+                        <td style="text-align:left;">
+                            <eocfield name="label" template="WebEOC Mapper" />
+                        </td>
+                        <td style="">
+                            <attribute name="style">
+                                <if test="@status='Available'">color:white; background-color:green;text-align:center;</if>
+                                <if test="@status='Deployed'">color:white; background-color:blue;text-align:center;</if>
+                                <if test="@status='Prepositioned'">color:white; background-color:purple;text-align:center;</if>
+                                <if test="@status='Unavailable'">color:white; background-color:red;text-align:center;</if>
+                            </attribute>
+                            <span style="display:none;">
+                                <eocfield name="status" />
+                            </span>
+                            <if test="@Resource_Category='Ambulance'">
+                                <img src="../images/ambulance.png" />
+                            </if>
+                            <if test="@Resource_Category='Fire'">
+                                <img src="../images/fire.png" />
+                            </if>
+                            <if test="@Resource_Category='Police'">
+                                <img src="../images/police.png" />
+                            </if>
+                            <if test="@Resource_Category='Generator'">
+                                <img src="../images/generator.png" />
+                            </if>
+                            <if test="@Resource_Category='Helicopter'">
+                                <img src="../images/helicopter.png" />
+                            </if>
+                            <if test="@Resource_Category='Water Truck'">
+                                <img src="../images/tanker.png" />
+                            </if>
+                            <span style="display:none;">
+                                <eocfield name="Resource_Category" />
+                            </span>
+                        </td>
+                        <td>
+                            <eocfield name="Owner" />
+                        </td>
+                        <td>
+                            <eocfield name="Location_Name" />
+                        </td>
+                        <td style="text-align:center;">
+                            <viewlink name="Mission Resource Input" type="button">Assign a Resource</viewlink>
+                        </td>
+                    </tr>
+                </eocrepeatallrecords>
+            </tbody>
+        </table>
+    </div>
+    <div style="display:none">
+        <incidentname />
+    </div>
+</body>
+</html>

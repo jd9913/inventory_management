@@ -1,0 +1,187 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: #d1d2d4;
+            color: #000;
+            font: normal 0.9em arial;
+            margin: 1.0em;
+        }
+
+        div.container {
+            border: solid 1px #0069aa;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.heading {
+            border: solid 1px;
+            border-collapse: collapse;
+            empty-cells: show;
+            margin: 0;
+            padding: 3px;
+            width: 100%;
+        }
+
+            table.heading td, table.heading th {
+                padding: 0.1em 0.5em 0.1em 0.5em;
+            }
+
+            table.heading th {
+                text-align: center;
+            }
+
+        #tdFilter {
+            text-align: right;
+        }
+
+        #tdBoard {
+            text-align: center;
+        }
+
+        table.display {
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 100%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+        }
+
+            table.display td, table.display th {
+                border-right: solid 1px;
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.display td {
+                border-top: solid 1px;
+                border-color: #ccc;
+            }
+    </style>
+</head>
+<body>
+    <div class="container agencytemplate_boardbackground">
+        <table class="heading agencytemplate_boardheader">
+            <tbody>
+                <tr>
+                    <td id="tdIncident">
+                        <incidentname></incidentname>
+                    </td>
+                    <td id="tdFilter">
+                        <filter></filter>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="tdBoard" colSpan="2">
+                        <boardname></boardname>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content">
+            <table class="display">
+                <tbody>
+                    <tr class="agencytemplate_tableheader">
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1">ID</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Resource Name</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Description</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Agency</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Department</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Manufacturer</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Model</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">VIN/Serial</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Chassis</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">License Plate</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Equipment Type</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Fuel Type</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">HP</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">GVW</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Payload Capacity</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Water Capacity</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">GPM</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">NIMS Group</td>
+                        <td selected="true" style="FONT-SIZE: 8pt" colSpan="1" width="">FEMA Cost Code</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Inventory ID</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Inventory Class</td>
+                        <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">Notes</td>
+                    </tr>
+                    <eocrepeatallrecords rowcount="1000" sort="General_ResourceName">
+                        <tr class="agencytemplate_tableentry">
+                            <td selected="false" style="FONT-SIZE: 8pt">
+                                <dataid></dataid>
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="General_ResourceName"></eocfield>
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="General_EquipmentDescription"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="General_Agency"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="General_Department"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_Manufacturer"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="text1"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_VIN_SerialNumber"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_ChassisType"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_LicensePlate"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_EquipmentType"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_FuelType"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_HP"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_GVW"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_PayloadCapacity"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_WaterCapacity"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Specs_GPM"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="RT_NIMS_Group"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="RT_FEMACostCode"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Other_InventoryID"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Other_Inventory_Class"></eocfield> 
+                            </td>
+                            <td selected="false" style="FONT-SIZE: 8pt" colSpan="1" width="">
+                                <eocfield name="Other_Notes"></eocfield> 
+                            </td>
+                        </tr>
+                    </eocrepeatallrecords>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

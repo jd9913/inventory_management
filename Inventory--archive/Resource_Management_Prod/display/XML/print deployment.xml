@@ -1,0 +1,89 @@
+<html lang="en">
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+      <link href="css/8.3.0.0/boards.css" rel="stylesheet" media="screen"></link>
+    </head>
+    <body>
+      <table class="webeoc-header" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="webeoc-header-logo" rowspan="2" width="1%">
+            <agencyinfo type="primarylogo"></agencyinfo>
+          </td>
+          <td class="webeoc-header-board" selected="true">Deployment Authorization</td>
+          <td class="webeoc-header-actions" align="right" rowspan="2" selected="false">
+            <returnlink class="webeoc-link">Back</returnlink>
+            <space></space>
+            <div class="webeoc-dropdown">
+              <a href="#" class="webeoc-dropdown-toggle" onclick="if(this.webeocOpen) {{this.blur();this.webeocOpen=false;}} else {{this.webeocOpen=true;}}">              Actions              <span class="caret"></span></a>
+              <ul class="webeoc-dropdown-menu">
+                <li>
+                  <pdflink class="webeoc-actions-link">
+                    <i class="icon-print"></i>Print PDF                </pdflink>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="webeoc-header-incident" selected="false">
+            <incidentname></incidentname>
+          </td>
+        </tr>
+      </table>
+      <table class="webeoc-datagrid" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="webeoc-search" colSpan="2">
+            <search>
+              <field name="field1"></field>
+            </search>
+            <searchbutton class="webeoc-btn webeoc-btn-small"></searchbutton>
+          </td>
+        </tr>
+        <tr>
+          <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1">Request</td>
+          <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1" width=""></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">Date/Time: <eocfield name="Request_requestor_date_time"></eocfield></td>
+          <td selected="false" rowSpan="1">Tracking #: <eocfield name="Request_tracking_number"></eocfield></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">Request Name: <eocfield name="Request_short_description"></eocfield></td>
+          <td selected="false" rowSpan="1">Request Description: <eocfield name="Request_f_1_DetailedItemDescription"></eocfield></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">Request Location: <eocfield name="Request_g_location_1"></eocfield></td>
+          <td selected="false" rowSpan="1">Request Date/Time Due: <eocfield name="Request_f_date_time_1"></eocfield></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">Point of Contact: <eocfield name="Request_request_poc"></eocfield></td>
+          <td selected="false" rowSpan="1">POC Number: <eocfield name="Request_poc_number"></eocfield></td>
+        </tr>
+        <tr>
+          <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1">Deployment</td>
+          <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1" width=""></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">Resource: <eocfield name="General_ResourceName"></eocfield></td>
+          <td selected="false" rowSpan="1">Agency / Department: <eocfield name="General_Agency"></eocfield> - <eocfield name="General_Department"></eocfield></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">Manufacturer: <eocfield name="Specs_Manufacturer"></eocfield></td>
+          <td selected="false" rowSpan="1">Model: <eocfield name="Specs_Model"></eocfield></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">VIN / Serial Number: <eocfield name="Specs_VIN_SerialNumber"></eocfield></td>
+          <td selected="false" rowSpan="1">License Plate: <eocfield name="Specs_LicensePlate"></eocfield></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">Inventory ID: <eocfield name="Other_InventoryID"></eocfield></td>
+          <td selected="false" rowSpan="1">Gross Vehicle Weight: <eocfield name="Specs_GVW"></eocfield></td>
+        </tr>
+        <tr>
+          <td selected="false" rowSpan="1" colSpan="1">FEMA Code: <eocfield name="RT_FEMACostCode"></eocfield></td>
+          <td selected="false" rowSpan="1">FEMA Rate: <eocfield name="RT_FEMA_Rate"></eocfield> / <eocfield name="RT_FEMA_RateUnit"></eocfield></td>
+        </tr>
+      </table>
+    </body>
+  </html>

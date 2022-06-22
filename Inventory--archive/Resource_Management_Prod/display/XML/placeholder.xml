@@ -1,0 +1,10 @@
+<html>
+    <head>
+      <style type="text/css">
+        body{background-color:#D1D2D4;}
+      </style>
+    </head>
+    <body>
+      WebEOC is loading resources...
+      <div style="display:none"><incidentname></incidentname></div></body>
+  </html>

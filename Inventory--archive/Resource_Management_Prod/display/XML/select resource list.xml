@@ -1,0 +1,117 @@
+<html>
+    <head>
+      <title></title>
+      <style type="text/css">
+    body{background-color:#fff;color:#000;font:normal 0.9em arial;margin:1.0em;}
+    div.container{margin:1em}
+    div.content{margin:0em;}
+    table.heading{border:solid 1px;border-collapse:collapse;empty-cells:show;margin:0;padding:3px;width:100%;}      table.heading td, table.heading th{padding:0.1em 0.5em 0.1em 0.5em;}
+    table.heading th{text-align:center;}
+    #tdFilter{text-align:right;}
+    #tdBoard{text-align:center;}
+    table.display{border-collapse:collapse;border:solid 1px;width:100%;border-color:#808080;background-color:#fff;empty-cells:show;margin-bottom:0.2em;}
+    table.display td, table.display th{border-right:solid 1px;padding:0.1em 0.3em 0.1em 0.3em;}
+    table.display td{border-top:solid 1px;border-color:#ccc;}
+    hr.topHR{border-color: #004080;}
+  </style>
+    </head>
+    <body>
+      <div class="container agencytemplate_boardbackground">
+        <table class="" width="100%">
+          <tbody>
+            <tr>
+              <td id="" selected="false" style="COLOR: #004080; FONT-SIZE: 18pt; FONT-WEIGHT: bold" align="center" width="100%">
+                <if test="1=0">
+                  <incidentname></incidentname>
+                </if>
+                <boardname></boardname>
+                <hr class="topHR"></hr>
+              </td>
+            </tr>
+            <tr>
+              <td id="" colSpan="" selected="false" style="COLOR: #004080; FONT-WEIGHT: bold" align="left" width="100%" rowSpan="1">
+                <search field="General_ResourceName" exact="false" searchtext="Search Resource Name" cleartext="Clear Resource Name">
+                  <field name="General_EquipmentDescription"></field>
+                  <field name="RT_NIMS_Definition"></field>
+                  <field name="Other_InventoryID"></field>
+                  <field name="Specs_VIN_SerialNumber"></field>
+                  <field name="Specs_LicensePlate"></field>
+                </search>
+                <clearsearchbutton></clearsearchbutton>
+                <search field="General_Agency" exact="false" searchtext="Search Agency" cleartext="Clear Agency Search">
+                  <field name="General_Department"></field>
+                </search>
+                <clearsearchbutton></clearsearchbutton>
+                <search field="RT_NIMS_Group" exact="false" searchtext="Search Category" cleartext="Clear Category Search"></search>
+                <clearsearchbutton></clearsearchbutton>
+                <if test="/data/groups/@name='Default'">
+                  <space></space>
+                  <space></space>
+                  <space></space>
+                  <space></space>
+                  <space></space>
+                </if>
+                <space></space>
+                <space></space>
+                <space></space>
+                <space></space>
+                <space></space>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="content">
+          <table class="display">
+            <tbody>
+              <tr class="agencytemplate_tableheader">
+                <td selected="false" style="FONT-WEIGHT: bold">Resource Name</td>
+                <td selected="false" style="FONT-WEIGHT: bold" colSpan="1" width="">Owner</td>
+                <td selected="false" style="FONT-WEIGHT: bold" colSpan="1" width="">Location Name</td>
+                <td selected="false" style="FONT-WEIGHT: bold" colSpan="1" width="" align="center">Details</td>
+                <td selected="" style="FONT-WEIGHT: bold" colSpan="1" width=""></td>
+              </tr>
+              <eocrepeatallrecords sort="General_ResourceName" rowcount="100">
+                <tr class="agencytemplate_tableentry">
+                  <td selected="false" colSpan="1">
+                    <span id="ResourceName">
+                      <eocfield name="General_ResourceName"></eocfield>
+                    </span>
+                  </td>
+                  <td selected="false" colSpan="1" width="">
+                    <span id="GeneralAgency">
+                      <eocfield name="General_Agency"></eocfield>
+                    </span>
+                    <if test="@General_Department!=''">- <eocfield name="General_Department"></eocfield></if>
+                  </td>
+                  <td selected="false" colSpan="1" width="">
+                    <eocfield name="General_LocationName"></eocfield>
+                    <span id="POC_Info">
+                      <eocfield name="General_POC"></eocfield>
+                      <eocfield name="General_POCPhone"></eocfield>
+                    </span>
+                  </td>
+                  <td selected="false" colSpan="1" width="" align="center">
+                    <viewlink name="Select Resource Details">
+                      <img border="0" src="../images/details-iconsm.png"></img>
+                    </viewlink>
+                  </td>
+                  <td selected="true" colSpan="1" width="">
+                    <button name="Select" onclick="sendParentData(this);">Select</button>
+                  </td>
+                </tr>
+              </eocrepeatallrecords>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </body>
+    <script type="text/javascript">
+        function sendParentData(x) {
+          //alert(x.parentNode.parentNode.childNodes[0].childNodes[0].childNodes[0].innerHTML);
+          window.parent.parent.parent.parent.parent.frames[0].document.getElementById("requestor_5").textContent = 'Resource Name: ' + x.parentNode.parentNode.childNodes[0].childNodes[0].childNodes[0].textContent + 
+            '\r\nAgency: ' + x.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[0].textContent + '\r\nPOC: ' + x.parentNode.parentNode.childNodes[2].childNodes[1].textContent;
+          window.parent.parent.parent.parent.parent.frames[0].document.getElementById("embededID").style.display='none';
+          //document.getElementById("requestor_5").textContent;
+        }
+  </script>
+  </html>

@@ -1,0 +1,192 @@
+<html>
+    <head>
+      <style type="text/css">
+    html, body, form, a, abbr, acronym, address, blockquote, caption, div, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, img, label, legend, li, ol, p, pre, span, table, tbody, td, tfoot, th, thead, tr, ul{border:0;margin:0;padding:0;}
+    body{background-color:#d1d2d4;color:#000;margin:1.0em;font:normal 0.9em arial;}
+    div.container{border:solid 1px;border-color:#0069aa;}
+    div.content{margin:1em;}
+    table.input{border-collapse:collapse;width:100%;empty-cells:show;}
+    table.input td, table.input th{padding:0.1em 0.3em 0.1em 0.3em;}
+    table.input th{text-align:right;}
+    h1.heading{font-weight:normal;font-size:1.75em;padding:0.1em 0.5em 0.1em 0.5em;margin:0;border:solid 1px;color:#fff;
+    background: #0069aa url(../images/gradient_35.png) repeat-x scroll left top;
+    ;border-bottom-color:#606265;border-left-color:#009EFF;border-right-color:#606265;border-top-color:#009EFF;}
+    .buttons{text-align:left;margin:1.0em;}
+    .buttons button, .buttons input[type=submit], .buttons input[type=button], .buttons input[type=reset]{margin:0 0.2em 0 0.2em;}
+  </style>
+      <script type="text/javascript">
+  var sel, status;
+  var statusIndex = 0;
+  
+  window.onload = function () {
+    sel = document.getElementById("missionfk").getElementsByTagName("select")[0];
+    status = document.getElementById("status").getElementsByTagName("select")[0];
+    sel.options[sel.length] = new Option("Unassigned", "0");
+    sel.value = parent.parent.missiondataid;
+    for (var i = 0; i &lt; status.options.length; i++) {
+      if (status.options[i].text=="Deployed") {
+        status.selectedIndex = i;
+        statusIndex = i;
+      }
+    }
+    //sel.disabled = true;
+    //status.disabled = true;
+    //document.getElementById("save").getElementsByTagName("input")[0].click();
+  
+    sel.addEventListener("change", origID, false);
+    document.forms[0].datalinkid.checked = true;
+    document.forms[0].datalinkid.style.display = 'none';
+  }
+  
+  function origID() {
+    sel.value = parent.parent.missiondataid;
+    status.selectedIndex = statusIndex;
+  }
+  </script>
+    </head>
+    <body>
+      <div class="container agencytemplate_boardbackground" style="">
+        <form>
+          <div class="content">
+            <table class="input agencytemplate_tableentry">
+              <tbody>
+                <tr>
+                  <td align="right" width="25%" selected="false" bgColor="#faffb3">Resource Request:</td>
+                  <td rowSpan="1" selected="true" bgColor="#faffb3">
+                    <span id="missionfk">
+                      <foreignkey table="Inventory Request Table" type="select">
+                        <eocfield name="short_description" table="Inventory Request Table" type="fk"></eocfield>
+                        <eocfield name="tracking_number" type="fk" table="Inventory Request Table"></eocfield>
+                      </foreignkey>
+                    </span>
+                    <!--<datalink name="Track Equipment"></datalink>-->
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" width="25%" selected="false" rowSpan="1">Resource Name:</td>
+                  <td rowSpan="1" selected="false">
+                    <input type="text" name="General_ResourceName" size="40"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" width="25%" selected="false" rowSpan="1">Equipment VIN / ID:</td>
+                  <td rowSpan="1" selected="false">
+                    <input type="text" name="Specs_VIN_SerialNumber" size="40"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" width="25%" selected="false" rowSpan="1">Agency:</td>
+                  <td rowSpan="1" selected="false">
+                    <input type="text" name="General_Agency" size="40"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" width="25%" selected="false" rowSpan="1">FEMA Cost Code:</td>
+                  <td rowSpan="1" selected="false">
+                    <input type="text" name="RT_FEMACostCode" size="10"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" width="25%" selected="false" rowSpan="1">Cost Rate (FEMA/Wildland/Other):</td>
+                  <td rowSpan="1" selected="false">
+                    <input type="text" name="RT_FEMA_Rate" size="10" fieldtype="money"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" width="25%" selected="false" rowSpan="1">Status</td>
+                  <td rowSpan="1" selected="false">
+                    <span id="status">
+                      <select name="status" id="Resource_Status" list="Resource Status" onchange="origID();"></select>
+                    </span>
+                    <grouplist></grouplist>
+                    <input type="text" name="jurisdiction_name" size="40">
+                      <attribute name="value">
+                        <choose>
+                          <when test="/data/groups/@name='_All MCEOC Users'">Maricopa County</when>
+                          <when test="/data/groups/@name='Avondale'">Avondale</when>
+                          <when test="/data/groups/@name='Buckeye'">Buckeye</when>
+                          <when test="/data/groups/@name='Carefree'">Carefree</when>
+                          <when test="/data/groups/@name='Cave Creek'">Cave Creek</when>
+                          <when test="/data/groups/@name='Chandler'">Chandler</when>
+                          <when test="/data/groups/@name='El Mirage'">El Mirage</when>
+                          <when test="/data/groups/@name='Fountain Hills'">Fountain Hills</when>
+                          <when test="/data/groups/@name='Gateway Airport'">Gateway Airport</when>
+                          <when test="/data/groups/@name='Gila Bend'">Gila Bend</when>
+                          <when test="/data/groups/@name='Gilbert'">Gilbert</when>
+                          <when test="/data/groups/@name='Glendale'">Glendale</when>
+                          <when test="/data/groups/@name='Goodyear'">Goodyear</when>
+                          <when test="/data/groups/@name='Guadalupe'">Guadalupe</when>
+                          <when test="/data/groups/@name='Litchfield Park'">Litchfield Park</when>
+                          <when test="/data/groups/@name='Mesa'">Mesa</when>
+                          <when test="/data/groups/@name='Paradise Valley'">Paradise Valley</when>
+                          <when test="/data/groups/@name='Peoria'">Peoria</when>
+                          <when test="/data/groups/@name='Phoenix'">Phoenix</when>
+                          <when test="/data/groups/@name='Queen Creek'">Queen Creek</when>
+                          <when test="/data/groups/@name='Scottsdale'">Scottsdale</when>
+                          <when test="/data/groups/@name='Sky Harbor'">Sky Harbor</when>
+                          <when test="/data/groups/@name='Surprise'">Surprise</when>
+                          <when test="/data/groups/@name='Tempe'">Tempe</when>
+                          <when test="/data/groups/@name='Tolleson'">Tolleson</when>
+                          <when test="/data/groups/@name='Wickenburg'">Wickenburg</when>
+                          <when test="/data/groups/@name='Youngtown'">Youngtown</when>
+                          <when test="/data/groups/@name='Salt River, Pima, Maricopa Indian Community'">Salt River, Pima, Maricopa Indian Community</when>
+                          <when test="/data/groups/@name='GRIC'">GRIC</when>
+                          <when test="/data/groups/@name='Fort McDowell'">Fort McDowell IC</when>
+                          <when test="/data/groups/@name='Aguila FD'">Aguila FD</when>
+                          <when test="/data/groups/@name='Sun Lakes FD'">Sun Lakes FD</when>
+                          <when test="/data/groups/@name='Daisy Mtn FD'">Daisy Mtn FD</when>
+                          <when test="/data/groups/@name='Sun City FD'">Sun City FD</when>
+                          <when test="/data/groups/@name='Rio Verde FD'">Rio Verde FD</when>
+                          <when test="/data/groups/@name='Buckeye Valley FD'">Buckeye Valley FD</when>
+                          <when test="/data/groups/@name='Harquahala FD'">Harquahala FD</when>
+                          <when test="/data/groups/@name='Circle City/Morristown FD'">Circle City/Morristown FD</when>
+                          <when test="/data/groups/@name='Apache Junction FD'">Apache Junction FD</when>
+                          <when test="/data/groups/@name='Tonopah Valley FD'">Tonopah Valley FD</when>
+                          <when test="/data/groups/@name='Sun City West FD'">Sun City West FD</when>
+                          <when test="/data/groups/@name='Wittmann FD'">Wittmann FD</when>
+                          <when test="/data/groups/@name='Agency - ADEM'">Agency - ADEM</when>
+                          <when test="/data/groups/@name='Agency - APAC'">Agency - APAC</when>
+                          <when test="/data/groups/@name='Agency - COCH'">Agency - COCH</when>
+                          <when test="/data/groups/@name='Agency - COCO'">Agency - COCO</when>
+                          <when test="/data/groups/@name='Agency - GILA'">Agency - GILA</when>
+                          <when test="/data/groups/@name='Agency - GREE'">Agency - GREE</when>
+                          <when test="/data/groups/@name='Agency - LAPA'">Agency - LAPA</when>
+                          <when test="/data/groups/@name='Agency - MOHA'">Agency - MOHA</when>
+                          <when test="/data/groups/@name='Agency - NAVA'">Agency - NAVA</when>
+                          <when test="/data/groups/@name='Agency - PIMA'">Agency - PIMA</when>
+                          <when test="/data/groups/@name='Agency - PINA'">Agency - PINA</when>
+                          <when test="/data/groups/@name='Agency - SANT'">Agency - SANT</when>
+                          <when test="/data/groups/@name='Agency - YAVA'">Agency - YAVA</when>
+                          <when test="/data/groups/@name='Agency - YUMA'">Agency - YUMA</when>
+                          <when test="/data/groups/@name='Avra Valley Fire District'">Avra Valley Fire District</when>
+                          <when test="/data/groups/@name='Drexel Heights Fire District'">Drexel Heights Fire District</when>
+                          <when test="/data/groups/@name='Golder Ranch Fire District'">Golder Ranch Fire District</when>
+                          <when test="/data/groups/@name='Green Valley Fire District'">Green Valley Fire District</when>
+                          <when test="/data/groups/@name='Helmet Peak Fire District'">Helmet Peak Fire District</when>
+                          <when test="/data/groups/@name='Mount Lemmon Fire District'">Mount Lemmon Fire District</when>
+                          <when test="/data/groups/@name='Northwest Fire District'">Northwest Fire District</when>
+                          <when test="/data/groups/@name='Mountain Vista Fire District'">Mountain Vista Fire District</when>
+                          <when test="/data/groups/@name='South Tucson Fire District'">South Tucson Fire District</when>
+                          <when test="/data/groups/@name='Sonoita-Elgin VFD'">Sonoita-Elgin VFD</when>
+                        </choose>
+                      </attribute>
+                    </input>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" width="25%" selected="false" rowSpan="1" colSpan="2" style="color: rgb(255, 0, 0); font-size: 14pt; font-weight: bold;">If an Operator IS REQUIRED, inform Finance/Admin Section or the Timekeeping Unit to add the information in the Financial Recovery Board.</td>
+                </tr>
+                <tr>
+                  <td align="right" width="25%" selected="false" rowSpan="1"></td>
+                  <td rowSpan="1" selected="false">
+                    <savebutton>Save</savebutton>
+                    <returnbutton>Cancel</returnbutton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+    </body>
+  </html>

@@ -1,0 +1,288 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: #d1d2d4;
+            color: #000;
+            font: normal 0.9em arial;
+            margin: 1.0em;
+        }
+
+        div.container {
+            border: solid 0px #5f5f5f;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.heading {
+            border: solid 1px;
+            border-collapse: collapse;
+            empty-cells: show;
+            margin: 0;
+            padding: 3px;
+            width: 100%;
+        }
+
+            table.heading td, table.heading th {
+                padding: 0.1em 0.5em 0.1em 0.5em;
+            }
+
+            table.heading th {
+                text-align: center;
+            }
+
+        #tdFilter {
+            text-align: right;
+        }
+
+        #tdBoard {
+            text-align: center;
+        }
+
+        table.display {
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 100%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+        }
+
+            table.display td, table.display th {
+                border-right: solid 1px;
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.display td {
+                border-top: solid 1px;
+                border-color: #ccc;
+            }
+
+        .category {
+            display: inline-block;
+            float: left;
+            *display: inline;
+            width: 380px;
+            border: 3px solid #4F81BD;
+            background-color: #ffffff;
+            padding: 12px 12px 12px 12px;
+            margin: 12px 12px 12px 12px;
+        }
+
+        .sectionlabel {
+            position: relative;
+            height: 20px;
+            width: 180px;
+            top: -15px;
+            left: -15px;
+            background-color: #000;
+            color: #ffffff;
+            font-size: 1.2em;
+            padding: 5px 5px 5px 5px;
+            border: 3px solid #4F81BD;
+        }
+
+        .summary {
+            display: inline-block;
+            float: left;
+            *display: inline;
+            line-height: 200%;
+        }
+    </style>
+    <script src="../js/clock.js" type="text/javascript"></script>
+    <script>
+      function loader(){
+        startClock('timestamp', 'dddd, dd MMM HH:mm:ss ', '<currentdate></currentdate>'+' '+'<currenttime></currenttime>', 'en', '<value-of select="//@dateformat"></value-of>');
+      }
+      window.onload = loader;
+    </script>
+</head>
+<body>
+    <table class="heading agencytemplate_boardheader">
+        <tbody>
+            <tr>
+                <td id="agency logo">
+                    <agencyinfo type="primarylogo"></agencyinfo>
+                </td>
+                <td id="title" colspan="12">Resources Report View</td>
+                <td id="activation message" style="font-style:italic; color:white; width:20%;" colspan="10">
+                    <span id="hideactivationmessage" style="display:none;">
+                        <marquee>
+                            <agencyinfo type="activationmessage"></agencyinfo>
+                        </marquee>
+                    </span>
+                </td>
+                <td id="clock" style="width:15%;" colspan="3">
+                    <div id="timestamp" style="font-weight:normal; font-size:12pt; color:white;"></div>
+                </td>
+                <td id="secondary logo" style="text-align:right;">
+                    <agencyinfo type="secondarylogo"></agencyinfo>
+                </td>
+            </tr>
+            <tr>
+                <td id="incident_name" style="font-size:10pt; width:10%;" rowSpan="2" colSpan="4">Incident:<space></space><incidentname></incidentname></td>
+                <td id="legend" style="font-size:8pt; border-style:solid; border-width:1px; background-color:#242a65; text-align:center; width:10%;" colspan="4">Resource Status Legend</td>
+                <td style="width:60%;" rowSpan="2" colSpan="16"></td>
+                <td id="buttons" style="width:20%; text-align:right;" rowSpan="2" colspan="3" selected="true">
+                    <span id="hidebuttons" style="display:none;">
+                        <pdflink type="button">
+                            <img boardresource="pdf.png" title="Print to PDF"></img>
+                        </pdflink>
+                        <viewlink name="Resource List" type="button">
+                            <img boardresource="return.png" title="Return to the resources list"></img>
+                        </viewlink>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size:8pt; color:white; background-color:green; border-style:solid; border-width:1px; text-align:center; width:5%;">Available</td>
+                <td style="font-size:8pt; color:white; background-color:#0000FF; border-style:solid; border-width:1px; text-align:center; width:5%;">Deployed</td>
+                <td style="font-size:8pt; color:white; background-color:#800080; border-style:solid; border-width:1pxtext-align:center; width:5%;">Prepositioned</td>
+                <td style="font-size:8pt; color:white; background-color:red; border-style:solid; border-width:1px text-align:center; width:5%;">Unavailable</td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="data fileds needed for charts" style="display:none;">
+        <eocrepeatallrecords>
+            <eocfield name="remove"></eocfield>
+        </eocrepeatallrecords>
+    </div>
+    <div class="content">
+        <div class="category">
+            <div class="sectionlabel">
+                Ambulance
+            </div>
+            <div>
+                <img src="../images/ambulance.png" align="right"></img>
+            </div>
+            <div class="summary">
+                Total:<space></space><expression name="ambulacetotal">sum(case when (Resource_Category = 'Ambulance') then 1 else 0 end)</expression><br></br>
+                Available:<space></space><expression name="ambulanceavail">sum(case when (Resource_Category = 'Ambulance' and status ='Available') then 1 else 0 end)</expression><br></br>
+                Deployed:<space></space><expression name="ambulancedeployed">sum(case when (Resource_Category = 'Ambulance' and status ='Deployed') then 1 else 0 end)</expression><br></br>
+                Prepositioned:<space></space><expression name="ambulanceprepop">sum(case when (Resource_Category = 'Ambulance' and status ='Prepositioned') then 1 else 0 end)</expression><br></br>
+                Unavailable:<space></space><expression name="ambulanceunavail">sum(case when (Resource_Category = 'Ambulance' and status ='Unavailable') then 1 else 0 end)</expression><br></br>
+            </div>
+            <chart hidelabels="true" type="pie" filter="Resource_Category = 'Ambulance'" width="200" height="150">
+                <dataexpression label="ambulanceavail" color="green">sum(case when (status ='Available') then 1 else 0 end)</dataexpression>
+                <dataexpression label="ambulancedeployed" color="blue">sum(case when (status ='Deployed') then 1 else 0 end)</dataexpression>
+                <dataexpression label="ambulanceprepop" color="purple">sum(case when (status ='Prepositioned') then 1 else 0 end)</dataexpression>
+                <dataexpression label="ambulanceunavail" color="red">sum(case when (status ='Unavailable') then 1 else 0 end)</dataexpression>
+            </chart>
+        </div>
+        <div class="category">
+            <div class="sectionlabel">
+                Fire
+            </div>
+            <div>
+                <img src="../images/fire.png" align="right"></img>
+            </div>
+            <div class="summary">
+                Total:<space></space><expression name="firetotal">sum(case when (Resource_Category = 'Fire') then 1 else 0 end)</expression><br></br>
+                Available:<space></space><expression name="fireavail">sum(case when (Resource_Category = 'Fire' and status='Available') then 1 else 0 end)</expression><br></br>
+                Deployed:<space></space><expression name="firedeployed">sum(case when (Resource_Category = 'Fire' and status ='Deployed') then 1 else 0 end)</expression><br></br>
+                Prepositioned:<space></space><expression name="fireprepop">sum(case when (Resource_Category = 'Fire' and status ='Prepositioned') then 1 else 0 end)</expression><br></br>
+                Unavailable:<space></space><expression name="fireunavail">sum(case when (Resource_Category = 'Fire' and status ='Unavailable') then 1 else 0 end)</expression><br></br>
+            </div>
+            <chart hidelabels="true" type="pie" filter="Resource_Category = 'Fire' " width="200" height="150">
+                <dataexpression label="fireavail" color="green">sum(case when (status ='Available') then 1 else 0 end)</dataexpression>
+                <dataexpression label="firedeployed" color="blue">sum(case when (status ='Deployed') then 1 else 0 end)</dataexpression>
+                <dataexpression label="fireprepop" color="purple">sum(case when (status ='Prepositioned') then 1 else 0 end)</dataexpression>
+                <dataexpression label="fireunavail" color="red">sum(case when (status ='Unavailable') then 1 else 0 end)</dataexpression>
+            </chart>
+        </div>
+        <div class="category">
+            <div class="sectionlabel">
+                Police
+            </div>
+            <div>
+                <img src="../images/police.png" align="right"></img>
+            </div>
+            <div class="summary">
+                Total:<space></space><expression name="policetotal" table="Resources">sum(case when (Resource_Category = 'Police') then 1 else 0 end)</expression><br></br>
+                Available:<space></space><expression name="policeavail" table="Resources">sum(case when (Resource_Category = 'Police' and status ='Available') then 1 else 0 end)</expression><br></br>
+                Deployed:<space></space><expression name="policedeployed">sum(case when (Resource_Category = 'Police' and status ='Deployed') then 1 else 0 end)</expression><br></br>
+                Prepositioned:<space></space><expression name="policeprepop">sum(case when (Resource_Category = 'Police' and status ='Prepositioned') then 1 else 0 end)</expression><br></br>
+                Unavailable:<space></space><expression name="policeunavail">sum(case when (Resource_Category = 'Police' and status ='Unavailable') then 1 else 0 end)</expression><br></br>
+            </div>
+            <chart hidelabels="true" type="pie" filter="Resource_Category = 'Police'" width="200" height="150">
+                <dataexpression label="policeavail" color="green">sum(case when (status ='Available') then 1 else 0 end)</dataexpression>
+                <dataexpression label="policedeployed" color="blue">sum(case when (status ='Deployed') then 1 else 0 end)</dataexpression>
+                <dataexpression label="policeprepop" color="purple">sum(case when (status ='Prepositioned') then 1 else 0 end)</dataexpression>
+                <dataexpression label="policeunavail" color="red">sum(case when (status ='Unavailable') then 1 else 0 end)</dataexpression>
+            </chart>
+        </div>
+        <div class="category">
+            <div class="sectionlabel">
+                Helicopters
+            </div>
+            <div>
+                <img src="../images/helicopter.png" align="right"></img>
+            </div>
+            <div class="summary">
+                Total:<space></space><expression name="helicopterstotal" table="Resources">sum(case when (Resource_Category = 'Helicopter') then 1 else 0 end)</expression><br></br>
+                Available:<space></space><expression name="helicopteravail" table="Resources">sum(case when (Resource_Category = 'Helicopter' and status ='Available') then 1 else 0 end)</expression><br></br>
+                Deployed:<space></space><expression name="helicopterdeployed">sum(case when (Resource_Category = 'Helicopter' and status ='Deployed') then 1 else 0 end)</expression><br></br>
+                Prepositioned:<space></space><expression name="helicopterprepop">sum(case when (Resource_Category = 'Helicopter' and status ='Prepositioned') then 1 else 0 end)</expression><br></br>
+                Unavailable:<space></space><expression name="helicopterunavail">sum(case when (Resource_Category = 'Helicopter' and status ='Unavailable') then 1 else 0 end)</expression><br></br>
+            </div>
+            <chart hidelabels="true" type="pie" filter="Resource_Category = 'Helicopter'" width="200" height="150">
+                <dataexpression label="helicopteravail" color="green">sum(case when (status ='Available') then 1 else 0 end)</dataexpression>
+                <dataexpression label="helicopterdeployed" color="blue">sum(case when (status ='Deployed') then 1 else 0 end)</dataexpression>
+                <dataexpression label="helicopterprepop" color="purple">sum(case when (status ='Prepositioned') then 1 else 0 end)</dataexpression>
+                <dataexpression label="helicopterunavail" color="red">sum(case when (status ='Unavailable') then 1 else 0 end)</dataexpression>
+            </chart>
+        </div>
+        <div class="category">
+            <div class="sectionlabel">
+                Generators
+            </div>
+            <div>
+                <img src="../images/generator.png" align="right"></img>
+            </div>
+            <div class="summary">
+                Total:<space></space><expression name="gentotal" table="Resources">sum(case when (Resource_Category = 'Generator') then 1 else 0 end)</expression><br></br>
+                Available:<space></space><expression name="genavail" table="Resources">sum(case when (Resource_Category = 'Generator' and status ='Available') then 1 else 0 end)</expression><br></br>
+                Deployed:<space></space><expression name="gendeployed">sum(case when (Resource_Category = 'Generator' and status ='Deployed') then 1 else 0 end)</expression><br></br>
+                Prepositioned:<space></space><expression name="genprepop">sum(case when (Resource_Category = 'Generator' and status ='Prepositioned') then 1 else 0 end)</expression><br></br>
+                Unavailable:<space></space><expression name="genunavail">sum(case when (Resource_Category = 'Generator' and status ='Unavailable') then 1 else 0 end)</expression><br></br>
+            </div>
+            <chart hidelabels="true" type="pie" filter="Resource_Category = 'Generator'" width="200" height="150">
+                <dataexpression label="genavail" color="green">sum(case when (status ='Available') then 1 else 0 end)</dataexpression>
+                <dataexpression label="gendeployed" color="blue">sum(case when (status ='Deployed') then 1 else 0 end)</dataexpression>
+                <dataexpression label="genprepop" color="purple">sum(case when (status ='Prepositioned') then 1 else 0 end)</dataexpression>
+                <dataexpression label="genunavail" color="red">sum(case when (status ='Unavailable') then 1 else 0 end)</dataexpression>
+            </chart>
+        </div>
+        <div class="category">
+            <div class="sectionlabel">
+                Water Trucks
+            </div>
+            <div>
+                <img src="../images/tanker.png" align="right"></img>
+            </div>
+            <div class="summary">
+                Total:<space></space><expression name="watertotal" table="Resources">sum(case when (Resource_Category = 'Water Truck') then 1 else 0 end)</expression><br></br>
+                Available:<space></space><expression name="wateravail" table="Resources">sum(case when (Resource_Category = 'Water Truck' and status ='Available') then 1 else 0 end)</expression><br></br>
+                Deployed:<space></space><expression name="waterdeployed">sum(case when (Resource_Category = 'Water Truck' and status ='Deployed') then 1 else 0 end)</expression><br></br>
+                Prepositioned:<space></space><expression name="waterprepop">sum(case when (Resource_Category = 'Water Truck' and status ='Prepositioned') then 1 else 0 end)</expression><br></br>
+                Unavailable:<space></space><expression name="waterunavail">sum(case when (Resource_Category = 'Water Truck' and status ='Unavailable') then 1 else 0 end)</expression><br></br>
+            </div>
+            <chart hidelabels="true" type="pie" filter="Resource_Category = 'Water Truck'" width="200" height="150">
+                <dataexpression label="wateravail" color="green">sum(case when (status ='Available') then 1 else 0 end)</dataexpression>
+                <dataexpression label="waterdeployed" color="blue">sum(case when (status ='Deployed') then 1 else 0 end)</dataexpression>
+                <dataexpression label="waterprepop" color="purple">sum(case when (status ='Prepositioned') then 1 else 0 end)</dataexpression>
+                <dataexpression label="waterunavail" color="red">sum(case when (status ='Unavailable') then 1 else 0 end)</dataexpression>
+            </chart>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    /*script to hide elements from PDF view*/
+    document.getElementById('hideactivationmessage').style.display = 'block';
+    document.getElementById('hidebuttons').style.display = 'block';
+</script>
+</html>

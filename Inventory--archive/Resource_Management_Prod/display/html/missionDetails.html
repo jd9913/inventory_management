@@ -1,0 +1,457 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: #d1d2d4;
+            color: #000;
+            font: normal 0.9em arial;
+            margin: 1.0em;
+        }
+
+        div.container {
+            border: solid 1px #48156d;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.heading {
+            border: solid 1px;
+            border-collapse: collapse;
+            empty-cells: show;
+            margin: 0;
+            padding: 3px;
+            width: 100%;
+        }
+
+            table.heading td, table.heading th {
+                padding: 0.1em 0.5em 0.1em 0.5em;
+            }
+
+            table.heading th {
+                text-align: center;
+            }
+
+        #tdFilter {
+            text-align: right;
+        }
+
+        #tdBoard {
+            text-align: center;
+        }
+
+        table.display {
+            font-size: 14pt;
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 100%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+        }
+
+            table.display td, table.display th {
+                border-right: solid 0px;
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.display td {
+                border-top: solid 0px;
+                border-color: #ccc;
+            }
+
+        .status {
+            width: 10%;
+        }
+    </style>
+    <script type="text/javascript">
+      //script to embed resources
+      var missiondataid = '<value-of select="/data/@dataid"></value-of>';
+      function setBackground() {
+        var k = document.location.host;
+        if (k == "") {
+          document.body.style.backgroundColor = '#ffffff';
+          document.getElementById('resourcesembed').style.display = 'none';
+          document.getElementById('resourcesrl').style.display = 'block';
+        }
+      }
+      function loadresources() {
+        document.getElementById("resourcesbuttons").getElementsByTagName("button")[0].click();
+      }
+      window.onload = function () {
+        setBackground();
+        setTimeout(loadresources, 2000);
+        document.getElementById("resourcesbuttons").innerHTML += document.getElementById("assignbutton").innerHTML;
+      }
+    </script>
+</head>
+<body>
+    <div class="container agencytemplate_boardbackground">
+        <table class="heading agencytemplate_boardheader">
+            <tbody>
+                <tr>
+                    <td id="agency logo">
+                        <agencyinfo type="primarylogo"></agencyinfo>
+                    </td>
+                    <td>Mission Details View</td>
+                    <td></td>
+                    <td id="activation message" style="color:white; font-style:italic;">
+                        <span id="hideativationmessage" style="display:none;">
+                            <marquee>
+                                <agencyinfo type="activationmessage"></agencyinfo>
+                            </marquee>
+                        </span>
+                    </td>
+                    <td id="secondary logo" align="right">
+                        <agencyinfo type="secondarylogo"></agencyinfo>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="incident name" colspan="3">Incident: <incidentname></incidentname></td>
+                    <td id="buttons" align="right" colspan="2" selected="false">
+                        <span id="hidebuttons" style="display:none;">
+                            <pdflink type="button">
+                                <img boardresource="pdf.png" title="Print to PDF"></img>
+                            </pdflink>
+                            <viewlink name="Mission List" type="button">
+                                <img boardresource="return.png" title="Return to the missions list"></img>
+                            </viewlink>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content">
+            <eocrepeatallrecords>
+                <table class="display">
+                    <tbody>
+                        <tr class="agencytemplate_tableheader">
+                            <td style="font-size:16pt; font-weight:bold;" width="75%">Mission Subject: <eocfield name="Mission_Subject"></eocfield></td>
+                            <td align="right" width="50%" selected="false">Mission ID: <dataid></dataid></td>
+                            <td align="right" selected="false">
+                                <span id="hideeditbutton" style="display:none;">
+                                    <viewlink name="Mission Input" type="button">
+                                        <img boardresource="edit_update.png" title="Edit/update mission"></img>
+                                    </viewlink>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="mission status" class="display">
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:bold; text-decoration:underline; background-color:#fac090;" colspan="3">Misson Status</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fac090;">Status: <eocfield name="Mission_Status"></eocfield></td>
+                            <td style="background-color:#fac090;" colspan="2">Priority: <eocfield name="Mission_Priority"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fac090;">Assigned: <eocfield name="Assigned_To"></eocfield></td>
+                            <td style="background-color:#fac090;" colspan="2"> Estimated Costs: $<eocfield name="Estimated_Cost"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fac090;" colspan="3">Description / Record History:</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:12pt; background-color:#fac090;">
+                                <space></space>
+                            </td>
+                            <td style="font-size:12pt; background-color:#fac090;" colspan="2">
+                                <eocfield name="description"></eocfield>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="requestor information" class="display">
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:bold; text-decoration:underline; background-color:#558ed5;" colspan="3">Requestor Information</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#558ed5;">Name: <eocfield name="Requestor_Name"></eocfield></td>
+                            <td style="background-color:#558ed5;">Title: <eocfield name="Requestor_Title"></eocfield></td>
+                            <td style="background-color:#558ed5;">Agency: <eocfield name="Requestor_Agency"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#558ed5;">Phone: <eocfield name="Requestor_Phone"></eocfield></td>
+                            <td style="background-color:#558ed5;" colspan="2">Email: <eocfield name="Requestor_Email"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#558ed5;" colspan="3">Have local resources been exhausted? <eocfield name="Resources_Exhausted"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#558ed5;" colspan="3">Description of Request:</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#558ed5;">
+                                <space></space>
+                            </td>
+                            <td style="background-color:#558ed5;" colspan="2">
+                                <eocfield name="Request_Description"></eocfield>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="delivery information" class="display">
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:bold; text-decoration:underline; background-color:#c3d69b;" colspan="3">Delivery Information</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;">Name: <eocfield name="Delivery_POC"></eocfield></td>
+                            <td style="background-color:#c3d69b;">Title: <eocfield name="Delivery_Title"></eocfield></td>
+                            <td style="background-color:#c3d69b;">Agency: <eocfield name="Delivery_Agency"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;">Office Phone: <eocfield name="Delivery_Office_Phone"></eocfield></td>
+                            <td style="background-color:#c3d69b;">Mobile Phone: <eocfield name="Delivery_Cell_Phone"></eocfield></td>
+                            <td style="background-color:#c3d69b;">Email: <eocfield name="Delivery_Email"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;" colspan="3">Delivery Location: <eocfield name="Delivery_Location_Name"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;" colspan="3">Street: <eocfield name="street"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;">City: <eocfield name="city"></eocfield></td>
+                            <td style="background-color:#c3d69b;">State: <eocfield name="state"></eocfield></td>
+                            <td style="background-color:#c3d69b;">Postal Code: <eocfield name="postal_code"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;">Latitude: <eocfield name="latitude"></eocfield></td>
+                            <td style="background-color:#c3d69b;" colspan="2">Longitude: <eocfield name="longitude"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;" align="right">Available Resources:</td>
+                            <td style="background-color:#c3d69b;" colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;">
+                                <space></space>
+                            </td>
+                            <td style="background-color:#c3d69b;">
+                                <if test="@Delivery_Forklift='Forklift'">Forklift / Fork Truck</if>
+                                <span style="display:none;">
+                                    <eocfield name="Delivery_Forklift"></eocfield>
+                                </span>
+                            </td>
+                            <td style="background-color:#c3d69b;">
+                                <if test="@Delivery_Loadingdock='Loadingdock'">Loading Dock</if>
+                                <span style="display:none;">
+                                    <eocfield name="Delivery_Loadingdock"></eocfield>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#c3d69b;">
+                                <space></space>
+                            </td>
+                            <td style="background-color:#c3d69b;">
+                                <if test="@Delivery_Palletjack='Palletjack'">Pallet Jack</if>
+                                <span style="display:none;">
+                                    <eocfield name="Delivery_Palletjack"></eocfield>
+                                </span>
+                            </td>
+                            <td style="background-color:#c3d69b;">
+                                <if test="@Delivery_Crane='Crane'">Crane</if>
+                                <span style="display:none;">
+                                    <eocfield name="Delivery_Crane"></eocfield>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <if test="@Pump_Request='Yes'">
+                    <span style="display:none;">
+                        <eocfield name="Pump_Request"></eocfield>
+                    </span>
+                    <table id="pump info" class="display">
+                        <tbody>
+                            <tr>
+                                <td style="font-weight:bold; text-decoration:underline; background-color:#d9d9d1;" colspan="3">Pump Information</td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#d9d9d1;">Area to Pump Length: <eocfield name="Pump_Area_Length"></eocfield></td>
+                                <td style="background-color:#d9d9d1;">Area to Pump Width: <eocfield name="Pump_Area_Width"></eocfield></td>
+                                <td style="background-color:#d9d9d1;">Water Depth: <eocfield name="Pump_Area_Depth"></eocfield></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#d9d9d1;">Direction of Movement: <eocfield name="Pump_Direction"></eocfield></td>
+                                <td style="background-color:#d9d9d1;">Water Speed: <eocfield name="Pump_Speed"></eocfield></td>
+                                <td style="background-color:#d9d9d1;">Pump Size: <eocfield name="Pump_Size"></eocfield></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#d9d9d1;">Length of Intake: <eocfield name="Pump_Pipe_Length"></eocfield></td>
+                                <td style="background-color:#d9d9d1;" colspan="2">Length of Discharge: <eocfield name="Pump_Discharge_Length"></eocfield></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#d9d9d1;" colspan="3">Description of What needs tob e pumped and estimated amount of water:</td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#d9d9d1;" colspan="3">
+                                    <eocfield name="Pump_Description"></eocfield>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="attachments" class="display">
+                        <tbody>
+                            <tr>
+                                <td style="font-weight:bold; text-decoration:underline; background-color:#aa80ff;" colspan="3">Attachments</td>
+                            </tr>
+                            <tr>
+                                <td id="attachment_fields" style="background-color:#aa80ff;">
+                                    <if test="@attachment1!=''">
+                                        <ul>
+                                            <li>
+                                                <attachment name="attachment1">
+                                                    <eocfield name="attachment1_name" disableclick="true"></eocfield>
+                                                </attachment>
+                                            </li>
+                                        </ul>
+                                    </if>
+                                    <if test="@attachment2!=''">
+                                        <br></br>
+                                        <ul>
+                                            <li>
+                                                <attachment name="attachment2">
+                                                    <eocfield name="attachment2_name" disableclick="true"></eocfield>
+                                                </attachment>
+                                            </li>
+                                        </ul>
+                                    </if>
+                                    <if test="@attachment3!=''">
+                                        <br></br>
+                                        <attachment name="attachment3">
+                                            <eocfield name="attachment3_name" disableclick="true"></eocfield>
+                                        </attachment>
+                                    </if>
+                                    <if test="@attachment4!=''">
+                                        <br></br>
+                                        <ul>
+                                            <li>
+                                                <attachment name="attachment4">
+                                                    <eocfield name="attachment4_name" disableclick="true"></eocfield>
+                                                </attachment>
+                                            </li>
+                                        </ul>
+                                    </if>
+                                    <if test="@attachment5!=''">
+                                        <br></br>
+                                        <ul>
+                                            <li>
+                                                <attachment name="attachment5">
+                                                    <eocfield name="attachment5_name" disableclick="true"></eocfield>
+                                                </attachment>
+                                            </li>
+                                        </ul>
+                                    </if>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </if>
+                <table id="originator" class="display">
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:bold; text-decoration:underline; background-color:#d9d9d1;" colspan="3">Originator Information</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#d9d9d1;">Created by: <eocfield name="originating_user"></eocfield></td>
+                            <td style="background-color:#d9d9d1;">Position: <eocfield name="originating_position"></eocfield></td>
+                            <td style="background-color:#d9d9d1;">Location: <eocfield name="originating_location"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#d9d9d1;">Phone: <eocfield name="originating_phone"></eocfield></td>
+                            <td style="background-color:#d9d9d1;" colspan="2" selected="true">Email: <eocfield name="originating_email"></eocfield></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </eocrepeatallrecords>
+            <span id="hideembededview" style="display:none;">
+                <table id="embded resources" class="display">
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:bold; text-decoration:underline; background-color:#ffebcd;">
+                                Resource Assignments For This Mission
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#ffebcd;">
+                                <eocrepeatallrecords>
+                                    <div id="resourcesbuttons">
+                                        <viewlink name="Mission Resources" target="resourcesembed" type="button">Mission Resources</viewlink>
+                                    </div>
+                                    <space></space>
+                                    <space></space>
+                                    <br></br>
+                                    <embedview view="Placeholder" id="resourcesembed" height="400" width="100%"></embedview>
+                                    <table id="resourcesrl" style="display:none">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    Resource Name
+                                                </td>
+                                                <td>
+                                                    Resource ID
+                                                </td>
+                                                <td>
+                                                    Status
+                                                </td>
+                                                <td>
+                                                    Remove
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <relatedlist rlid="2" table="Resources">
+                                                <tr class="agencytemplate_tableentry">
+                                                    <td>
+                                                        <eocfield name="label" table="Resources" type="rl"></eocfield>
+                                                    </td>
+                                                    <td>
+                                                        <value-of select="@dataid"></value-of>
+                                                    </td>
+                                                    <td>
+                                                        <eocfield name="status" table="Resources" type="rl"></eocfield>
+                                                    </td>
+                                                    <td>
+                                                        <viewlink name="Mission Resource Remove" type="button">Eliminate</viewlink>
+                                                    </td>
+                                                </tr>
+                                            </relatedlist>
+                                        </tbody>
+                                    </table>
+                                </eocrepeatallrecords>
+                                <div id="assignbutton" style="display: none">
+                                    <viewlink name="Resource List Embed" target="resourcesembed" type="button">Assign a Resource</viewlink>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="return button" style="background-color:#ffebcd;" align="right">
+                                <viewlink name="Mission List" type="button">
+                                    <img boardresource="return.png" title="Return to the missions list"></img>
+                                </viewlink>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    /*script to hide elements from PDF view*/
+    document.getElementById('hideativationmessage').style.display = 'block';
+    document.getElementById('hidebuttons').style.display = 'block';
+    document.getElementById('hideeditbutton').style.display = 'block';
+    document.getElementById('hideembededview').style.display = 'block';
+</script>
+</html>

@@ -1,0 +1,277 @@
+<html lang="en">
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+      <link href="css/8.3.0.0/boards.css" rel="stylesheet" media="screen"></link>
+    </head>
+    <body>
+      <form>
+        <header>
+          <h2>
+            Edit
+          </h2>
+        </header>
+        <table class="webeoc-section" cellpadding="0" cellspacing="0">
+          <tr style="display:none;">
+            <td class="webeoc-section-header" colSpan="1" selected="false">Details</td>
+            <td class="webeoc-section-header" colSpan="1" selected="false" width="">
+              <span id="missionfk">
+                <foreignkey table="Inventory Request Table" type="select">
+                  <eocfield name="entrydate" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="requestor_date_time" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="tracking_number" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="a_1Quantity" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="short_description" table="Inventory Request Table" type="fk"></eocfield>|<eocfield name="b_1_NIMSType" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="c_1_OrderDeskType" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="d_1_NIMScategory" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="OrderDeskPriority" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="f_1_DetailedItemDescription" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="g_location_1" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="f_date_time_1" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="h_1" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="i_1" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="j_1" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="requestor_5" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="request_poc" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="poc_number" type="fk" table="Inventory Request Table"></eocfield>|<eocfield name="status" type="fk" table="Inventory Request Table"></eocfield></foreignkey>
+              </span>
+              <!--<datalink name="Track Equipment"></datalink>-->
+        requestor<input type="text" id="Request_requestor_date_time" name="Request_requestor_date_time" size="40"></input>
+        tracking<input type="text" id="Request_tracking_number" name="Request_tracking_number" size="40"></input>
+        quantity<input type="text" id="Request_a_1Quantity" name="Request_a_1Quantity" size="40"></input>
+        short desc<input type="text" id="Request_short_description" name="Request_short_description" size="40"></input>
+        type<input type="text" id="Request_b_1_NIMSType" name="Request_b_1_NIMSType" size="40"></input>
+        kind<input type="text" id="Request_c_1_OrderDeskType" name="Request_c_1_OrderDeskType" size="40"></input>
+        category<input type="text" id="Request_d_1_NIMScategory" name="Request_d_1_NIMScategory" size="40"></input>
+        priority<input type="text" id="Request_OrderDeskPriority" name="Request_OrderDeskPriority" size="40"></input>
+        desc<textarea id="Request_f_1_DetailedItemDescription" name="Request_f_1_DetailedItemDescription" cols="60" rows="4"></textarea>
+        location<textarea id="Request_g_location_1" name="Request_g_location_1" cols="60" rows="4"></textarea>
+        datedue<input type="text" id="Request_f_date_time_1" name="Request_f_date_time_1" size="40"></input>
+        h1<input type="text" id="Request_h_1" name="Request_h_1" size="40"></input>
+        i1<input type="text" id="Request_i_1" name="Request_i_1" size="40"></input>
+        j1<input type="text" id="Request_j_1" name="Request_j_1" size="40"></input>
+        source<textarea id="Request_requestor_5" name="Request_requestor_5" cols="60" rows="4"></textarea>
+        poc<input type="text" id="Request_request_poc" name="Request_request_poc" size="40"></input>
+        pocnumber<input type="text" id="Request_poc_number" name="Request_poc_number" size="40"></input>
+        status<input type="text" id="Request_status" name="Request_status" size="40"></input></td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Resource Name</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="General_ResourceName" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Equipment Description</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="General_EquipmentDescription" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Agency/Jurisdiction</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="General_Agency" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Department</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="General_Department" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Manufacturer</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="Specs_Manufacturer" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Model</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="Specs_Model" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">VIN/Serial Number</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="Specs_VIN_SerialNumber" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">License Plate</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="Specs_LicensePlate" size="20"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">FEMA Cost Code</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="RT_FEMACostCode" size="10"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">FEMA Rate Unit</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <select name="RT_FEMA_RateUnit" list="Resource Unit" recipient="false" subject="false" message="false" receiver="false" notification="false"></select>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">FEMA Equipment Rate</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <input type="text" name="RT_FEMA_Rate" size="10" fieldtype="money"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Deployment Status</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <span id="status">
+                <select name="status" id="Resource_Status" list="Resource Status" onchange="origID();"></select>
+              </span>
+              <grouplist></grouplist>
+              <input type="text" name="jurisdiction_name" size="40">
+                <attribute name="value">
+                  <choose>
+                    <when test="/data/groups/@name='Maricopa County'">Maricopa County</when>
+                    <when test="/data/groups/@name='Avondale'">Avondale</when>
+                    <when test="/data/groups/@name='Buckeye'">Buckeye</when>
+                    <when test="/data/groups/@name='Carefree'">Carefree</when>
+                    <when test="/data/groups/@name='Cave Creek'">Cave Creek</when>
+                    <when test="/data/groups/@name='Chandler'">Chandler</when>
+                    <when test="/data/groups/@name='El Mirage'">El Mirage</when>
+                    <when test="/data/groups/@name='Fountain Hills'">Fountain Hills</when>
+                    <when test="/data/groups/@name='Gateway Airport'">Gateway Airport</when>
+                    <when test="/data/groups/@name='Gila Bend'">Gila Bend</when>
+                    <when test="/data/groups/@name='Gilbert'">Gilbert</when>
+                    <when test="/data/groups/@name='Glendale'">Glendale</when>
+                    <when test="/data/groups/@name='Goodyear'">Goodyear</when>
+                    <when test="/data/groups/@name='Guadalupe'">Guadalupe</when>
+                    <when test="/data/groups/@name='Litchfield Park'">Litchfield Park</when>
+                    <when test="/data/groups/@name='Mesa'">Mesa</when>
+                    <when test="/data/groups/@name='Paradise Valley'">Paradise Valley</when>
+                    <when test="/data/groups/@name='Peoria'">Peoria</when>
+                    <when test="/data/groups/@name='Phoenix'">Phoenix</when>
+                    <when test="/data/groups/@name='Queen Creek'">Queen Creek</when>
+                    <when test="/data/groups/@name='Scottsdale'">Scottsdale</when>
+                    <when test="/data/groups/@name='Sky Harbor'">Sky Harbor</when>
+                    <when test="/data/groups/@name='Surprise'">Surprise</when>
+                    <when test="/data/groups/@name='Tempe'">Tempe</when>
+                    <when test="/data/groups/@name='Tolleson'">Tolleson</when>
+                    <when test="/data/groups/@name='Wickenburg'">Wickenburg</when>
+                    <when test="/data/groups/@name='Youngtown'">Youngtown</when>
+                    <when test="/data/groups/@name='Salt River, Pima, Maricopa Indian Community'">Salt River, Pima, Maricopa Indian Community</when>
+                    <when test="/data/groups/@name='GRIC'">GRIC</when>
+                    <when test="/data/groups/@name='Fort McDowell'">Fort McDowell IC</when>
+                    <when test="/data/groups/@name='Aguila FD'">Aguila FD</when>
+                    <when test="/data/groups/@name='Sun Lakes FD'">Sun Lakes FD</when>
+                    <when test="/data/groups/@name='Daisy Mtn FD'">Daisy Mtn FD</when>
+                    <when test="/data/groups/@name='Sun City FD'">Sun City FD</when>
+                    <when test="/data/groups/@name='Rio Verde FD'">Rio Verde FD</when>
+                    <when test="/data/groups/@name='Buckeye Valley FD'">Buckeye Valley FD</when>
+                    <when test="/data/groups/@name='Harquahala FD'">Harquahala FD</when>
+                    <when test="/data/groups/@name='Circle City/Morristown FD'">Circle City/Morristown FD</when>
+                    <when test="/data/groups/@name='Apache Junction FD'">Apache Junction FD</when>
+                    <when test="/data/groups/@name='Tonopah Valley FD'">Tonopah Valley FD</when>
+                    <when test="/data/groups/@name='Sun City West FD'">Sun City West FD</when>
+                    <when test="/data/groups/@name='Wittmann FD'">Wittmann FD</when>
+                    <when test="/data/groups/@name='Agency - ADEM'">Agency - ADEM</when>
+                    <when test="/data/groups/@name='Agency - APAC'">Agency - APAC</when>
+                    <when test="/data/groups/@name='Agency - COCH'">Agency - COCH</when>
+                    <when test="/data/groups/@name='Agency - COCO'">Agency - COCO</when>
+                    <when test="/data/groups/@name='Agency - GILA'">Agency - GILA</when>
+                    <when test="/data/groups/@name='Agency - GREE'">Agency - GREE</when>
+                    <when test="/data/groups/@name='Agency - LAPA'">Agency - LAPA</when>
+                    <when test="/data/groups/@name='Agency - MOHA'">Agency - MOHA</when>
+                    <when test="/data/groups/@name='Agency - NAVA'">Agency - NAVA</when>
+                    <when test="/data/groups/@name='Agency - PIMA'">Agency - PIMA</when>
+                    <when test="/data/groups/@name='Agency - PINA'">Agency - PINA</when>
+                    <when test="/data/groups/@name='Agency - SANT'">Agency - SANT</when>
+                    <when test="/data/groups/@name='Agency - YAVA'">Agency - YAVA</when>
+                    <when test="/data/groups/@name='Agency - YUMA'">Agency - YUMA</when>
+                    <when test="/data/groups/@name='Avra Valley Fire District'">Avra Valley Fire District</when>
+                    <when test="/data/groups/@name='Drexel Heights Fire District'">Drexel Heights Fire District</when>
+                    <when test="/data/groups/@name='Golder Ranch Fire District'">Golder Ranch Fire District</when>
+                    <when test="/data/groups/@name='Green Valley Fire District'">Green Valley Fire District</when>
+                    <when test="/data/groups/@name='Helmet Peak Fire District'">Helmet Peak Fire District</when>
+                    <when test="/data/groups/@name='Mount Lemmon Fire District'">Mount Lemmon Fire District</when>
+                    <when test="/data/groups/@name='Northwest Fire District'">Northwest Fire District</when>
+                    <when test="/data/groups/@name='Mountain Vista Fire District'">Mountain Vista Fire District</when>
+                    <when test="/data/groups/@name='South Tucson Fire District'">South Tucson Fire District</when>
+                    <when test="/data/groups/@name='Sonoita-Elgin VFD'">Sonoita-Elgin VFD</when>
+                  </choose>
+                </attribute>
+              </input>
+              <grouplist></grouplist>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Grant Funded</td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <select name="Other_GrantFunded" list="Resource Inventory - Grant Funded" recipient="false" subject="false" message="false" receiver="false" notification="false"></select>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="true" rowSpan="1" colSpan="1"></td>
+            <td selected="false" rowSpan="1" colSpan="1">
+              <button onclick="openResources();">View Resource Inventory</button>
+            </td>
+          </tr>
+        </table>
+        <table id="tableID" width="100%" style="padding:5px">
+          <tr>
+            <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="8" width="" align="left" bgColor="#ffffff" vAlign="middle">
+              <span id="embededID" style="display:none;">
+                <embedview view="Select Deployment List" id="embededview" width="100%" height="800px" enablefooter="true"></embedview>
+              </span>
+            </td>
+          </tr>
+        </table>
+        <footer>
+          <div class="webeoc-footer">
+            <returnlink class="webeoc-link">Cancel</returnlink>
+            <space></space>
+            <savebutton class="webeoc-save">Save</savebutton>
+          </div>
+        </footer>
+      </form>
+    </body>
+    <script type="text/javascript">
+    var numSelect = document.getElementsByTagName("select").length;
+    var elemSelect = document.getElementsByTagName("select");
+    var fkTable = '<foreignkeyreference table="Inventory Request Table"></foreignkeyreference>';
+    //alert(fkTable);
+    for (i = 0; i &lt; numSelect; i++) {
+      if (elemSelect[i].name == fkTable) {
+        var optLength = elemSelect[i].options.length;
+        var fkSelect = elemSelect[i];
+        for (j = 0; j &lt; optLength; j++) {
+          var selSplit = fkSelect.options[j].text.split("|");
+          //place each iteration of the foreign key fields in their respective input;
+          document.getElementById("Request_requestor_date_time").value = selSplit[1];
+          document.getElementById("Request_tracking_number").value = selSplit[2];
+          document.getElementById("Request_a_1Quantity").value = selSplit[3];
+          document.getElementById("Request_short_description").value = selSplit[4];
+          document.getElementById("Request_b_1_NIMSType").value = selSplit[5];
+          document.getElementById("Request_c_1_OrderDeskType").value = selSplit[6];
+          document.getElementById("Request_d_1_NIMScategory").value = selSplit[7];
+          document.getElementById("Request_OrderDeskPriority").value = selSplit[8];
+          document.getElementById("Request_f_1_DetailedItemDescription").value = selSplit[9];
+          document.getElementById("Request_g_location_1").value = selSplit[10];
+          document.getElementById("Request_f_date_time_1").value = selSplit[11];
+          document.getElementById("Request_h_1").value = selSplit[12];
+          document.getElementById("Request_i_1").value = selSplit[13];
+          document.getElementById("Request_j_1").value = selSplit[14];
+          document.getElementById("Request_requestor_5").value = selSplit[15];
+          document.getElementById("Request_request_poc").value = selSplit[16];
+          document.getElementById("Request_poc_number").value = selSplit[17];
+          document.getElementById("Request_status").value = selSplit[18];
+        }
+      }
+    }
+     
+  </script>
+    <script type="text/javascript">
+  
+  function openResources() {
+    document.getElementById("embededID").style.display='block';
+  }
+  
+  function getCount(parent, getChildrensChildren){
+      var relevantChildren = 0;
+      var children = parent.childNodes.length;
+      for(var i=0; i &lt; children; i++){
+          if(parent.childNodes[i].nodeType != 3){
+              if(getChildrensChildren)
+                  relevantChildren += getCount(parent.childNodes[i],true);
+              relevantChildren++;
+          }
+      }
+      return relevantChildren;
+  }
+     
+     //alert(getCount(document.getElementById("tableID"), true));
+  </script>
+  </html>

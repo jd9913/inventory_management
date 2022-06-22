@@ -1,0 +1,225 @@
+<html>
+<head>
+    <script type="text/javascript" src="../boards/board_lib.js"></script>
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: #d1d2d4;
+            color: #000;
+            font: normal 0.9em arial;
+            margin: 1.0em;
+        }
+
+        div.container {
+            border: solid 1px #5f5f5f;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.heading {
+            border: solid 1px;
+            border-collapse: collapse;
+            empty-cells: show;
+            margin: 0;
+            padding: 3px;
+            width: 100%;
+        }
+
+            table.heading td, table.heading th {
+                padding: 0.1em 0.5em 0.1em 0.5em;
+            }
+
+            table.heading th {
+                text-align: center;
+            }
+
+        #tdFilter {
+            text-align: right;
+        }
+
+        #tdBoard {
+            text-align: center;
+        }
+
+        table.display {
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 100%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+        }
+
+            table.display td, table.display th {
+                border-right: solid 1px;
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.display td {
+                border-top: solid 1px;
+                border-color: #ccc;
+            }
+
+        #background {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .stretch {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="../js/clock.js" type="text/javascript"></script>
+    <script>
+      function loader(){
+        startClock('timestamp', 'dddd, dd MMM HH:mm:ss ', '<currentdate></currentdate>'+' '+'<currenttime></currenttime>', 'en', '<value-of select="//@dateformat"></value-of>');
+      }
+      window.onload = loader;
+    </script>
+</head>
+<body>
+    <div class="container agencytemplate_boardbackground">
+        <div class="container agencytemplate_boardbackground">
+            <table class="heading agencytemplate_boardheader">
+                <tr>
+                    <td id="primary_logo" style="font-size:14pt; text-align:left; width:5%;" colSpan="2">
+                        <agencyinfo type="primarylogo"></agencyinfo>
+                    </td>
+                    <td id="agency_name" style="font-size:14pt; text-align:left; width:30%" colSpan="2">
+                        <agencyinfo type="name"></agencyinfo>
+                        <br></br>Mission / Tasks List
+                    </td>
+                    <td id="help_bubble" style="font-size:14pt; text-align:left; width:5%;" colSpan="2"></td>
+                    <td id="activation_message" style="font-size:12pt; font-style:italic; color:white; text-align:right; width:30%;" colSpan="2">
+                        <marquee>
+                            <agencyinfo type="activationmessage"></agencyinfo>
+                        </marquee>
+                    </td>
+                    <td id="clock" style="font-size:10pt; color:white; text-align:right; width:25%;" colSpan="2">
+                        <div id="timestamp" style="font-weight:bold;font-size:12pt;"></div>
+                    </td>
+                    <td id="secondary_logog">
+                        <agencyinfo type="secondarylogo"></agencyinfo>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="incident_name" style="font-size:10pt; text-align:left;" colSpan="3">Incident: <incidentname></incidentname></td>
+                    <td id="search/filter" style="font-weight:bold; font-size:10pt; text-align:right;" colSpan="5">
+                        <search field="Mission_Subject"></search>
+                        <searchbutton>Search</searchbutton>
+                        <space></space>
+                        <clearsearchbutton></clearsearchbutton>
+                        <space></space>
+                        Status:<filterdropdown defaulttext="All"><filter name="Status Submitted">Submitted</filter><filter name="Status Completed">Completed</filter><filter name="Status In progress">In Progress</filter><filter name="Status Deployed">Deployed</filter><filter name="Status Rejected">Rejected</filter></filterdropdown>
+                        Priority:<filterdropdown defaulttext="All"><filter name="Priority High">High</filter><filter name="Priority Medium">Medium</filter><filter name="Priority Low">Low</filter></filterdropdown>
+                    </td>
+                    <td id="buttons" style="text-align:right;" colspan="3" selected="false">
+                        <filterbutton name="My Missions">
+                            <on>All Missions</on>
+                            <off>My Missions</off>
+                        </filterbutton>
+                        <viewlink name="Mission Macro View" type="button">
+                            <img boardresource="report.png" title="Go to the report view"></img>
+                        </viewlink>
+                        <viewlink name="Mission Input" type="button">
+                            <img boardresource="new_entry.png" title="Enter a new mission"></img>
+                        </viewlink>
+                    </td>
+                </tr>
+            </table>
+            <div class="content">
+                <table class="display">
+                    <tbody>
+                        <tr class="agencytemplate_tableheader">
+                            <th onMouseOver="style.cursor='pointer';style.color='yellow'" onMouseOut="style.color='white'" title="Click to Sort" id="dataid" onclick="SortByField();">Mission ID</th>
+                            <th onMouseOver="style.cursor='pointer';style.color='yellow'" onMouseOut="style.color='white'" title="Click to Sort" id="Mission_Subject" onclick="SortByField();">Subject</th>
+                            <th onMouseOver="style.cursor='pointer';style.color='yellow'" onMouseOut="style.color='white'" title="Click to Sort" id="Mission_Status" onclick="SortByField();">Status</th>
+                            <th onMouseOver="style.cursor='pointer';style.color='yellow'" onMouseOut="style.color='white'" title="Click to Sort" id="Mission_Priority" onclick="SortByField();">Priority</th>
+                            <th onMouseOver="style.cursor='pointer';style.color='yellow'" onMouseOut="style.color='white'" title="Click to Sort" id="Due_Date" onclick="SortByField();">Due Date/Time</th>
+                            <th onMouseOver="style.cursor='pointer';style.color='yellow'" onMouseOut="style.color='white'" title="Click to Sort" id="Assigned_To" onclick="SortByField();">Assigned To</th>
+                            <th onMouseOver="style.cursor='pointer';style.color='yellow'" onMouseOut="style.color='white'" title="Click to Sort" id="Created_By_User" onclick="SortByField();">Created By</th>
+                            <th>Links</th>
+                        </tr>
+                        <eocrepeatallrecords rowcount="25" sort="">
+                            <tr class="agencytemplate_tableentry">
+                                <td id="dataid" style="text-align:center;">
+                                    <eocfield name="dataid"></eocfield>
+                                </td>
+                                <td id="Mission_Subject" style="text-align:center;">
+                                    <eocfield name="Mission_Subject"></eocfield>
+                                </td>
+                                <td id="Mission_Status" style="text-align:center;">
+                                    <if test="@Mission_Status='Submitted'">
+                                        <attribute name="style">color:white; background-color:black;</attribute>
+                                    </if>
+                                    <if test="@Mission_Status='Completed'">
+                                        <attribute name="style">color:black; background-color:;</attribute>
+                                    </if>
+                                    <if test="@Mission_Status='In Progress'">
+                                        <attribute name="style">color:white; background-color:blue;</attribute>
+                                    </if>
+                                    <if test="@Mission_Status='Deployed'">
+                                        <attribute name="style">color:white; background-color:purple;</attribute>
+                                    </if>
+                                    <if test="@Mission_Status='Rejected'">
+                                        <attribute name="style">color:white; background-color:gray;</attribute>
+                                    </if>
+                                    <eocfield name="Mission_Status"></eocfield>
+                                </td>
+                                <td id="Mission_Priority" style="text-align:center;">
+                                    <attribute name="style">
+                                        <if test="@Mission_Priority='High' and @Mission_Status!='Completed'">color:white; background-color:red;</if>
+                                        <if test="@Mission_Priority='Medium' and @Mission_Status!='Completed'">color:black; background-color:yellow;</if>
+                                        <if test="@Mission_Priority='Low' and @Mission_Status!='Completed'">color:white; background-color:green;</if>
+                                    </attribute>
+                                    <eocfield name="Mission_Priority"></eocfield>
+                                </td>
+                                <td id="Due_Date" style="text-align:center;">
+                                    <if test="not (number(@overdue)&lt;1)">
+                                        <attribute name="style">color:black; background-color:white;</attribute>
+                                    </if>
+                                    <if test="number(@overdue)&lt;1">
+                                        <if test="@Mission_Status!='Completed' and @Mission_Status!='Deployed' and @Mission_Status!='Rejected'">
+                                            <attribute name="style">color:white; background-color:red;</attribute>
+                                        </if>
+                                    </if>
+                                    <if test="@Due_Date!='01/01/1900 00:00:00'">
+                                        <eocfield name="Due_Date"></eocfield>
+                                    </if>
+                                    <script type="text/javascript">
+                      var reload =  <expression name="overdue">case when (cast('1975-01-01' as datetime) &gt; Due_Date) then 100000000 else datediff(n,getUTCDATE(),Due_Date) end</expression>;
+                        if(reload &gt;0 &amp;&amp; reload &lt; 10000)
+                          setTimeout("parent.internalReload();",reload*60000);
+                                    </script>
+                                </td>
+                                <td id="assigned_to" style="text-align:center;">
+                                    <eocfield name="Assigned_To"></eocfield>
+                                </td>
+                                <td id="created_by" align="center">
+                                    <eocfield name="originating_user"></eocfield>
+                                </td>
+                                <td id="buttons" style="text-align:center;" selected="true">
+                                    <viewlink name="Mission Details" type="button">
+                                        <img boardresource="details.png" title="View mission details"></img>
+                                    </viewlink>
+                                    <viewlink type="button" name="Mission Input">
+                                        <img boardresource="edit_update.png" title="Edit/update mission"></img>
+                                    </viewlink>
+                                </td>
+                            </tr>
+                        </eocrepeatallrecords>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

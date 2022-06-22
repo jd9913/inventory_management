@@ -1,0 +1,387 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: #ffffff;
+            color: #000;
+            margin: 1.0em;
+            font: normal 0.9em arial;
+        }
+
+        div.container {
+            ;
+            border-color: #48156d;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.input {
+            border-collapse: collapse;
+            width: 100%;
+            empty-cells: show;
+        }
+
+            table.input td, table.input th {
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.input th {
+                text-align: right;
+            }
+
+        h1.heading {
+            font-weight: normal;
+            font-size: 1.75em;
+            padding: 0.1em 0.5em 0.1em 0.5em;
+            margin: 0;
+            border: solid 1px;
+            color: #fff;
+            background: #48156d url(../images/gradient_35.png) repeat-x scroll left top;
+            border-bottom-color: #606265;
+            border-left-color: #9c51d5;
+            border-right-color: #606265;
+            border-top-color: #9c51d5;
+        }
+
+        .buttons {
+            text-align: left;
+            margin: 1.0em;
+        }
+
+            .buttons button, .buttons input[type=submit], .buttons input[type=button], .buttons input[type=reset] {
+                margin: 0 0.2em 0 0.2em;
+            }
+
+        hr.topHR {
+            border-color: #004080;
+        }
+    </style>
+</head>
+<body>
+    <div class="container agencytemplate_boardbackground">
+        <table class="input">
+            <tbody>
+                <tr>
+                    <td id="" selected="false">
+                        <if test="1=0">
+                            <incidentname></incidentname>
+                        </if>
+                        <search field="General_Agency" exact="false" searchtext="Search Agency" cleartext="Clear Agency Search"></search>
+                        <clearsearchbutton></clearsearchbutton>
+                    </td>
+                    <td id="">
+                        <filter></filter>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="" colSpan="2" selected="true" width="">
+                        <printbutton></printbutton>
+                        <returnbutton>Back to List</returnbutton>
+                        <if test="/data/@username='coriam@mail.maricopa.gov' or /data/@username='WebEOC Administrator' or /data/@positionname='UASI Inventory Admin' or /data/groups/@name='Municipal Logistics Chiefs'">
+                            <exportbutton></exportbutton>
+                            <grouplist></grouplist>
+                        </if>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content">
+            <table class="input">
+                <tbody>
+                    <eocrepeatallrecords rowcount="100">
+                        <tr class="">
+                            <td selected="false" bgColor="#004080" style="COLOR: #ffffff; FONT-WEIGHT: bold" align="right" width="16%">Resource Name</td>
+                            <td selected="false" width="16%" rowSpan="1" bgColor="#004080" style="COLOR: #ffffff; FONT-WEIGHT: bold">
+                                <eocfield name="General_ResourceName"></eocfield>
+                            </td>
+                            <td selected="false" width="16%" colSpan="1" bgColor="#004080" style="COLOR: #ffffff; FONT-WEIGHT: bold" align="right" rowSpan="1">Equipment Description</td>
+                            <td selected="false" width="16%" colSpan="1" bgColor="#004080" style="COLOR: #ffffff; FONT-WEIGHT: bold" rowSpan="1">
+                                <eocfield name="General_EquipmentDescription"></eocfield>
+                            </td>
+                            <td selected="false" width="16%" colSpan="1" bgColor="#004080" style="COLOR: #ffffff; FONT-WEIGHT: bold" rowSpan="1" align="right">Agency/Jurisdiction</td>
+                            <td selected="false" width="16%" colSpan="1" bgColor="#004080" style="COLOR: #ffffff; FONT-WEIGHT: bold" rowSpan="1">
+                                <eocfield name="General_Agency"></eocfield> 
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Department</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080;">
+                                <eocfield name="General_Department"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Location</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="General_LocationName"></eocfield> 
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Address</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="address"></eocfield> 
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Point of Contact</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="General_POC"></eocfield> 
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">POC Phone</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="General_POCPhone"></eocfield> 
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">POC Email</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="General_POCEmail"></eocfield> 
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Manufacturer</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080">
+                                <eocfield name="Specs_Manufacturer"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Model</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="text1"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">VIN or Serial Number</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_VIN_SerialNumber"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Chassis Type</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="Specs_ChassisType"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">License Plate</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_LicensePlate"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Equipment Type</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_EquipmentType"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Fuel Type</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080">
+                                <eocfield name="Specs_FuelType"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Horsepower</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_HP"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">GVW</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_GVW"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Height</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="Specs_Height"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Length</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_Length"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Weight</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_Weight"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Weight Limits</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080">
+                                <eocfield name="Specs_WeightLimits"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Width</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_Width"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Payload Capacity</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_PayloadCapacity"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Water Capacity</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_WaterCapacity"></eocfield>
+                                <eocfield name="Specs_WaterCapacity_Unit"></eocfield>
+                            </td>
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Gallons Per Minute (GPM)</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="Specs_GPM"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Personnel Capacity</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_PersonnelCapacity"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Specialized Crew</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_SpecializedCrew"></eocfield>
+                            </td>
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Operator Type</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080">
+                                <eocfield name="Specs_OperatorType"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Linked Equipment</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Specs_LinkedEquipment"></eocfield>
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">NIMS Group</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="RT_NIMS_Group"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">NIMS Definition</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="RT_NIMS_Definition"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">NIMS Type</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="RT_NIMS_Type"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">FEMA Cost Code</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080">
+                                <eocfield name="RT_FEMACostCode"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">FEMA Rate</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="RT_FEMA_Rate"></eocfield>
+                                <eocfield name="RT_FEMA_RateUnit"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right"></td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1"></td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Wildland Definition</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="RT_Wildland_Definition"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Wildland Type</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="RT_Wildand_Type"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Wildand Rate</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="RT_Wildland_Rate"></eocfield>
+                                <eocfield name="RT_Wildland_RateUnit"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Inventory ID</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080">
+                                <eocfield name="Other_InventoryID"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Inventory Class</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_Inventory_Class"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Inventory Type</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_InventoryType"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Serial Number</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="Other_SerialNumber"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Item Number</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_ItemNumber"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Lot#</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_LotNumber"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Deployment Considerations</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080">
+                                <eocfield name="Other_DeploymentConsiderations"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">ETA Deployment Time</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_EstimatedDeploymentTime"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Service Status</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_ServiceStatus"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Acquired Date</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="Other_AcquiredDate"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Received Date</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_ReceivedDate"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">In Service</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_InService"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Year</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="COLOR: #004080">
+                                <eocfield name="Other_Year"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Expiration Date</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_ExpirationDate"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Estimated Replacement Date</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_ReplacementDate2"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Grant Funded?</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#cddcff" style="COLOR: #004080">
+                                <eocfield name="Other_GrandFunded"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Grant</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_GrantDropdown"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Grant Number</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#cddcff" style="COLOR: #004080" rowSpan="1">
+                                <eocfield name="Other_GrantNumber"></eocfield>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td selected="false" bgColor="#ffffff" style="COLOR: #004080; border-bottom: 3px solid #004080; FONT-WEIGHT: bold" align="right" width="" rowSpan="1">Replacement Miles</td>
+                            <td selected="false" width="" rowSpan="1" bgColor="#ffffff" style="color: #004080; border-bottom: 3px solid #004080;">
+                                <eocfield name="Other_ReplacementMiles"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; border-bottom: 3px solid #004080; FONT-WEIGHT: bold" align="right" rowSpan="1">Generic</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; border-bottom: 3px solid #004080;" rowSpan="1">
+                                <eocfield name="Other_Generic"></eocfield>
+                            </td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; border-bottom: 3px solid #004080; FONT-WEIGHT: bold" rowSpan="1" align="right">Notes</td>
+                            <td selected="false" width="" colSpan="1" bgColor="#ffffff" style="COLOR: #004080; border-bottom: 3px solid #004080;" rowSpan="1">
+                                <eocfield name="Other_Notes"></eocfield>
+                                <span style="display:none">
+                                    <eocfield name="remove"></eocfield>
+                                </span>
+                            </td>
+                        </tr>
+                    </eocrepeatallrecords>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

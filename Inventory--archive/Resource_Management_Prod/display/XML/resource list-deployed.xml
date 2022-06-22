@@ -1,0 +1,106 @@
+<html>
+    <head>
+      <title></title>
+      <style type="text/css">
+    body{background-color:#fff;color:#000;font:normal 0.9em arial;margin:1.0em;}
+    div.container{margin:1em}
+    div.content{margin:0em;}
+    table.heading{border:solid 1px;border-collapse:collapse;empty-cells:show;margin:0;padding:3px;width:100%;}      table.heading td, table.heading th{padding:0.1em 0.5em 0.1em 0.5em;}
+    table.heading th{text-align:center;}
+    #tdFilter{text-align:right;}
+    #tdBoard{text-align:center;}
+    table.display{border-collapse:collapse;border:solid 1px;width:100%;border-color:#808080;background-color:#fff;empty-cells:show;margin-bottom:0.2em;}
+    table.display td, table.display th{border-right:solid 1px;padding:0.1em 0.3em 0.1em 0.3em;}
+    table.display td{border-top:solid 1px;border-color:#ccc;}
+    hr.topHR{border-color: #004080;}
+  </style>
+    </head>
+    <body>
+      <div class="container agencytemplate_boardbackground">
+        <table class="" width="100%">
+          <tbody>
+            <tr>
+              <td id="" selected="false" style="COLOR: #004080; FONT-SIZE: 18pt; FONT-WEIGHT: bold" align="center" width="100%">
+                <if test="1=0">
+                  <incidentname></incidentname>
+                </if>Deployed Resources<hr class="topHR"></hr></td>
+            </tr>
+            <tr>
+              <td id="" colSpan="" selected="false" style="COLOR: #004080; FONT-WEIGHT: bold" align="right" width="100%"></td>
+            </tr>
+            <tr>
+              <td id="" colSpan="" selected="false" style="COLOR: #004080; FONT-WEIGHT: bold" align="left" width="100%" rowSpan="1">
+                <search field="General_ResourceName" exact="false" searchtext="Search Resource Name" cleartext="Clear Resource Name">
+                  <field name="General_EquipmentDescription"></field>
+                  <field name="RT_NIMS_Definition"></field>
+                  <field name="Other_InventoryID"></field>
+                  <field name="Specs_VIN_SerialNumber"></field>
+                  <field name="Specs_LicensePlate"></field>
+                </search>
+                <clearsearchbutton></clearsearchbutton>
+                <search field="General_Agency" exact="false" searchtext="Search Agency" cleartext="Clear Agency Search">
+                  <field name="General_Department"></field>
+                </search>
+                <clearsearchbutton></clearsearchbutton>Category Filter: <filterdropdown defaulttext="Show All"><filter name="Animal Health Emergency">Animal Health Emergency</filter><filter name="Emergency Medical Services">Emergency Medical Services</filter><filter name="Fire and Hazardous Materials">Fire and Hazardous Materials</filter><filter name="Incident Management">Incident Management</filter><filter name="Law Enforcement">Law Enforcement</filter><filter name="Medical and Public Health">Medical and Public Health</filter><filter name="Public Works">Public Works</filter><filter name="Search and Rescue">Search and Rescue</filter></filterdropdown></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="content">
+          <table class="display">
+            <tbody>
+              <tr class="agencytemplate_tableheader">
+                <td selected="false" style="FONT-WEIGHT: bold">Resource Name</td>
+                <td selected="false" style="FONT-WEIGHT: bold" colSpan="1" width="">Owner</td>
+                <td selected="false" style="FONT-WEIGHT: bold" colSpan="1" width="">Request Number</td>
+                <td selected="false" style="FONT-WEIGHT: bold" colSpan="1" width="">Destination Location</td>
+                <td selected="false" style="FONT-WEIGHT: bold" colSpan="1" width="">Resource Tracking</td>
+                <td selected="false" style="FONT-WEIGHT: bold" colSpan="1" width="" align="center">Details / Print</td>
+                <td selected="" style="FONT-WEIGHT: bold" colSpan="1" width=""></td>
+              </tr>
+              <eocrepeatallrecords sort="General_ResourceName" rowcount="100">
+                <tr class="agencytemplate_tableentry">
+                  <td selected="false" colSpan="1">
+                    <eocfield name="General_ResourceName"></eocfield>
+                  </td>
+                  <td selected="false" colSpan="1" width="">
+                    <eocfield name="General_Agency"></eocfield>
+                    <if test="@General_Department!=''">- <eocfield name="General_Department"></eocfield></if>
+                  </td>
+                  <td selected="false" colSpan="1" width="">
+                    <eocfield name="Request_tracking_number"></eocfield>
+                  </td>
+                  <td selected="false" colSpan="1" width="">
+                    <eocfield name="Request_g_location_1"></eocfield>
+                  </td>
+                  <td selected="false" colSpan="1" width="">
+                    <eocfield name="status"></eocfield>
+                  </td>
+                  <td selected="false" colSpan="1" width="" align="center">
+                    <viewlink name="Print Deployment">
+                      <img border="0" src="../images/details-iconsm.png"></img>
+                    </viewlink>
+                  </td>
+                  <td selected="true" colSpan="1" width="">
+                    <choose>
+                      <when test="@General_Agency=/data/groups/@name">
+                        <viewlink name="Deployment Update" type="button">
+                          <viewparameter name="objStatus">
+                            <value-of select="@status"></value-of>
+                          </viewparameter>Edit/Update</viewlink>
+                      </when>
+                      <otherwise>Only the Agency Owner can Release their Resource</otherwise>
+                    </choose>
+                    <grouplist></grouplist>
+                  </td>
+                </tr>
+              </eocrepeatallrecords>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </body>
+    <script type="text/javascript">
+  //alert(window.top.frames[1].document.forms[0].elements[7].value);
+  //alert(window.opener.parent.parent.frames.length);
+  </script>
+  </html>

@@ -1,0 +1,219 @@
+<html>
+    <head>
+      <title></title>
+      <style type="text/css">
+  body{
+      background-color:#d1d2d4;
+      color:#000;
+      font:normal 0.9em arial;
+      margin:1.0em;
+  }
+  div.container{
+      background-color:#fff;
+      border:solid 1px #48156d;
+  }
+  div.content{
+      margin:1em;
+  }
+  table.display{
+      border-collapse:collapse;
+      border:solid 1px;
+      width:100%;
+      border-color:#808080;
+      empty-cells:show;
+      margin-bottom:0.2em;
+  }
+  
+  table.display td{
+      border-right:solid 1px;
+      border-top:solid 1px;
+      color:#000;
+      border-color:#ccc;
+      padding:0.1em 0.3em 0.1em 0.3em;
+  }
+  
+  table.resource{
+      border-collapse:collapse;
+      width:200px;
+      empty-cells:show;
+      margin-bottom:0.2em;
+  }
+  
+  table.resource td{
+      border-right:solid 0px;
+      border-top:solid 0px;
+      color:#000;
+      padding:0.1em 0.3em 0.1em 0.3em;
+  }
+  
+  table.summary{
+      border-collapse:collapse;
+      border:solid 1px;
+      width:260px;
+      border-color:#808080;
+      margin-bottom:0.2em;
+  }
+  
+  table.sumary td{
+      border-right:solid 1px;
+      border-top:solid 1px;
+      color:#000;
+      border-color:#ccc;
+      padding:0.1em 0.3em 0.1em 0.3em;
+  }
+  </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="content">
+          <table width="100%">
+            <tr>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 18pt; COLOR: #004080; FONT-FAMILY: arial" align="left" width="100%" bgColor="#ffffff" selected="true" rowSpan="1" colSpan="2" vAlign="middle">Order Desk (ICS-213RR)</td>
+            </tr>
+            <tr>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #004080; FONT-FAMILY: arial" align="left" width="60%" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="1" vAlign="middle">Incident: <incidentname></incidentname></td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #004080; FONT-FAMILY: arial" align="right" width="" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="1" vAlign="middle">
+                <returnbutton>Return to Assignment List</returnbutton>
+              </td>
+            </tr>
+            <tr>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #004080; FONT-FAMILY: arial" align="left" width="" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="2" vAlign="middle">Search:<space></space><search field="tracking_number" exact="false"><field name="originating_position"></field><field name="routing_r1"></field><field name="task_desc_short"></field><field name="b_1"></field><field name="d_1"></field><field name="status"></field></search><space></space><clearsearchbutton></clearsearchbutton></td>
+            </tr>
+          </table>
+          <table class="display">
+            <tr>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" width="12%" rowSpan="1" colSpan="1" align="center" vAlign="middle">Tracking #</td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" width="35%" rowSpan="1" colSpan="1" vAlign="middle">Details</td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" width="15%" rowSpan="1" colSpan="1" align="center" vAlign="middle">Originator</td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" colSpan="1" width="15%" rowSpan="1" align="center" vAlign="middle">Assigned to</td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" colSpan="1" width="15%" rowSpan="1" align="center" vAlign="middle">Priority</td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" colSpan="1" width="" rowSpan="1" align="center" vAlign="middle">Time Due</td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" colSpan="1" width="" rowSpan="1" align="center" vAlign="middle">Status</td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" colSpan="1" width="1%" rowSpan="1" align="center" vAlign="middle">Details</td>
+              <td style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#004080" selected="false" colSpan="1" width="1%" rowSpan="1" align="center" vAlign="middle">Update</td>
+            </tr>
+            <eocrepeatallrecords>
+              <span style="display:none">
+                <eocfield name="task_request"></eocfield>
+                <eocfield name="resource_request"></eocfield>
+              </span>
+              <tr>
+                <attribute name="bgColor">
+                  <if test="position() mod 2 = 0">#dddddd</if>
+                  <if test="position() mod 2 != 0">#f9f9f9</if>
+                </attribute>
+                <if test="@how_old &gt; 2 and @status!='Complete' and @status!='Cancelled' and @status!='Closed' ">
+                  <attribute name="bgColor">#ffff00</attribute>
+                </if>
+                <span style="display:none">
+                  <eocfield name="entrydate"></eocfield>
+                </span>
+                <if test="1=0">
+                  <expression name="how_old">datediff(hh,entrydate,getUTCDate())</expression>
+                </if>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="1" width="" vAlign="middle" align="center">
+                  <eocfield name="tracking_number"></eocfield>
+                </td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="1" width="" vAlign="top">
+                  <if test="@task_request='Yes'">
+                    <eocfield name="task_desc_short"></eocfield>
+                  </if>
+                  <if test="@resource_request='Yes'">
+                    <table class="resource">
+                      <tr>
+                        <td width="50%" selected="false" style="COLOR: #000; FONT-SIZE: 10pt; FONT-WEIGHT: bold" bgColor="">Description</td>
+                        <td width="25%" selected="false" style="COLOR: #000; FONT-SIZE: 10pt; FONT-WEIGHT: bold" bgColor="" align="center">Type</td>
+                        <td width="25%" selected="false" style="COLOR: #000; FONT-SIZE: 10pt; FONT-WEIGHT: bold" bgColor="" align="center">Qty</td>
+                      </tr>
+                      <tr>
+                        <td width="60%" selected="false" style="FONT-SIZE: 10pt; FONT-WEIGHT: bold" bgColor="">
+                          <eocfield name="short_description"></eocfield>
+                        </td>
+                        <td width="20%" selected="false" style="FONT-SIZE: 10pt; FONT-WEIGHT: bold" bgColor="" align="center">
+                          <eocfield name="b_1_NIMSType"></eocfield>
+                        </td>
+                        <td width="20%" selected="false" style="FONT-SIZE: 10pt; FONT-WEIGHT: bold" bgColor="" align="center">
+                          <eocfield name="a_1Quantity"></eocfield>
+                        </td>
+                      </tr>
+                    </table>
+                  </if>
+                </td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="1" width="" vAlign="middle" align="center">
+                  <eocfield name="originating_position"></eocfield>
+                </td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="1" width="" align="center" vAlign="middle">
+                  <eocfield name="assigned_to"></eocfield>
+                </td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="1" width="" align="center" vAlign="middle">
+                  <if test="@OrderDeskPriority='Urgent'">
+                    <attribute name="bgColor">#ff0000</attribute>
+                  </if>
+                  <if test="@OrderDeskPriority='Routine'">
+                    <attribute name="bgColor">#00ff00</attribute>
+                  </if>
+                  <eocfield name="OrderDeskPriority"></eocfield>
+                </td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="1" width="" align="center" vAlign="middle">
+                  <if test="number(@overdue)&lt;1">
+                    <attribute name="bgColor">red</attribute>
+                  </if>
+                  <if test="@status='Complete'">
+                    <attribute name="bgColor">#999999</attribute>
+                  </if>
+                  <if test="@status='Cancelled'">
+                    <attribute name="bgColor">#666666</attribute>
+                  </if>
+                  <if test="not(number(@overdue)&lt;1)">
+                    <attribute name="bgColor"></attribute>
+                  </if>
+                  <if test="@f_date_time_1!='01/01/1900 00:00:00'">
+                    <eocfield name="f_date_time_1"></eocfield>
+                  </if>
+                  <script type="text/javascript">
+      var reload =  <expression name="overdue">case when (cast('1975-01-01' as datetime) &gt; f_date_time_1) then 100000000 else datediff(n,getUTCDATE(),f_date_time_1) end</expression>;
+      if(reload &gt;0 &amp;&amp; reload &lt; 10000)
+      setTimeout("parent.internalReload();",reload*60000); 
+  </script>
+                </td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="1" width="" align="center" vAlign="middle">
+                  <if test="@status='Not Reviewed'">
+                    <attribute name="bgColor">#ffff00</attribute>
+                  </if>
+                  <if test="@status='Assigned'">
+                    <attribute name="bgColor">#ffcc00</attribute>
+                  </if>
+                  <if test="@status='In Progress'">
+                    <attribute name="bgColor">#00ff00</attribute>
+                  </if>
+                  <if test="@status='Complete'">
+                    <attribute name="bgColor">#999999</attribute>
+                  </if>
+                  <if test="@status='Cancelled'">
+                    <attribute name="bgColor">#666666</attribute>
+                  </if>
+                  <if test="@status='Closed'">
+                    <attribute name="bgColor">#666666</attribute>
+                  </if>
+                  <if test="@status='Rejected'">
+                    <attribute name="bgColor">#ff0000</attribute>
+                  </if>
+                  <eocfield name="status"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" vAlign="middle" align="center">
+                  <if test="@resource_request='Yes'">
+                    <viewlink name="Resource Details Display" type="button">View</viewlink>
+                  </if>
+                </td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" vAlign="middle">
+                  <if test="@resource_request='Yes'">
+                    <viewlink name="Resource Request Update" type="button">Update</viewlink>
+                  </if>
+                </td>
+              </tr>
+            </eocrepeatallrecords>
+          </table>
+        </div>
+      </div>
+    </body>
+  </html>

@@ -1,0 +1,287 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: #d1d2d4;
+            color: #000;
+            font: normal 0.9em arial;
+            margin: 1.0em;
+        }
+
+        div.container {
+            border: solid 0px #5f5f5f;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.heading {
+            border: solid 1px;
+            border-collapse: collapse;
+            empty-cells: show;
+            margin: 0;
+            padding: 3px;
+            width: 100%;
+        }
+
+            table.heading td, table.heading th {
+                padding: 0.1em 0.5em 0.1em 0.5em;
+            }
+
+            table.heading th {
+                text-align: center;
+            }
+
+        #tdFilter {
+            text-align: right;
+        }
+
+        #tdBoard {
+            text-align: center;
+        }
+
+        table.display {
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 100%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+        }
+
+            table.display td, table.display th {
+                border-right: solid 1px;
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.display td {
+                border-top: solid 1px;
+                border-color: #ccc;
+            }
+
+        .summary {
+            font-size: 12pt;
+            font-weight: bold;
+            display: inline-block;
+            float: left;
+            *display: inline;
+            line-height: 200%;
+        }
+
+        .report {
+            font-size: 12pt;
+            font-weight: bold;
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 60%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+            border-right: solid 1px;
+        }
+    </style>
+    <script src="../js/clock.js" type="text/javascript"></script>
+    <script>
+      function loader(){
+        startClock('timestamp', 'dddd, dd MMM HH:mm:ss ', '<currentdate />'+' '+'<currenttime />', 'en', '<value-of select="//@dateformat" />');
+      }
+      window.onload = loader;
+    </script>
+</head>
+<body>
+    <div class="container agencytemplate_boardbackground">
+        <table class="heading agencytemplate_boardheader">
+            <tbody>
+                <tr>
+                    <td id="agency_logo">
+                        <agencyinfo type="primarylogo" />
+                    </td>
+                    <td>Missions Report View</td>
+                    <td id="activation message" style="font-style:italic; color:white; width:20%">
+                        <span id="hideactivationmessage" style="display:none;">
+                            <marquee>
+                                <agencyinfo type="activationmessage" />
+                            </marquee>
+                        </span>
+                    </td>
+                    <td id="clock" style="width:15%;">
+                        <div id="timestamp" style="font-size:12pt;color:white;" />
+                    </td>
+                    <td id="secondary logo" align="right">
+                        <agencyinfo type="secondarylogo" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="incident name" colspan="3">Incident: <incidentname /></td>
+                    <td id="buttons" style="text-align:right;" colspan="2">
+                        <span id="hidebuttons" style="display:none;">
+                            <pdflink type="button">
+                                <img src="../images/pdf.png" title="Print to PDF" />
+                            </pdflink>
+                            <viewlink name="Mission List" type="button">
+                                <img src="../images/return.png" title="Return to the missions list" />
+                            </viewlink>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content">
+            <if test="1=0">
+                <div style="display: block;">
+                    <table id="missionsTable" border="0" cellpadding="0" cellspacing="0">
+                        <eocrepeatallrecords rowcount="0" sort="Assigned_To">
+                            <tr>
+                                <td id="dataid">
+                                    <eocfield name="dataid"></eocfield>
+                                </td>
+                                <td>
+                                    <eocfield name="Assigned_To"></eocfield>
+                                </td>
+                                <td>
+                                    <expression name="submitted">case when (Mission_Status = 'Submitted') then 1 else 0 end</expression>
+                                </td>
+                                <td>
+                                    <expression name="completed">case when (Mission_Status = 'Completed') then 1 else 0 end</expression>
+                                </td>
+                                <td>
+                                    <expression name="In_Progress">case when (Mission_Status = 'In Progress') then 1 else 0 end</expression>
+                                </td>
+                                <td>
+                                    <expression name="deployed">case when (Mission_Status = 'Deployed') then 1 else 0 end</expression>
+                                </td>
+                                <td>
+                                    <expression name="rejected">case when (Mission_Status = 'Rejected' ) then 1 else 0 end</expression>
+                                </td>
+                            </tr>
+                        </eocrepeatallrecords>
+                    </table>
+                </div>
+            </if>
+            <table id="charts" class="display">
+                <tbody>
+                    <tr class="agencytemplate_tableheader">
+                        <th>Missions</th>
+                        <th>Costs Estimates</th>
+                        <th>Activity</th>
+                        <th>Priority</th>
+                    </tr>
+                    <tr>
+                        <td id="missions pie chart">
+                            <div class="summary">
+                                Total:<space /><expression name="amphtotal">count(*)</expression><br /><span style="color:white; background-color:black;">Submitted:</span><space /><expression name="submittedsum">sum(case when (Mission_Status = 'Submitted') then 1 else 0 end)</expression><br /><span style="color:white; background-color:green;">Completed:</span><space /><expression name="completedsum">sum(case when (Mission_Status = 'Completed') then 1 else 0 end)</expression><br /><span style="color:white; background-color:blue;">In Progress:</span><space /><expression name="in_progresssum">sum(case when (Mission_Status = 'In Progress') then 1 else 0 end)</expression><br /><span style="color:white; background-color:purple;">Deployed:</span><space /><expression name="deployedsum">sum(case when (Mission_Status = 'Deployed') then 1 else 0 end)</expression><br /><span style="color:white; background-color:gray;">Rejected:</span><space /><expression name="rejectedsum">sum(case when (Mission_Status = 'Rejected' ) then 1 else 0 end)</expression><br />
+                            </div>
+                            <div align="center">
+                                <chart hidelabels="true" type="pie" width="205" height="170">
+                                    <dataexpression label="Submitted" color="black">sum(case when (Mission_Status = 'Submitted') then 1 else 0 end)</dataexpression>
+                                    <dataexpression label="Completed" color="green">sum(case when (Mission_Status = 'Completed') then 1 else 0 end)</dataexpression>
+                                    <dataexpression label="In_Progress" color="blue">sum(case when (Mission_Status = 'In Progress') then 1 else 0 end)</dataexpression>
+                                    <dataexpression label="Deployed" color="purple">sum(case when (Mission_Status = 'Deployed') then 1 else 0 end)</dataexpression>
+                                    <dataexpression label="Rejected" color="gray">sum(case when (Mission_Status = 'Rejected' ) then 1 else 0 end)</dataexpression>
+                                </chart>
+                            </div>
+                        </td>
+                        <td id="costs chart">
+                            <div class="summary">
+                                Total:<space />$<expression name="costtotal">CONVERT(VARCHAR,CAST(sum(Estimated_Cost) AS MONEY),1)</expression><br /><span style="color:white; background-color:black;">Submitted:</span><space />$<expression name="costactive">CONVERT(VARCHAR,CAST(sum(case when (Mission_Status = 'Submitted') then Estimated_Cost else 0 end) AS MONEY),1)</expression><br /><span style="color:white; background-color:green;">Completed:</span><space />$<expression name="costcompleted">CONVERT(VARCHAR,CAST(sum(case when (Mission_Status = 'Completed') then Estimated_Cost else 0 end) AS MONEY),1)</expression><br /><span style="color:white; background-color:blue;">In Progress:</span><space />$<expression name="costinprogress">CONVERT(VARCHAR,CAST(sum(case when (Mission_Status = 'In Progress') then Estimated_Cost else 0 end) AS MONEY),1)</expression><br /><span style="color:white; background-color:purple;">Deployed:</span><space />$<expression name="costdeployed">CONVERT(VARCHAR,CAST(sum(case when (Mission_Status = 'Deployed') then Estimated_Cost else 0 end) AS MONEY),1)</expression><br /><span style="color:white; background-color:gray;">Rejected:</span><space />$<expression name="costrejected">CONVERT(VARCHAR,CAST(sum(case when (Mission_Status = 'Rejected' ) then Estimated_Cost else 0 end) AS MONEY),1)</expression><br />
+                            </div>
+                            <div align="center">
+                                <chart hidelabels="true" type="pie" width="205" height="170">
+                                    <dataexpression label="_Submitted" color="black">sum(case when (Mission_Status = 'Submitted') then Estimated_Cost else 0 end)</dataexpression>
+                                    <dataexpression label="_Completed" color="green">sum(case when (Mission_Status = 'Completed') then Estimated_Cost else 0 end)</dataexpression>
+                                    <dataexpression label="_In_Progress" color="blue">sum(case when (Mission_Status = 'In Progress') then Estimated_Cost else 0 end)</dataexpression>
+                                    <dataexpression label="_Deployed" color="purple">sum(case when (Mission_Status = 'Deployed') then Estimated_Cost else 0 end)</dataexpression>
+                                    <dataexpression label="_Rejected" color="gray">sum(case when (Mission_Status = 'Rejected' ) then Estimated_Cost else 0 end)</dataexpression>
+                                </chart>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="summary">
+                                <chart type="line" groupby="convert(varchar,entrydate,101)" backgroundcolor="ccf">
+                                    <dataexpression label="events">count(*)</dataexpression>
+                                </chart>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="summary">
+                                <span style="color:white; background-color:green;">Low:</span>
+                                <space />
+                                <expression name="high">sum(case when (Mission_Priority = 'Low') then 1 else 0 end)</expression>
+                                <br />
+                                <span style="color:black; background-color:yellow;">Medium:</span>
+                                <space />
+                                <expression name="medium">sum(case when (Mission_Priority = 'Medium') then 1 else 0 end)</expression>
+                                <br />
+                                <span style="color:white; background-color:red;">High:</span>
+                                <space />
+                                <expression name="low">sum(case when (Mission_Priority = 'High') then 1 else 0 end)</expression>
+                                <br />
+                            </div>
+                            <div class="summary">
+                                <chart hidelabels="true" type="pie" width="205" height="170">
+                                    <dataexpression label="High" color="red">sum(case when Mission_Priority = 'High' then 1 else 0 end)</dataexpression>
+                                    <dataexpression label="Medium" color="yellow">sum(case when Mission_Priority = 'Medium' then 1 else 0 end)</dataexpression>
+                                    <dataexpression label="Low" color="green">sum(case when Mission_Priority = 'Low' then 1 else 0 end)</dataexpression>
+                                </chart>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="position totals chart" colspan="4" align="center">
+                            <table class="report" width="50%">
+                                <thead>
+                                    <tr class="agencytemplate_tableheader">
+                                        <td width="20%">Assigned To</td>
+                                        <td width="15%">Submitted</td>
+                                        <td width="15%">Completed</td>
+                                        <td width="15%">In Progress</td>
+                                        <td width="15%">Deployed</td>
+                                        <td width="15%">Rejected</td>
+                                        <td width="15%">Total</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="totals">
+                                    <for-each select="/data/*[not(@Assigned_To=preceding-sibling::*/@Assigned_To) and @Assigned_To ]">
+                                        <tr class="agencytemplate_tableentry">
+                                            <td>
+                                                <value-of select="@Assigned_To" />
+                                            </td>
+                                            <td>
+                                                <value-of select="sum(/data/*[@Assigned_To=current()/@Assigned_To]/@submitted)" />
+                                            </td>
+                                            <td>
+                                                <value-of select="sum(/data/*[@Assigned_To=current()/@Assigned_To]/@completed)" />
+                                            </td>
+                                            <td>
+                                                <value-of select="sum(/data/*[@Assigned_To=current()/@Assigned_To]/@In_Progress)" />
+                                            </td>
+                                            <td>
+                                                <value-of select="sum(/data/*[@Assigned_To=current()/@Assigned_To]/@deployed)" />
+                                            </td>
+                                            <td>
+                                                <value-of select="sum(/data/*[@Assigned_To=current()/@Assigned_To]/@rejected)" />
+                                            </td>
+                                            <td>
+                                                <value-of select="count(/data/*[@Assigned_To=current()/@Assigned_To])" />
+                                            </td>
+                                        </tr>
+                                    </for-each>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    /*script to hide elements from PDF view*/
+    document.getElementById('hideactivationmessage').style.display = 'block';
+    document.getElementById('hidebuttons').style.display = 'block';
+</script>
+</html>

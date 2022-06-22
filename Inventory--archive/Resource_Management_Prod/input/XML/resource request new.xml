@@ -1,0 +1,524 @@
+<html>
+    <head>
+      <title />
+      <style type="text/css">
+  body{
+      background-color:#d1d2d4;
+      color:#000;
+      font:normal 0.9em arial;
+      margin:1.0em;
+  }
+  div.container{
+      background-color:#fff;
+      border:solid 1px #48156d;
+  }
+  div.content{
+                  width: 860px;
+      margin:1em;
+  }
+  
+  table.display{
+      border-collapse:collapse;
+      border:solid 1px;
+      width:100%;
+      border-color:#808080;
+      empty-cells:show;
+      margin-bottom:0.2em;
+  }
+  
+  table.display td{
+      border-right:solid 1px;
+      border-top:solid 1px;
+      color:#000;
+      border-color:#ccc;
+      padding:0.1em 0.3em 0.1em 0.3em;
+  }
+  </style>
+    </head>
+    <body>
+      <script type="text/javascript">
+  function formatCurrency(num) {
+  num = num.toString().replace(/\$|\,/g,'');
+  if(isNaN(num))
+  num = "0";
+  sign = (num == (num = Math.abs(num)));
+  num = Math.floor(num*100+0.50000000001);
+  cents = num%100;
+  num = Math.floor(num/100).toString();
+  if(cents&lt;10)
+  cents = "0" + cents;
+  for (var i = 0; i &lt; Math.floor((num.length-(1+i))/3); i++)
+  num = num.substring(0,num.length-(4*i+3))+','+
+  num.substring(num.length-(4*i+3));
+  return (((sign)?'':'-') + '$' + num + '.' + cents);
+  }
+  
+  
+  function setdatetime(obj)
+  {
+  var myDate = new Date();
+  var str;
+  assignDateToString(myDate, str);
+              if (obj.options[obj.selectedIndex].text == "Immediate - Life Safety Only!")
+  {
+              pad( myDate.setHours(myDate.getHours() ) );
+              document.forms[0].f_date_time_1.value=assignDateToString(myDate, str);
+  }
+  
+  else 
+  
+              if (obj.options[obj.selectedIndex].text == "High - within the next hour")
+  {
+              pad( myDate.setHours(myDate.getHours() + 1) );
+              document.forms[0].f_date_time_1.value=assignDateToString(myDate, str);
+  }
+  else 
+  
+              if (obj.options[obj.selectedIndex].text == "Medium - next 2 to 6 hours")
+  {
+              pad( myDate.setHours(myDate.getHours() + 6) );
+              document.forms[0].f_date_time_1.value=assignDateToString(myDate, str);
+  }
+  else 
+  
+              if (obj.options[obj.selectedIndex].text == "Low - next 6 to 12 hours")
+  {
+              pad( myDate.setHours(myDate.getHours() + 12) );
+              document.forms[0].f_date_time_1.value=assignDateToString(myDate, str);
+  }
+  
+  else
+              return;
+  }
+  function pad(num)
+  {
+  if (num &lt; 10)
+       return "0" + num;
+  else
+       return num;
+  }
+  function assignDateToString(tempDate, tempstr)
+  {
+               tempstr = pad((tempDate.getMonth()+1)) + "/" + pad(tempDate.getDate()) + "/" + tempDate.getFullYear();
+               tempstr += " " + pad(tempDate.getHours()) + ":" + pad(tempDate.getMinutes()) + ":" + pad(tempDate.getSeconds());
+               return tempstr;
+  }
+  
+  function writeHistory()
+  {
+  var previousHistory = document.forms[0].history.value;
+  var currentStatus = document.forms[0].status.value;
+  var assignedTo = document.forms[0].assigned_to.value;
+  var stamp = '<xsl:value-of select=" /data/@positionname" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" /> - <xsl:value-of select=" /data/@username" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" /> at <currenttime /> on <currentdate />';
+  var newHistory = previousHistory + 'Resoure Request updated by' + ' ' + stamp + '\r\n' + 'Assigned to:' + ' ' + assignedTo + '\r\n' +  'Status:' + ' ' + currentStatus + '\r\n\r\n';
+  document.forms[0].history.value=newHistory;
+  }
+  
+  function updateAssignedTo(obj)
+  {
+  if (obj.tagName == "SELECT" ) {  
+  var routingSelect = obj.options[obj.selectedIndex].text;
+  var Newstr = routingSelect.replace("*", "");
+  document.forms[0].assigned_to.value=Newstr;
+  }
+  else {
+    document.forms[0].assigned_to.value=document.forms[0].originating_position.value;
+  }
+    
+  /*if(routingSelect == "MCDEM Logistics" || routingSelect == "MCDEM Director")
+  {document.forms[0].datalinkid.checked = true;}
+    else{
+      document.forms[0].datalinkid.checked = false;}*/
+  }
+  
+  
+  function validateSumbit()
+  {
+  
+         if (document.forms[0].routing_r1.options[document.forms[0].routing_r1.selectedIndex].text == "" &amp;&amp; document.getElementById("all").checked != true)
+            {
+               if (document.forms[0].routing_r1_internal.options[document.forms[0].routing_r1_internal.selectedIndex].text == "(Select)")
+                   {
+                       alert('Please select a Routing Option');
+                       return false;
+                   }
+            }
+  
+         if (document.forms[0].d_1.options[document.forms[0].d_1.selectedIndex].text == "(Select)")
+            {
+               alert('Please select a Priority');
+               return false;
+            }
+  
+          else
+            {
+                 document.forms[0].submit();
+            }
+  }
+  
+  
+  function SetSubmitHandler()
+  {
+      document.forms[0].onsubmit = DoOnSubmit;
+  }
+  
+  function DoOnSubmit()
+  {
+                  writeHistory();
+                  return (validateSumbit());
+  }
+  
+  
+  window.onload = SetSubmitHandler;
+  
+  
+  </script>
+      <div class="container">
+        <div class="content">
+          <form>
+            <table width="100%">
+              <tr>
+                <td style="FONT-FAMILY: arial; COLOR: #004080; FONT-SIZE: 18pt; FONT-WEIGHT: bold" align="left" width="40%" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="1" vAlign="middle">Order Desk (ICS-213RR)</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 24pt; COLOR: #004080; FONT-FAMILY: arial" align="right" width="" bgColor="#ffffff" selected="false" rowSpan="2" colSpan="1" vAlign="bottom">
+                  <savebutton />
+                  <returnbutton>Cancel</returnbutton>
+                  <spellcheckbutton />
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-STYLE: italic; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 10pt; FONT-WEIGHT: normal" align="left" width="35%" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="1" vAlign="middle">Last Updated:<space /><eocfield name="entrydate" /></td>
+              </tr>
+            </table>
+            <table class="display">
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#ffffff" selected="false" width="30%" rowSpan="1" colSpan="3" align="left" vAlign="bottom">Resource Request Message</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#ffffff" selected="false" width="" rowSpan="1" colSpan="5" align="left" vAlign="bottom">Purpose: The Resource/Mission Request is used by all incident personnel to request tactical and non-tactical resources</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="13" colSpan="1" width="1%" align="center" bgColor="#ffff00" vAlign="middle">R<br />e<br />s<br />o<br />u<br />r<br />c<br />e<br /><br />R<br />e<br />q<br />u<br />e<br />s<br />t</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#ffffff">
+                  <b>1. Incident Name:</b>
+                  <br />
+                  <span id="getIncidentName">
+                    <incidentname />
+                  </span>
+                  <input type="text" name="deployed_incidentname" size="40" hidden="true" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#ffffff">Date/Time:<br /><input type="text" name="requestor_date_time" size="20" value="_currentdatetime" required="false" style="background: #666666; color: #ffffff;" readOnly="readOnly" /></td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#ffffff">3. Resource Request # <br /><input type="text" name="tracking_number" size="20" value="" style="background: #666666; color: #ffffff;" readOnly="readOnly" /></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #800000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="left" bgColor="#ffffff">4. ORDER  Note: ***Use additional forms when requesting different resource source of supply***</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="left" bgColor="#000000">.</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">Request Details<br />Internal Request<input type="checkbox" id="internal_routing" name="internal_routing" value="Yes" onclick="showRouting(this);" /><br />External Request<input type="checkbox" id="external_routing" name="external_routing" value="Yes" onclick="showRouting(this);" /><br />SNS Request<input type="checkbox" id="SNS_ADHS_routing" name="SNS_ADHS_routing" value="Yes" onclick="showRouting(this);" /></td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="4" width="" align="left" bgColor="#ffff00">
+                  <span style="display:none;" id="external_agency_ID">Route to Single Agency <input type="radio" id="single" name="external_agency_routing" value="Single" onclick="showMoreRouting(this);" /> Route to All Emergency Managers and Designees<input type="radio" id="all" name="external_agency_routing" value="All" onclick="showMoreRouting(this);" /></span>
+                  <br />
+                  <span style="display:none;" id="routing_select_ID">Routing:<space /><select name="routing_r1" processpermission="Agency" processgroup="positions" onchange="updateAssignedTo(this);" receiver="true" notification="false" List="Positions" recipient="false" subject="false" message="false" mobilerecipient="false" mobilemessage="false" /></span>
+                  <span style="display:none;" id="routing_select_internal_ID">
+                    <select name="routing_r1_internal" list="Positions" processpermission="Resource Request" processgroup="positions" onchange="updateAssignedTo(this);" receiver="true" />
+                  </span>
+                  <span id="EM_email_list_ID" style="display:none;">
+                    <textarea name="EM_email_list" id="EM_email_list" cols="80" rows="4" required="false" recipient="false" subject="false" message="false" receiver="false" notification="false" mobilerecipient="false" mobilemessage="false" />
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">a. Qty</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">Short Description</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">b. Type</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">c. Kind</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">d. NIMS Category</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">e. Priority</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <input type="text" name="a_1Quantity" size="5" value="_number" required="false" recipient="false" subject="false" message="false" receiver="false" notification="false" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <input type="text" name="short_description" size="10" value="" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <select name="b_1_NIMSType" list="Resource Inventory - Type" recipient="false" subject="false" message="false" receiver="false" notification="false" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <select name="c_1_OrderDeskType" list="Order Desk Type" recipient="false" subject="false" message="false" receiver="false" notification="false" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <select name="d_1_NIMScategory" list="Resource Inventory - NIMS" recipient="false" subject="false" message="false" receiver="false" notification="false" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <select name="OrderDeskPriority" onchange="setdatetime(this);">
+                    <option value="(Select)">(Select)</option>
+                    <option Value="Low - next 6 to 12 hours">Low - next 6 to 12 hours</option>
+                    <option value="Medium - next 2 to 6 hours">Medium - next 2 to 6 hours</option>
+                    <option value="High - within the next hour">High - within the next hour</option>
+                    <option value="Immediate - Life Safety Only!">Immediate - Life Safety Only!</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="left" bgColor="#f9f9f9" vAlign="middle">f. Detailed item description (vital characteristics, brand, specs, experience, etc.) and, if applicable, purpose/use, diagrams, and other info.</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <textarea name="f_1_DetailedItemDescription" rows="4" cols="100" required="false" receiver="false" notification="false" recipient="false" subject="false" message="false" onblur="populateEmails();" />
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="center" bgColor="#f9f9f9" vAlign="middle">g. Requested Reporting:</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">Location</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">Date/Time Due</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <textarea name="g_location_1" rows="2" cols="25" required="false" recipient="false" subject="false" message="false" receiver="false" notification="false" onblur="populateEmails();" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="10%" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <input type="text" name="f_date_time_1" size="20" value="" fieldtype="datetime" required="false" style="background: #666666; color: #ffffff;" readOnly="readOnly" />
+                  <span style="cursor:pointer;" onclick="OpenBoardDateTimePicker(event,'f_date_time_1','true');">
+                    <img src="../lib/cal.gif" width="16" height="16" border="0" alt="Pick a date" />
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#f9f9f9" vAlign="middle">h. Order # (LSC)</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">i. ETA (LSC)</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">j. Cost</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">Attachments:</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <input type="text" name="h_1" size="10" value="" required="false" recipient="false" subject="false" message="false" receiver="false" notification="false" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <input type="text" name="i_1" size="10" value="" required="false" recipient="false" subject="false" message="false" receiver="false" notification="false" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <input type="text" name="j_1" size="10" value="" onBlur="this.value=formatCurrency(this.value);" required="false" recipient="false" subject="false" message="false" receiver="false" notification="false" />
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <input type="file" name="attachments" size="30" value="" required="false" />
+                  <br />
+                  <input type="file" name="attachments2" size="30" value="" required="false" />
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="8" width="" align="left" bgColor="#000000" vAlign="middle">.</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="8" width="" align="left" bgColor="#ffffff" vAlign="middle">5. Suggested Source(s) of supply - POC phone number if known and suitable substitutes:</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="8" width="" align="left" bgColor="#ffffff" vAlign="middle">
+                  <textarea id="requestor_5" name="requestor_5" rows="4" cols="60" required="false" onblur="populateEmails();" />
+                  <button onclick="openResources();">View Resource Inventory</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="5" width="" align="left" bgColor="#ffffff" vAlign="middle">Request POC<br /><input type="text" name="request_poc" size="40" value="" required="true" onblur="populateEmails();" /></td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#ffffff" vAlign="middle">Request POC Number<br /><input type="text" name="poc_number" size="25" value="" required="true" onblur="populateEmails();" /></td>
+              </tr>
+            </table>
+            <br />
+            <table width="100%">
+              <tr>
+                <td with="100%" selected="false" align="right" colSpan="1" width="">
+                  <savebutton />
+                  <returnbutton>Cancel</returnbutton>
+                  <spellcheckbutton />
+                </td>
+              </tr>
+            </table>
+            <span style="display:none;">
+              <table width="100%">
+                <tr>
+                  <td width="25%" selected="false" align="right" style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000">Request Type:</td>
+                  <td selected="false" style="FONT-SIZE: 8pt">
+                    <input type="text" size="40" value="Yes" name="resource_request" />
+                  </td>
+                </tr>
+                <tr>
+                  <td width="" selected="false" align="right" style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000">Assigned to:</td>
+                  <td selected="false" style="FONT-SIZE: 8pt">
+                    <input type="text" name="assigned_to" size="10" value="" required="false" />
+                  </td>
+                </tr>
+                <tr>
+                  <td width="" selected="false" align="right" style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000">Message Subject:</td>
+                  <td selected="false" style="FONT-SIZE: 8pt">
+                    <input type="text" id="message_subject" name="message_subject" subject="true" size="10" required="false" />
+                  </td>
+                </tr>
+                <tr>
+                  <td width="" selected="false" align="right" style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000">Message Body:</td>
+                  <td selected="true" style="FONT-SIZE: 8pt">
+                    <textarea name="messageBody" cols="50" rows="6" message="true" />
+                  </td>
+                </tr>
+                <tr>
+                  <td width="25%" selected="false" align="right" style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000">Request Originator:</td>
+                  <td selected="false" style="FONT-SIZE: 8pt">
+                    <input type="text" size="40" value="" name="originating_position" />
+                  </td>
+                </tr>
+                <tr>
+                  <td width="25%" selected="false" align="right" style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000">Deployments Total:</td>
+                  <td selected="false" style="FONT-SIZE: 8pt">
+                    <input type="text" name="total_deployments" size="10" value="" required="false" />
+                  </td>
+                </tr>
+                <tr>
+                  <td width="25%" selected="false" align="right" style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000">Status:</td>
+                  <td selected="false" style="FONT-SIZE: 8pt">
+                    <input type="text" name="status" size="30" value="" required="false" />
+                  </td>
+                </tr>
+                <tr>
+                  <td width="25%" selected="false" align="right" style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000">History:</td>
+                  <td selected="false" style="FONT-SIZE: 8pt">
+                    <textarea name="history" cols="60" rows="4" value="" required="false" />
+                  </td>
+                </tr>
+              </table>
+              <foreignkey type="select" table="Contacts Table" sort="email_address" filter="remove != 'Yes'">
+                <eocfield name="email_address" type="fk" table="Contacts Table" />
+              </foreignkey>
+            </span>
+          </form>
+        </div>
+        <table width="100%" style="padding:5px">
+          <tr>
+            <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="8" width="" align="left" bgColor="#ffffff" vAlign="middle">
+              <span id="embededID" style="display:none">
+                <embedview view="Select Resource List" id="embededview" width="100%" height="800px" enablefooter="true" />
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <script type="text/javascript">
+  document.forms[0].status.value="Assigned";
+  
+  var originatorPosition='<xsl:value-of select="/data/@positionname" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" />';
+  document.forms[0].originating_position.value=originatorPosition;
+  
+  if(document.forms[0].tracking_number.value=='')
+  {
+  var reqNoStr ="R-"; 
+  var numStr = Math.random();
+  var numToStr = "" + numStr;
+  var newNumStr = numToStr.slice(-7);
+  var assignStr = reqNoStr + newNumStr;
+  document.forms[0].tracking_number.value=assignStr;      
+  }
+  
+  function openResources() {
+    document.getElementById("embededID").style.display='block';
+  }
+     
+  function showRouting(x) {
+    switch (x.id) {
+      case "internal_routing":
+        if (x.checked == true) {
+          document.getElementById("routing_select_internal_ID").style.display="none";
+          document.getElementById("routing_select_ID").style.display="block";
+          document.getElementById("external_agency_ID").style.display="none";
+          document.getElementById("external_routing").checked=false;
+          document.getElementById("SNS_ADHS_routing").checked=false;
+          document.getElementById("EM_email_list_ID").style.display="none";
+        }
+        else if (x.checked == false) {
+          document.getElementById("routing_select_ID").style.display="none";
+        }
+        break;
+      case "external_routing":
+        if (x.checked == true) {
+          document.getElementById("external_agency_ID").style.display="block";
+          document.getElementById("routing_select_internal_ID").style.display="none";
+          document.getElementById("routing_select_ID").style.display="none";
+          document.getElementById("internal_routing").checked=false;
+          document.getElementById("SNS_ADHS_routing").checked=false;
+        }
+        else if (x.checked == false) {
+          document.getElementById("single").checked = false;
+          document.getElementById("all").checked = false;
+          document.getElementById("external_agency_ID").style.display="none";
+          document.getElementById("routing_select_internal_ID").style.display="none";
+          document.getElementById("routing_select_ID").style.display="none";
+          document.getElementById("EM_email_list_ID").style.display="none";
+        }
+        break;
+      case "SNS_ADHS_routing":
+        if (x.checked == true) {
+          document.getElementById("routing_select_ID").style.display="none";
+          document.getElementById("routing_select_internal_ID").style.display="block";
+          document.getElementById("external_agency_ID").style.display="none";
+          document.getElementById("EM_email_list_ID").style.display="none";
+          document.getElementById("internal_routing").checked = false;
+          document.getElementById("external_routing").checked = false;
+        }
+        else if (x.checked == false) {
+          document.getElementById("routing_select_ID").style.display="none";
+        }
+        break;      
+    }
+  }
+      
+  function showMoreRouting(y) {
+    switch (y.id) {
+      case "single":
+        if (y.checked == true) {
+          document.getElementById("routing_select_internal_ID").style.display="block";
+          document.getElementById("routing_select_ID").style.display="none";
+          document.getElementById("EM_email_list_ID").style.display="none";
+          //document.getElementById("routing_select_ID").style.display="none"; Change the name in quotes when the new dropdown is added
+        }
+        else if (y.checked == false) {
+          //document.getElementById("routing_select_ID").style.display="none"; Change the name in quotes when the new dropdown is added
+        }
+        break;
+      case "all":
+        if (y.checked == true) {
+          document.getElementById("EM_email_list_ID").style.display="block"; 
+          document.getElementById("routing_select_ID").style.display="none";
+          document.getElementById("routing_select_internal_ID").style.display="none";
+          updateAssignedTo(y);
+          populateEmails();
+        }
+        else if (y.checked == false) {
+          document.getElementById("EM_email_list_ID").style.display="none";
+          document.getElementById("routing_select_ID").style.display="none";
+        }
+        break;
+    }
+  }
+      
+      function populateEmails() {
+        fkSelect = document.forms[0].fk_table_880;
+        if (fkSelect == undefined) {
+          fkSelect = document.forms[0].fk_table_2013;
+        }
+        if (fkSelect == undefined) {
+          fkSelect = document.forms[0].fk_table_2444;
+        }
+        var optLength = fkSelect.options.length;
+        var emailList = "";
+        for (i = 0; i &lt; optLength; i++) {
+          emailList = emailList + fkSelect.options[i].text + ",\n";
+        }
+        document.getElementById("EM_email_list").value = emailList;
+       
+        document.getElementById("message_subject").value = "Order Desk (ICS-213RR) Request #" + document.forms[0].tracking_number.value;
+        
+        document.forms[0].messageBody.value = 'You have received a resource request from WebEOC.\r\n\r\nFrom: ' + document.forms[0].originating_position.value + '\r\nShort Description: ' + document.forms[0].short_description.value + '\r\nLocation: ' + document.forms[0].g_location_1.value + '\r\nIncident: ' + document.getElementById("getIncidentName").textContent + '\r\n\r\nPlease log into WebEOC for more details.  \r\nDEMA:  https://webeoc.azdema.gov \r\nMaricopa County: https://eoc.mcdem.maricopa.gov';
+      }
+  </script>
+    </body>
+  </html>

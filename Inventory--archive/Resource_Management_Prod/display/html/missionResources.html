@@ -1,0 +1,136 @@
+<html>
+<head>
+    <style type="text/css">
+        body {
+            background-color: #d1d2d4;
+            color: #000;
+            font: normal 0.9em arial;
+            margin: 1.0em;
+        }
+
+        div.container {
+            border: solid 1px #48156d;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.heading {
+            border: solid 1px;
+            border-collapse: collapse;
+            empty-cells: show;
+            margin: 0;
+            padding: 3px;
+            width: 100%;
+        }
+
+            table.heading td, table.heading th {
+                padding: 0.1em 0.5em 0.1em 0.5em;
+            }
+
+            table.heading th {
+                text-align: center;
+            }
+
+        #tdFilter {
+            text-align: right;
+        }
+
+        #tdBoard {
+            text-align: center;
+        }
+
+        table.display {
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 100%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+        }
+
+            table.display td, table.display th {
+                border-right: solid 1px;
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.display td {
+                border-top: solid 1px;
+                border-color: #ccc;
+            }
+    </style>
+    <script type="text/javascript">
+      window.onload = function () {
+        parent.parent.document.getElementById("resourcesembed").style.height = document.getElementById("content").offsetHeight + 75;
+      }
+    </script>
+</head>
+<body>
+    <table class="display">
+        <thead>
+            <tr class="agencytemplate_tableheader">
+                <th style="width:25%;">Resource Name</th>
+                <th style="width:15;%">Resource Category</th>
+                <th>Owner</th>
+                <th>Location</th>
+                <th style="width:15%;">Release</th>
+            </tr>
+        </thead>
+        <tbody>
+            <relatedlist rlid="2" table="Resources">
+                <tr class="agencytemplate_tableentry">
+                    <td style="text-align:left;">
+                        <eocfield name="label" table="Resources" type="rl" />
+                    </td>
+                    <td align="center" style="">
+                        <attribute name="style">
+                            <if test="@status='Available'">color:white; background-color:green;</if>
+                            <if test="@status='Deployed'">color:white; background-color:blue;</if>
+                            <if test="@status='Prepositioned'">color:white; background-color:purple;</if>
+                            <if test="@status='Unavailable'">color:white; background-color:red;</if>
+                        </attribute>
+                        <span style="">
+                            <eocfield name="status" table="Resources" type="rl" />
+                        </span>
+                        <if test="@Resource_Category='Ambulance'">
+                            <img src="../images/ambulance.png" />
+                        </if>
+                        <if test="@Resource_Category='Fire'">
+                            <img src="../images/fire.png" />
+                        </if>
+                        <if test="@Resource_Category='Police'">
+                            <img src="../images/police.png" />
+                        </if>
+                        <if test="@Resource_Category='Generator'">
+                            <img src="../images/generator.png" />
+                        </if>
+                        <if test="@Resource_Category='Helicopter'">
+                            <img src="../images/helicopter.png" />
+                        </if>
+                        <if test="@Resource_Category='Water Truck'">
+                            <img src="../images/tanker.png" />
+                        </if>
+                        <span style="">
+                            <eocfield name="Resource_Category" table="Resources" type="rl" />
+                        </span>
+                    </td>
+                    <td>
+                        <eocfield name="Owner" table="Resources" type="rl" />
+                    </td>
+                    <td>
+                        <eocfield name="Location_Name" table="Resources" type="rl" />
+                    </td>
+                    <td align="center">
+                        <viewlink name="Mission Resource Remove" type="button">Release</viewlink>
+                    </td>
+                </tr>
+            </relatedlist>
+        </tbody>
+    </table>
+    <div style="display:none">
+        <incidentname />
+    </div>
+</body>
+</html>

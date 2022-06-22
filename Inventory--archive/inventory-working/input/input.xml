@@ -1,0 +1,569 @@
+<html>   <head>
+   
+  
+ </head>   <body>
+    <div class="container agencytemplate_boardbackground">
+       <form>
+          <table class="input agencytemplate_tableentry">
+             <tbody>
+                <tr>
+                   <td align="right" width="" selected="false" colSpan="2">
+                      <savebutton>Save</savebutton>
+                   </td>
+                   <td selected="false">
+                      <cancelbutton>Cancel</cancelbutton>
+                      <spellcheckbutton>Spell Check</spellcheckbutton>
+                      <if test="/data/@username='coriam@mail.maricopa.gov' or /data/@username='WebEOC Administrator'">
+                         <importbutton/>
+                      </if>
+                   </td>
+                </tr>
+                <tr>
+                   <td width="" colspan="1" selected="false">
+                      <space/>
+                      <br/>
+                   </td>
+                   <td width="" colspan="1" selected="false" colSpan="1"> </td>
+                </tr>
+             </tbody>
+          </table>
+          <div class="content">
+             <ul id="tabs">
+                <li>
+                   <a href="#tab1">General</a>
+                </li>
+                <li>
+                   <a href="#tab2">Specs</a>
+                </li>
+                <li>
+                   <a href="#tab3">Resource Typing</a>
+                </li>
+                <li>
+                   <a href="#tab4">Other</a>
+                </li>
+             </ul>
+             <div class="tabContent" id="tab1">
+                <table class="input agencytemplate_tableentry">
+                   <tbody>
+                      <tr>
+                         <td align="right" width="25%" selected="false">Resource Name</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="General_ResourceName" size="40"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Equipment Description</td>
+                         <td rowSpan="1" selected="false">
+                            <textarea name="General_EquipmentDescription" rows="2" cols="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Agency/Jurisdiction</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="General_Agency" list="Resource Inventory - Agency/Jurisdiction" recipient="false" subject="false" message="false" receiver="false" notification="false"/> <if test="/data/groups/@name='Agency - GRAH'">Yes</if>
+                            <grouplist/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Department</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="General_Department" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Quantity</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="General_Quantity" size="10" value="_number"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Private</td>
+                         <td rowSpan="1" selected="false"> <input type="checkbox" name="General_Private" value="Yes"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Location Name</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="General_LocationName" size="40"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Address</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="address" template="WebEOC Mapper" size="40"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Coordinates</td>
+                         <td rowSpan="1" selected="false">Lat:<input type="text" name="latitude" template="WebEOC Mapper" size="20"/> Long:<input type="text" name="longitude" template="WebEOC Mapper" size="20"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Point of Contact</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="General_POC" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">POC Phone</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="General_POCPhone" size="20"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">POC Email</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="General_POCEmail" size="40"/> </td>
+                      </tr>
+                   </tbody>
+                </table>
+             </div>
+             <div class="tabContent" id="tab2">
+                <table class="input agencytemplate_tableentry">
+                   <tbody>
+                      <tr>
+                         <td align="right" width="25%" selected="false">Manufacturer</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_Manufacturer" size="40"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Model</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="text1" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Manufacturer VIN/Serial Number</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_VIN_SerialNumber" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Chassis Type</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="Specs_ChassisType" list="Resource Inventory - Chassis Type" recipient="false" subject="false" message="false" receiver="false" notification="false"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">License Plate</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_LicensePlate" size="20"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Equipment Type</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="Specs_EquipmentType" list="Resource Inventory - Equipment Type" recipient="false" subject="false" message="false" receiver="false" notification="false"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Fuel Type</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="Specs_FuelType" list="Resource Inventory - Fuel Type" recipient="false" subject="false" message="false" receiver="false" notification="false"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Horsepower</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_HP" size="10"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">GVW</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_GVW" size="15"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Height</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_Height" size="20"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Length</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_Length" size="20"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Weight</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_Weight" size="20"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Weight Limits</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_WeightLimits" size="20"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Width</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_Width" size="20"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Payload Capacity</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_PayloadCapacity" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Water Capacity</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_WaterCapacity" size="40"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Water Capacity Unit</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_WaterCapacity_Unit" size="20"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Gallons Per Minute (GPM)</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_GPM" size="20"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Personnel Capacity</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_PersonnelCapacity" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Specialized Crew</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_SpecializedCrew" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Operator Type</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_OperatorType" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Linked Equipment</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Specs_LinkedEquipment" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Wheelchair Capacity</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="wheel_chair_capacity" size="10" fieldtype="int" value="_number" required="false" recipient="false" subject="false" message="false" receiver="false" notification="false" mobilerecipient="false" mobilemessage="false"/> Whole numbers only.</td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Wheel Chair Lift</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="wheel_chair_lift">
+                               <option/>
+                               <option>Yes</option>
+                               <option>No</option>
+                            </select>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Air Conditioning</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="air_conditioning">
+                               <option/>
+                               <option>Yes</option>
+                               <option>No</option>
+                            </select>
+                         </td>
+                      </tr>
+                   </tbody>
+                </table>
+             </div>
+             <div class="tabContent" id="tab3">
+                <table class="input agencytemplate_tableentry">
+                   <tbody>
+                      <tr>
+                         <td align="left" width="25%" selected="false" rowSpan="1" colSpan="2" style="FONT-WEIGHT: bold">NIMS<hr class="topHR"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false">Group</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="RT_NIMS_Group" list="Resource Inventory - NIMS" recipient="false" subject="false" message="false" receiver="false" notification="false"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Definition</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="RT_NIMS_Definition" list="Resource Inventory - NIMS" parent="RT_NIMS_Group" recipient="false" subject="false" message="false" receiver="false" notification="false"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Type</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="RT_NIMS_Type" list="Resource Inventory - Type" recipient="false" subject="false" message="false" receiver="false" notification="false"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">
+                            <space/>
+                            <br/>
+                         </td>
+                         <td rowSpan="1" selected=""> </td>
+                      </tr>
+                      <tr>
+                         <td align="left" width="25%" selected="false" rowSpan="1" colSpan="2" style="FONT-WEIGHT: bold">FEMA<hr class="topHR"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false">FEMA Cost Code</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="RT_FEMACostCode" onchange="getCost(this);"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">FEMA Rate Unit</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="RT_FEMA_RateUnit" list="Resource Unit" recipient="false" subject="false" message="false" receiver="false" notification="false"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">FEMA Equipment Rate</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="RT_FEMA_Rate" size="10" fieldtype="money" value="" required="true" recipient="false" subject="false" message="false" receiver="false" notification="false"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">
+                            <space/>
+                            <br/>
+                         </td>
+                         <td rowSpan="1" selected=""> </td>
+                      </tr>
+                      <tr>
+                         <td align="left" width="25%" selected="false" rowSpan="1" colSpan="2" style="FONT-WEIGHT: bold">Wildland Fire<hr class="topHR"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false">NWCG Definition</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="RT_Wildland_Definition" size="40"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Type</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="RT_Wildand_Type" list="Resource Inventory - Type" recipient="false" subject="false" message="false" receiver="false" notification="false"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">State Forester's Reimbursement Rate Unit</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="RT_Wildland_RateUnit" list="Resource Unit" recipient="false" subject="false" message="false" receiver="false" notification="false"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">State Forester's Reimbursement Rate</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="RT_Wildland_Rate" size="10" fieldtype="money" value="" required="true" recipient="false" subject="false" message="false" receiver="false" notification="false"/>
+                         </td>
+                      </tr>
+                   </tbody>
+                </table>
+             </div>
+             <div class="tabContent" id="tab4">
+                <table class="input agencytemplate_tableentry">
+                   <tbody>
+                      <tr>
+                         <td align="right" width="25%" selected="false">Inventory ID</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_InventoryID" size="40"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Inventory Class</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_Inventory_Class" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Inventory Type</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_InventoryType" size="40"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Serial Number</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_SerialNumber" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Item Number</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_ItemNumber" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Lot#</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_LotNumber" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Deployment Considerations</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_DeploymentConsiderations" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">ETA Deployment Time</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_EstimatedDeploymentTime" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Service Status</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="Other_ServiceStatus" list="Resource Inventory - Service Status" recipient="false" subject="false" message="false" receiver="false" notification="false"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Acquired</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_AcquiredDate" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Received Date</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_ReceivedDate" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">In Service</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_InService" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Year</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_Year" size="10"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Expiration Date</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_ExpirationDate" size="15" fieldtype="datetime"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Estimated Replacement Date</td>
+                         <td rowSpan="1" selected="true">
+                            <input type="text" name="Other_ReplacementDate2" size="15"/>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Replacement Mileage</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_ReplacementMiles" size="15"/>
+                         </td>
+                      </tr>
+                      <tr class="">
+                         <td align="right" width="25%" selected="false" rowSpan="1">Grant Funded?</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="Other_GrandFunded" list="Resource Inventory - Grant Funded" recipient="false" subject="false" message="false" receiver="false" notification="false"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Grant Type</td>
+                         <td rowSpan="1" selected="false">
+                            <select name="Other_GrantDropdown" list="Resource Inventory - Grant Funded" parent="Other_GrandFunded"/> </td>
+                      </tr>
+                      <tr class="">
+                         <td align="right" width="25%" selected="false" rowSpan="1">Grant Year</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_GrantYear" size="10"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Grant Number</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_GrantNumber" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Generic</td>
+                         <td rowSpan="1" selected="false">
+                            <input type="text" name="Other_Generic" size="40"/> </td>
+                      </tr>
+                      <tr>
+                         <td align="right" width="25%" selected="false" rowSpan="1">Notes</td>
+                         <td rowSpan="1" selected="false">
+                            <textarea name="Other_Notes" rows="4" cols="40"/> <div id="emailsSelect" style="display:none">
+                               <foreignkey type="select" table="FEMA Cost Code Table" filter="remove!='Yes'">
+                                  <eocfield name="txtCode_Rate" type="fk" table="FEMA Cost Code Table"/>
+                               </foreignkey>
+                               <input type="checkbox" name="remove" value="Yes"/>
+                            </div>
+                         </td>
+                      </tr>
+                   </tbody>
+                </table>
+             </div>
+          </div>
+       </form>
+    </div>
+    <script type="text/javascript">
+  var select = document.getElementById('emailsSelect').getElementsByTagName('select')[0];
+  var optionsList = select.options;
+  var emailsList = new Array();
+  var rateList = new Array();
+  var unitList = new Array();
+  var z=0;
+  for (var k = 0; k &lt; 2; k++) {
+    for(var i = 0; i &lt; optionsList.length; i++){
+      //alert(optionsList.length);
+      var arrayOptions=optionsList[i].innerHTML.split("|");
+      
+      for (j=0; j&lt;arrayOptions.length; j+=4) {
+        //if (arrayOptions[j]==document.forms[0].txtGroupName.value) {
+          if (z==0) {
+            emailsList.push(arrayOptions[j-1])      
+            var firstOption=document.createElement("option");
+            //if (i==0) {
+              document.forms[0].RT_FEMACostCode.options.add(firstOption);
+              firstOption.text = "(Select)";
+            //}
+            //else {
+              z=z+1;
+              //document.forms[0].RT_FEMACostCode.options.add(firstOption);
+              //firstOption.text = "(Select)";
+            //}
+          }
+          //else if (z==1) {
+            //emailsList.push(arrayOptions[j])      
+            //var firstOption=document.createElement("option");
+            //document.forms[0].RT_FEMACostCode.options.add(firstOption);
+            //firstOption.text = arrayOptions[j];     
+          //}
+          else {
+            //alert(i);
+            emailsList.push(arrayOptions[j])      
+            var firstOption=document.createElement("option");
+            document.forms[0].RT_FEMACostCode.options.add(firstOption);
+            firstOption.text = arrayOptions[j];
+            rateList[z]=arrayOptions[j+1];
+            unitList[z]=arrayOptions[j+2];
+            z=z+1;
+            //document.getElementById("tr" + k).style.display='none';
+          }
+        //}
+      }
+    //emailsList.push(select.options[i].innerHTML);
+    }
+  }
+  
+
+  function getCost(x) {
+    document.forms[0].RT_FEMA_Rate.value=rateList[x.selectedIndex];
+    var optRU=document.forms[0].RT_FEMA_RateUnit.options;
+    for (var p=0; p &lt; optRU.length; p++) {
+      if (optRU[p].value==unitList[x.selectedIndex]) {
+        document.forms[0].RT_FEMA_RateUnit.selectedIndex=p;
+      }
+    }
+  }
+  //document.forms[0].groupname_list.disabled=true;
+  memPos=1;
+  memItem=2;
+  
+  function removeItem(z) {
+    memItem=memItem - z;
+    showOrHide('tr', 'none', memItem);
+  }
+  
+  function addItem(y) {
+    if (memPos==memItem) {
+      showOrHide('tr', 'block', y);
+      memItem+=y;
+    }
+    else {
+      showOrHide('tr', 'block', memItem);
+      memItem+=y;
+    }
+  }
+
+  function showOrHide(obj, display, num) {
+    //alert(num + ' ' + memNumber);
+    var trObj=document.getElementById(obj + num);
+    trObj.style.display=display;
+  }
+
+  </script>
+ </body>
+</html>

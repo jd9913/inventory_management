@@ -1,0 +1,266 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: #d1d2d4;
+            color: #000;
+            font: normal 0.9em arial;
+            margin: 1.0em;
+        }
+
+        div.container {
+            border: solid 1px #48156d;
+        }
+
+        div.content {
+            margin: 1em;
+        }
+
+        table.heading {
+            border: solid 1px;
+            border-collapse: collapse;
+            empty-cells: show;
+            margin: 0;
+            padding: 3px;
+            width: 100%;
+        }
+
+            table.heading td, table.heading th {
+                padding: 0.1em 0.5em 0.1em 0.5em;
+            }
+
+            table.heading th {
+                text-align: center;
+            }
+
+        #tdFilter {
+            text-align: right;
+        }
+
+        #tdBoard {
+            text-align: center;
+        }
+
+        table.display {
+            font-size: 14pt;
+            border-collapse: collapse;
+            border: solid 1px;
+            width: 100%;
+            border-color: #808080;
+            background-color: #fff;
+            empty-cells: show;
+            margin-bottom: 0.2em;
+        }
+
+            table.display td, table.display th {
+                border-right: solid 0px;
+                padding: 0.1em 0.3em 0.1em 0.3em;
+            }
+
+            table.display td {
+                border-top: solid 0px;
+                border-color: #ccc;
+            }
+
+        .status {
+            width: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container agencytemplate_boardbackground">
+        <table class="heading agencytemplate_boardheader">
+            <tbody>
+                <tr>
+                    <td>
+                        <agencyinfo type="primarylogo"></agencyinfo>
+                    </td>
+                    <td>Resource Details View</td>
+                    <td></td>
+                    <td style="font-size:12pt; font-style:italic; color:white;">
+                        <marquee>
+                            <agencyinfo type="activationmessage"></agencyinfo>
+                        </marquee>
+                    </td>
+                    <td style="text-align:right;">
+                        <agencyinfo type="secondarylogo"></agencyinfo>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <incidentname></incidentname>
+                    </td>
+                    <td style="text-align:right;" colspan="2" selected="true">
+                        <viewlink name="Resource List" type="button">
+                            <img boardresource="return.png" title="Return to the resource list"></img>
+                        </viewlink>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content">
+            <eocrepeatallrecords>
+                <table class="display">
+                    <tbody>
+                        <tr class="agencytemplate_tableheader">
+                            <td style="font-size:16pt; font-weight:bold; width:25%;">Resource Name: <eocfield name="label" template="WebEOC Mapper"></eocfield></td>
+                            <td style="font-size:16pt; font-weight:bold; text-align:right; width:15%;">Resource Type:</td>
+                            <td style="text-align:left; width:10%;">
+                                <if test="@Resource_Category='Ambulance'">
+                                    <img src="../images/ambulance.png"></img>
+                                </if>
+                                <if test="@Resource_Category='Fire'">
+                                    <img src="../images/fire.png"></img>
+                                </if>
+                                <if test="@Resource_Category='Police'">
+                                    <img src="../images/police.png"></img>
+                                </if>
+                                <if test="@Resource_Category='Generator'">
+                                    <img src="../images/generator.png"></img>
+                                </if>
+                                <if test="@Resource_Category='Helicopter'">
+                                    <img src="../images/helicopter.png"></img>
+                                </if>
+                                <if test="@Resource_Category='Water Truck'">
+                                    <img src="../images/tanker.png"></img>
+                                </if>
+                                <span style="display:none;">
+                                    <eocfield name="Resource_Category"></eocfield>
+                                </span>
+                            </td>
+                            <td style="text-align:right; width:50%;">Resource ID: <dataid></dataid></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="display">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Status:
+                                <span class="status"><if test="@status='Available'"><attribute name="style">color:white; background-color:#008000;</attribute></if><if test="@status='Deployed'"><attribute name="style">color:white; background-color:blue;</attribute></if><if test="@status='Prepositioned'"><attribute name="style">color:white; background-color:#800080;</attribute></if><if test="@status='Unavailable'"><attribute name="style">color:white; background-color:red;</attribute></if><space></space><eocfield name="status" template="WebEOC Mapper"></eocfield></span>
+                            </td>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td id="spacer" colspan="3">
+                                <space></space>
+                                <br></br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Subject of Mission Assignment:<space></space><eocfield type="fk" name="Mission_Subject" table="Missions"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td id="spacer" colspan="3">
+                                <space></space>
+                                <br></br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Owner:<space></space><eocfield name="Owner"></eocfield></td>
+                            <td>Location:<space></space><eocfield name="Location_Name"></eocfield></td>
+                            <td>Telephone:<space></space><eocfield name="Phone"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td id="spacer" colspan="3">
+                                <space></space>
+                                <br></br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Street:<space></space><eocfield name="street" template="WebEOC Mapper"></eocfield></td>
+                            <td>City:<space></space><eocfield name="City" template="WebEOC Mapper"></eocfield></td>
+                            <td>State:<space></space><eocfield name="State" template="WebEOC Mapper"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td id="spacer" colspan="3">
+                                <space></space>
+                                <br></br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Postal Code: <eocfield name="postal_code" template="WebEOC Mapper"></eocfield></td>
+                            <td>Latitude: <eocfield name="Latitude" template="WebEOC Mapper"></eocfield></td>
+                            <td>Longitude: <eocfield name="Longitude" template="WebEOC Mapper"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td id="spacer" colspan="3">
+                                <space></space>
+                                <br></br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Description: <eocfield name="Description"></eocfield></td>
+                        </tr>
+                        <tr>
+                            <td id="spacer" colspan="3">
+                                <space></space>
+                                <br></br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Attachments:</td>
+                        </tr>
+                        <tr>
+                            <td id="attachment_fields" colspan="3">
+                                <if test="@attachment1!=''">
+                                    <ul>
+                                        <li>
+                                            <attachment name="attachment1">
+                                                <eocfield name="attachment1_name" disableclick="true"></eocfield>
+                                            </attachment>
+                                        </li>
+                                    </ul>
+                                </if>
+                                <if test="@attachment2!=''">
+                                    <br></br>
+                                    <ul>
+                                        <li>
+                                            <attachment name="attachment2">
+                                                <eocfield name="attachment2_name" disableclick="true"></eocfield>
+                                            </attachment>
+                                        </li>
+                                    </ul>
+                                </if>
+                                <if test="@attachment3!=''">
+                                    <br></br>
+                                    <attachment name="attachment3">
+                                        <eocfield name="attachment3_name" disableclick="true"></eocfield>
+                                    </attachment>
+                                </if>
+                                <if test="@attachment4!=''">
+                                    <br></br>
+                                    <ul>
+                                        <li>
+                                            <attachment name="attachment4">
+                                                <eocfield name="attachment4_name" disableclick="true"></eocfield>
+                                            </attachment>
+                                        </li>
+                                    </ul>
+                                </if>
+                                <if test="@attachment5!=''">
+                                    <br></br>
+                                    <ul>
+                                        <li>
+                                            <attachment name="attachment5">
+                                                <eocfield name="attachment5_name" disableclick="true"></eocfield>
+                                            </attachment>
+                                        </li>
+                                    </ul>
+                                </if>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="spacer" colspan="3">
+                                <space></space>
+                                <br></br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </eocrepeatallrecords>
+        </div>
+    </div>
+</body>
+</html>

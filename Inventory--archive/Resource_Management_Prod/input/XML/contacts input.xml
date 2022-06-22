@@ -1,0 +1,61 @@
+<html lang="en">
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+      <link href="css/8.3.0.0/boards.css" rel="stylesheet" media="screen"></link>
+    </head>
+    <body>
+      <form>
+        <header>
+          <h2>
+            Edit
+          </h2>
+        </header>
+        <table class="webeoc-section" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="webeoc-section-header" colSpan="2" selected="false">Details</td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Last Name</td>
+            <td selected="false" rowSpan="1" colSpan="1" style="">
+              <input type="text" name="last_name" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">First Name</td>
+            <td selected="false" rowSpan="1" colSpan="1" style="">
+              <input type="text" name="first_name" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Agency</td>
+            <td selected="true" rowSpan="1" colSpan="1" style="">
+              <select name="agency_list" list="Resource Inventory - Agency/Jurisdiction" recipient="false" subject="false" message="false" receiver="false" notification="false" mobilerecipient="false" mobilemessage="false"></select>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Email Address</td>
+            <td selected="false" rowSpan="1" colSpan="1" style="">
+              <input type="text" name="email_address" size="40"></input>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" selected="false" rowSpan="1" colSpan="1">Remove?</td>
+            <td selected="false" rowSpan="1" colSpan="1" style="">
+              <select name="remove">
+                <option>No</option>
+                <option>Yes</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <footer>
+          <div class="webeoc-footer">
+            <returnlink class="webeoc-link">Cancel</returnlink>
+            <space></space>
+            <savebutton class="webeoc-save">Save</savebutton>
+          </div>
+        </footer>
+      </form>
+    </body>
+  </html>

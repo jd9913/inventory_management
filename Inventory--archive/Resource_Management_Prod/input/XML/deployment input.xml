@@ -1,0 +1,209 @@
+<html>
+    <head>
+      <style type="text/css">
+  body{
+      background-color:#d1d2d4;
+      color:#000;
+      font:normal 0.9em arial;
+      margin:1.0em;
+  }
+  div.container{
+      background-color:#fff;
+      border:solid 1px #48156d;
+  }
+  div.content{
+                  width: 800px;
+      margin:1em;
+  }
+  
+  table.display{
+      border-collapse:collapse;
+      border:solid 1px;
+      width:100%;
+      border-color:#808080;
+      empty-cells:show;
+      margin-bottom:0.2em;
+  }
+  
+  table.display td{
+      border-right:solid 1px;
+      border-top:solid 1px;
+      color:#000;
+      border-color:#ccc;
+      padding:0.1em 0.3em 0.1em 0.3em;
+  }
+  </style>
+      <script type="text/javascript">
+  function writeDeploymentNumber()
+  {
+  var requestNumber = '<value-of select="//@tracking_number" />';
+  var DeploymentNo = document.forms[0].deployment_no.value;
+  document.forms[0].deployment_tracking_no.value= requestNumber + '-' + DeploymentNo ;
+  }
+  
+  function formatCurrency(num)
+   {
+  num = num.toString().replace(/\$|\,/g,'');
+  if(isNaN(num))
+  num = "0";
+  sign = (num == (num = Math.abs(num)));
+  num = Math.floor(num*100+0.50000000001);
+  cents = num%100;
+  num = Math.floor(num/100).toString();
+  if(cents&lt;10)
+  cents = "0" + cents;
+  for (var i = 0; i &lt; Math.floor((num.length-(1+i))/3); i++)
+  num = num.substring(0,num.length-(4*i+3))+','+
+  num.substring(num.length-(4*i+3));
+  return (((sign)?'':'-') + '$' + num + '.' + cents);
+  }
+  
+  function writeInterger()
+  {
+  var costStr = document.forms[0].cost_deployed.value;
+  var numStr = costStr.slice(1);
+  var convertToNum = numStr.toString().replace(/\$|\,/g,'');
+  var newNumStr = convertToNum;
+  document.forms[0].deployment_total.value = newNumStr;
+  }
+  
+  
+  
+  function SetSubmitHandler()
+  {
+  document.forms[0].onsubmit = DoOnSubmit;
+  }
+  
+  function DoOnSubmit()
+  {
+                  writeDeploymentNumber();
+                  writeInterger();
+  }
+  window.onload = SetSubmitHandler;
+  </script>
+    </head>
+    <body>
+      <div class="container">
+        <form>
+          <div class="content">
+            <table width="100%">
+              <tr>
+                <td style="FONT-FAMILY: arial; COLOR: #004080; FONT-SIZE: 18pt; FONT-WEIGHT: bold" align="left" width="100%" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="1" vAlign="middle">Order Desk (ICS-213RR)</td>
+              </tr>
+            </table>
+            <table class="display">
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#ffffff" selected="false" width="35%" rowSpan="1" colSpan="6" align="left" vAlign="bottom">Resource Request Message</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#ffffff" selected="false" width="30%" rowSpan="1" colSpan="4" align="left" vAlign="bottom">Purpose: The Resource/Mission Request is used by all incident personnel to request tactical and non-tactical resources</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="12" colSpan="1" width="1%" align="center" bgColor="#ffff00" vAlign="middle">R<br></br>e<br></br>s<br></br>o<br></br>u<br></br>r<br></br>c<br></br>e<br></br><br></br>R<br></br>e<br></br>q<br></br>u<br></br>e<br></br>s<br></br>t</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="5" width="" align="left" bgColor="#ffffff">1. Incident Name:<br></br><b><incidentname></incidentname></b></td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 8pt; FONT-WEIGHT: normal" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#ffffff">Date/Time:<br></br><b><eocfield type="fk" name="requestor_date_time" table="Inventory Request Table"></eocfield></b></td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#ffffff">3. Resource Request # <br></br><foreignkey table="Inventory Request Table"><b><eocfield type="fk" name="tracking_number" table="Inventory Request Table"></eocfield></b></foreignkey></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #800000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="9" width="" align="left" bgColor="#ffffff">4. ORDER  Note: ***Use additional forms when requesting different resource source of supply***</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="9" width="" align="left" bgColor="#000000">.</td>
+              </tr>
+              <tr>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; COLOR: #000000; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="5" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">Request Details</td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; COLOR: #000000; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="4" width="" align="left" bgColor="#ffff00">Routing: <b><eocfield type="fk" name="routing_r1" table="Inventory Request Table"></eocfield></b></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">a. Qty</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">Short Description</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">b. Type</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">c. Kind</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">d. NIMS Category</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="15%" align="left" bgColor="#f9f9f9" vAlign="bottom">e. Priority</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">e. Details item description (vital characteristics, brand, specs, experience, etc.) and, if applicable, purpose/use, diagrams, and other info.</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="a_1Quantity" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="short_description" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="b_1_NIMSType" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="c_1_OrderDeskType" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="d_1_NIMScategory" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="OrderDeskPriority" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="f_1_DetailedItemDescription" table="Inventory Request Table"></eocfield>
+                  <br></br>
+                  <br></br>
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="center" bgColor="#f9f9f9" vAlign="middle">g. Requested Reporting:</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#808080" vAlign="middle"></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">Location</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">Date/Time</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="17%" align="left" bgColor="#f9f9f9" vAlign="middle">h. Order # (LSC)</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="17%" align="left" bgColor="#f9f9f9" vAlign="middle">i. ETA (LSC)</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="17%" align="left" bgColor="#f9f9f9" vAlign="middle">j. Cost</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="g_location_1" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="f_date_time_1" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="h_1" size="10" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="i_1" size="10" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="j_1" table="Inventory Request Table"></eocfield>
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="9" width="" align="left" bgColor="#000000" vAlign="middle">.</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="9" width="" align="left" bgColor="#ffffff" vAlign="top">5. Suggested Source(s) of supply - POC phone number if known and suitable substitutes:<br></br><b><eocfield type="fk" name="requestor_5" table="Inventory Request Table"></eocfield></b></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="left" bgColor="#ffffff" vAlign="top">Request POC Number<br></br><b><eocfield type="fk" name="request_poc" table="Inventory Request Table"></eocfield></b></td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#ffffff" vAlign="middle">Request POC Number<br></br><b><eocfield type="fk" name="poc_number" table="Inventory Request Table"></eocfield></b></td>
+              </tr>
+            </table>
+            <br></br>
+            <button onclick="openResources();">View Resource Inventory</button>y
+       <table class="display"><tbody><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false">Resource Name:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="true"><input type="text" name="General_ResourceName" size="40"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1">Equipment Description:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false"><input type="text" name="Specs_VIN_SerialNumber" size="60"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1">Agency/Jurisdiction:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false"><input type="text" name="General_Agency" size="40"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1">Department:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false"><input type="text" name="General_Department" size="40"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="" colSpan="1">Manufacturer:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><input type="text" name="Specs_Manufacturer" size="40"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Model:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><input type="text" name="Specs_Model" size="40"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">VIN/Serial Number:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><input type="text" name="Specs_VIN_SerialNumber" size="40"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">License Plate:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><input type="text" name="Specs_LicensePlate" size="20"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">FEMA Cost Code:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><input type="text" name="RT_FEMACostCode" size="10"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">FEMA Rate Unit:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><select name="RT_FEMA_RateUnit" list="Resource Unit" recipient="false" subject="false" message="false" receiver="false" notification="false"></select></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">FEMA Equipment Rate:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><input type="text" name="RT_FEMA_Rate" size="10" fieldtype="money"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Deployment Status:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><span id="status"><select name="status" id="Resource_Status" list="Resource Status" onchange="origID();"></select></span><grouplist></grouplist><input type="text" name="jurisdiction_name" size="40"><attribute name="value"><choose><when test="/data/groups/@name='Maricopa County'">Maricopa County</when><when test="/data/groups/@name='Avondale'">Avondale</when><when test="/data/groups/@name='Buckeye'">Buckeye</when><when test="/data/groups/@name='Carefree'">Carefree</when><when test="/data/groups/@name='Cave Creek'">Cave Creek</when><when test="/data/groups/@name='Chandler'">Chandler</when><when test="/data/groups/@name='El Mirage'">El Mirage</when><when test="/data/groups/@name='Fountain Hills'">Fountain Hills</when><when test="/data/groups/@name='Gateway Airport'">Gateway Airport</when><when test="/data/groups/@name='Gila Bend'">Gila Bend</when><when test="/data/groups/@name='Gilbert'">Gilbert</when><when test="/data/groups/@name='Glendale'">Glendale</when><when test="/data/groups/@name='Goodyear'">Goodyear</when><when test="/data/groups/@name='Guadalupe'">Guadalupe</when><when test="/data/groups/@name='Litchfield Park'">Litchfield Park</when><when test="/data/groups/@name='Mesa'">Mesa</when><when test="/data/groups/@name='Paradise Valley'">Paradise Valley</when><when test="/data/groups/@name='Peoria'">Peoria</when><when test="/data/groups/@name='Phoenix'">Phoenix</when><when test="/data/groups/@name='Queen Creek'">Queen Creek</when><when test="/data/groups/@name='Scottsdale'">Scottsdale</when><when test="/data/groups/@name='Sky Harbor'">Sky Harbor</when><when test="/data/groups/@name='Surprise'">Surprise</when><when test="/data/groups/@name='Tempe'">Tempe</when><when test="/data/groups/@name='Tolleson'">Tolleson</when><when test="/data/groups/@name='Wickenburg'">Wickenburg</when><when test="/data/groups/@name='Youngtown'">Youngtown</when><when test="/data/groups/@name='Salt River, Pima, Maricopa Indian Community'">Salt River, Pima, Maricopa Indian Community</when><when test="/data/groups/@name='GRIC'">GRIC</when><when test="/data/groups/@name='Fort McDowell'">Fort McDowell IC</when><when test="/data/groups/@name='Aguila FD'">Aguila FD</when><when test="/data/groups/@name='Sun Lakes FD'">Sun Lakes FD</when><when test="/data/groups/@name='Daisy Mtn FD'">Daisy Mtn FD</when><when test="/data/groups/@name='Sun City FD'">Sun City FD</when><when test="/data/groups/@name='Rio Verde FD'">Rio Verde FD</when><when test="/data/groups/@name='Buckeye Valley FD'">Buckeye Valley FD</when><when test="/data/groups/@name='Harquahala FD'">Harquahala FD</when><when test="/data/groups/@name='Circle City/Morristown FD'">Circle City/Morristown FD</when><when test="/data/groups/@name='Apache Junction FD'">Apache Junction FD</when><when test="/data/groups/@name='Tonopah Valley FD'">Tonopah Valley FD</when><when test="/data/groups/@name='Sun City West FD'">Sun City West FD</when><when test="/data/groups/@name='Wittmann FD'">Wittmann FD</when><when test="/data/groups/@name='Agency - ADEM'">Agency - ADEM</when><when test="/data/groups/@name='Agency - APAC'">Agency - APAC</when><when test="/data/groups/@name='Agency - COCH'">Agency - COCH</when><when test="/data/groups/@name='Agency - COCO'">Agency - COCO</when><when test="/data/groups/@name='Agency - GILA'">Agency - GILA</when><when test="/data/groups/@name='Agency - GREE'">Agency - GREE</when><when test="/data/groups/@name='Agency - LAPA'">Agency - LAPA</when><when test="/data/groups/@name='Agency - MOHA'">Agency - MOHA</when><when test="/data/groups/@name='Agency - NAVA'">Agency - NAVA</when><when test="/data/groups/@name='Agency - PIMA'">Agency - PIMA</when><when test="/data/groups/@name='Agency - PINA'">Agency - PINA</when><when test="/data/groups/@name='Agency - SANT'">Agency - SANT</when><when test="/data/groups/@name='Agency - YAVA'">Agency - YAVA</when><when test="/data/groups/@name='Agency - YUMA'">Agency - YUMA</when><when test="/data/groups/@name='Avra Valley Fire District'">Avra Valley Fire District</when><when test="/data/groups/@name='Drexel Heights Fire District'">Drexel Heights Fire District</when><when test="/data/groups/@name='Golder Ranch Fire District'">Golder Ranch Fire District</when><when test="/data/groups/@name='Green Valley Fire District'">Green Valley Fire District</when><when test="/data/groups/@name='Helmet Peak Fire District'">Helmet Peak Fire District</when><when test="/data/groups/@name='Mount Lemmon Fire District'">Mount Lemmon Fire District</when><when test="/data/groups/@name='Northwest Fire District'">Northwest Fire District</when><when test="/data/groups/@name='Mountain Vista Fire District'">Mountain Vista Fire District</when><when test="/data/groups/@name='South Tucson Fire District'">South Tucson Fire District</when><when test="/data/groups/@name='Sonoita-Elgin VFD'">Sonoita-Elgin VFD</when></choose></attribute></input><grouplist></grouplist></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Grant Funded:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1"><select name="Other_GrantFunded" list="Resource Inventory - Grant Funded" recipient="false" subject="false" message="false" receiver="false" notification="false"></select></td></tr></tbody></table><table width="100%"><tr><td style="FONT-WEIGHT: bold; FONT-SIZE: 24pt; COLOR: #004080; FONT-FAMILY: arial" align="right" width="100%" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="1" vAlign="bottom"><savebutton></savebutton><space></space><cancelbutton></cancelbutton><space></space><spellcheckbutton></spellcheckbutton></td></tr></table><span style="display:none"><table class="display"><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1">Number Total:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false"><input type="text" name="deployment_total" fieldtype="money" size="10" required="false"></input></td></tr><tr><td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1">Complete Task No:</td><td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false"><input type="text" name="deployment_tracking_no" size="30"></input></td></tr></table></span></div>
+        </form>
+      </div>
+      <table width="100%" style="padding:5px">
+        <tr>
+          <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="8" width="" align="left" bgColor="#ffffff" vAlign="middle">
+            <span id="embededID" style="display:none">
+              <embedview view="Select Resource List" id="embededview" width="100%" height="800px" enablefooter="true"></embedview>
+            </span>
+          </td>
+        </tr>
+      </table>
+      <script type="text/javascript">
+  
+  function openResources() {
+    document.getElementById("embededID").style.display='block';
+  }
+  </script>
+    </body>
+  </html>

@@ -1,0 +1,323 @@
+<html>
+    <head>
+      <style type="text/css">
+  body{
+      background-color:#d1d2d4;
+      color:#000;
+      font:normal 0.9em arial;
+      margin:1.0em;
+  }
+  div.container{
+      background-color:#fff;
+      border:solid 1px #48156d;
+  }
+  div.content{
+                  width: 800px;
+      margin:1em;
+  }
+  
+  table.display{
+      border-collapse:collapse;
+      border:solid 1px;
+      width:100%;
+      border-color:#808080;
+      empty-cells:show;
+      margin-bottom:0.2em;
+  }
+  
+  table.display td{
+      border-right:solid 1px;
+      border-top:solid 1px;
+      color:#000;
+      border-color:#ccc;
+      padding:0.1em 0.3em 0.1em 0.3em;
+  }
+  </style>
+      <script type="text/javascript">
+  function writeTaskNumber()
+  {
+  var requestNumber = '<value-of select="//@request_number"></value-of>';
+  var taskNo = document.forms[0].task_no.value;
+  document.forms[0].deployment_tracking_no.value= requestNumber + '-' + taskNo;
+  }
+  
+      function createMessage() {
+        var txtMessage;
+        var agency = document.forms[0].assisting_agency.value;
+        var contact = document.forms[0].assisting_contactname.value;
+        var position = document.forms[0].assisting_position.value;
+        var trkNumber = document.getElementById('trackingNumber').textContent;
+        var incidentID = document.getElementById('incidentNameID').textContent;
+        
+        txtMessage = "Offer of Assistance from: " + agency + "\n\r" +
+          "Tracking number: " + trkNumber + "\n\r" + 
+          "From:" + contact + " as " + position + "\n\r" +
+          "Incident: " + incidentID;
+        
+        document.getElementById("notificationMessage").value = txtMessage;
+      }
+  
+  function SetSubmitHandler()
+  {
+  document.forms[0].onsubmit = DoOnSubmit;
+  }
+  
+  function DoOnSubmit()
+  {
+                  writeTaskNumber();
+                  //createMessage();
+  }
+  window.onload = SetSubmitHandler;
+  
+  </script>
+    </head>
+    <body>
+      <div class="container">
+        <form>
+          <div class="content">
+            <table width="100%">
+              <tr>
+                <td style="FONT-FAMILY: arial; COLOR: #004080; FONT-SIZE: 18pt; FONT-WEIGHT: bold" align="left" width="100%" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="1" vAlign="middle">Order Desk (ICS-213RR)</td>
+              </tr>
+            </table>
+            <table class="display">
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#ffffff" selected="false" width="35%" rowSpan="1" colSpan="6" align="left" vAlign="bottom">Resource Request Message</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" bgColor="#ffffff" selected="false" width="30%" rowSpan="1" colSpan="4" align="left" vAlign="bottom">Purpose: Resource/Mission Request is used by all incident personnel to request tactical and non-tactical resources</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="12" colSpan="1" width="1%" align="center" bgColor="#ffff00" vAlign="middle">R<br></br>e<br></br>s<br></br>o<br></br>u<br></br>r<br></br>c<br></br>e<br></br><br></br>R<br></br>e<br></br>q<br></br>u<br></br>e<br></br>s<br></br>t</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="5" width="" align="left" bgColor="#ffffff">1. Incident Name:<br></br><b><span id="incidentNameID"><incidentname></incidentname></span></b></td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 8pt; FONT-WEIGHT: normal" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#ffffff">Date/Time:<br></br><b><eocfield type="fk" name="requestor_date_time" table="Inventory Request Table"></eocfield></b></td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#ffffff">3. Resource Request # <br></br><foreignkey table="Inventory Request Table"><b><span id="trackingNumber"><eocfield type="fk" name="tracking_number" table="Inventory Request Table"></eocfield></span></b></foreignkey></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #800000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="9" width="" align="left" bgColor="#ffffff">4. ORDER  Note: ***Use additional forms when requesting different resource source of supply***</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="9" width="" align="left" bgColor="#000000">.</td>
+              </tr>
+              <tr>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; COLOR: #000000; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="5" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">Request Details</td>
+                <td style="FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif; COLOR: #000000; FONT-SIZE: 10pt; FONT-WEIGHT: bold" selected="false" rowSpan="1" colSpan="4" width="" align="left" bgColor="#ffff00">Routing: <b><eocfield type="fk" name="routing_r1" table="Inventory Request Table"></eocfield></b></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">a. Qty</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">Short Description</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">b. Type</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">c. Kind</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="bottom">d. NIMS Category</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="15%" align="center" bgColor="#f9f9f9" vAlign="bottom">e. Priority</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">f. Detailed item description (vital characteristics, brand, specs, experience, etc.) and, if applicable, purpose/use, diagrams, and other info.</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="a_1Quantity" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="short_description" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="b_1_NIMSType" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="c_1_OrderDeskType" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="d_1_NIMScategory" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="OrderDeskPriority" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="f_1_DetailedItemDescription" table="Inventory Request Table"></eocfield>
+                  <br></br>
+                  <br></br>
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="center" bgColor="#f9f9f9" vAlign="middle">f. Requested Reporting:</td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#808080" vAlign="middle"></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#f9f9f9" vAlign="middle">Location</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="4" width="" align="left" bgColor="#f9f9f9" vAlign="middle">Date/Time</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="17%" align="left" bgColor="#f9f9f9" vAlign="middle">h. Order # (LSC)</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="17%" align="left" bgColor="#f9f9f9" vAlign="middle">i. ETA (LSC)</td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="17%" align="left" bgColor="#f9f9f9" vAlign="middle">j. Cost</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="2" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="g_location_1" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="4" width="" align="left" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="f_date_time_1" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="h_1" size="10" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="i_1" size="10" table="Inventory Request Table"></eocfield>
+                </td>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="1" width="" align="center" bgColor="#f9f9f9" vAlign="middle">
+                  <eocfield type="fk" name="j_1" table="Inventory Request Table"></eocfield>
+                </td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="9" width="" align="left" bgColor="#000000" vAlign="middle">.</td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="9" width="" align="left" bgColor="#ffffff" vAlign="top">5. Suggested Source(s) of supply - POC phone number if known and suitable substitutes:<br></br><b><eocfield type="fk" name="requestor_5" table="Inventory Request Table"></eocfield></b></td>
+              </tr>
+              <tr>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="6" width="" align="left" bgColor="#ffffff" vAlign="top">Request POC Number<br></br><b><eocfield type="fk" name="request_poc" table="Inventory Request Table"></eocfield></b></td>
+                <td style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial,verdana,sans-serif" selected="false" rowSpan="1" colSpan="3" width="" align="left" bgColor="#ffffff" vAlign="middle">Request POC Number<br></br><b><eocfield type="fk" name="poc_number" table="Inventory Request Table"></eocfield></b></td>
+              </tr>
+            </table>
+            <br></br>
+            <table class="display">
+              <tbody>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false">Agency:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="true">
+                    <input type="text" name="assisting_agency" size="30" value="" required="false" onblur="createMessage();"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1">Name:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false">
+                    <input type="text" name="assisting_contactname" size="30" required="false">
+                      <attribute name="value">
+                        <userinfo type="realname"></userinfo>
+                      </attribute>
+                    </input>
+                    <input type="text" name="assisting_username" style="display:none;">
+                      <attribute name="value">
+                        <username></username>
+                      </attribute>
+                    </input>
+                    <input type="text" name="assisting_position" style="display:none;">
+                      <attribute name="value">
+                        <positionname></positionname>
+                      </attribute>
+                    </input>
+                    <input type="text" name="originator_contact" size="20" recipient="true" receiver="true" style="display:none;">
+                      <attribute name="value">
+                        <value-of select="/data/ViewParameter[@name='originator_contact']"></value-of>
+                      </attribute>
+                    </input>
+                    <input type="text" name="subjectLine" id="subjectLine" size="20" value="Assistance Offered" subject="true" style="display:none;"></input>
+                    <textarea name="notificationMessage" cols="80" rows="4" id="notificationMessage" message="true" notification="true" style="display:none;"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1">Date/Time:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false">
+                    <input type="text" name="comment_date_time" size="20" value="_currentdatetime" required="false"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1">Seeking Reimbursement?</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false">
+                    <select name="estimate_reimbursement">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Travel Cost:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <input type="text" name="estimate_travel_cost" size="10" fieldtype="money"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Equipment Cost:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <input type="text" name="estimate_equipment_cost" size="10" fieldtype="money"></input> Per <select name="estimate_cost_rate"><option>Hour</option><option>Mile</option></select></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Equipment Quantity:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <input type="text" name="estimate_equipment_quantity" size="10"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Equipment Description:<br></br>(Note any items that describe how resource meets request)</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <textarea name="estimate_equipment_description" rows="4" cols="40"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Personnel Cost:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <input type="text" name="estimate_personnel_cost" size="10" fieldtype="money"></input>  Per <select name="estimate_personnel_cost_rate"><option>Hour</option><option>Mile</option><option>Day</option></select></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Number of Personnel Offered:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <input type="text" name="estimate_personnel" size="10"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Personnel Description:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <textarea name="estimate_personnel_description" rows="4" cols="40"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Commodities Cost:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <input type="text" name="estimate_commodities_cost" size="10" fieldtype="money"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Commodities Offered:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <input type="text" name="estimate_commodities_offered" size="10"></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Other Cost:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <input type="text" name="estimate_other_cost" size="10" fieldtype="money"></input>
+                    <select name="requesting_agency_approved" style="display:none">
+                      <option>Not Reviewed</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" align="right" width="25%" bgColor="#ffffff" selected="false" rowSpan="1" vAlign="middle" colSpan="1">Commodities/Other Notes:</td>
+                  <td style="font-weight:normal; font-size:10pt; font-family:arial;" bgColor="#ffffff" rowSpan="1" selected="false" colSpan="1">
+                    <textarea name="commodities_other_notes" rows="4" cols="40"></textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%">
+              <tr>
+                <td style="FONT-WEIGHT: bold; FONT-SIZE: 24pt; COLOR: #004080; FONT-FAMILY: arial" align="right" width="100%" bgColor="#ffffff" selected="false" rowSpan="1" colSpan="1" vAlign="bottom">
+                  <savebutton></savebutton>
+                  <space></space>
+                  <cancelbutton></cancelbutton>
+                  <space></space>
+                  <spellcheckbutton></spellcheckbutton>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+      </div>
+      <script type="text/javascript">
+  /*var originatorPosition='<xsl:value-of select="/data/@positionname" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"></xsl:value-of>';
+  var originatorName = '<xsl:value-of select="/data/SessionDetail/Sessions/@name" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"></xsl:value-of>';
+  
+  if (document.forms[0].comment_position_name.value=="")
+  document.forms[0].comment_position_name.value=originatorPosition;
+  
+  if( document.forms[0].comment_user_name.value=="")
+  document.forms[0].comment_user_name.value=originatorName;
+  */
+  </script>
+    </body>
+  </html>

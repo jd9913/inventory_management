@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="css/8.3.0.0/boards.css" rel="stylesheet" />
+</head>
+<body>
+    <table class="webeoc-header" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="webeoc-header-logo" rowspan="2" width="1%">
+                <agencyinfo type="primarylogo" />
+            </td>
+            <td class="webeoc-header-board" selected="false">Units of Measurement</td>
+            <td class="webeoc-header-actions" align="right" rowspan="2" selected="false">
+                <boardpermission name="Edit">
+                    <viewlink class="webeoc-create" name="input_units" target="dialog">
+                        <i class="icon-plus" />Create
+                    </viewlink>
+                </boardpermission>
+                <space />
+                <div class="webeoc-dropdown">
+                    <a href="#" class="webeoc-dropdown-toggle" onclick="if(this.webeocOpen) {{this.blur();this.webeocOpen=false;}} else {{this.webeocOpen=true;}}">
+                        Actions              <span class="caret" />
+                    </a>
+                    <ul class="webeoc-dropdown-menu">
+                        <li>
+                            <pdflink class="webeoc-actions-link">
+                                <i class="icon-print" />Print PDF
+                            </pdflink>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="webeoc-header-incident" selected="false">
+                <incidentname />
+            </td>
+        </tr>
+    </table>
+    <table class="webeoc-datagrid" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="webeoc-search" colSpan="3">
+                <search>
+                    <field name="field1" />
+                </search>
+                <searchbutton class="webeoc-btn webeoc-btn-small" />
+            </td>
+        </tr>
+        <tr>
+            <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1">
+                <sortlink field="resource_unit">Unit of Measurement</sortlink>
+            </td>
+            <td class="webeoc-header" selected="false" rowSpan="1" colSpan="1" width="">Remove</td>
+            <td class="webeoc-header" selected="" rowSpan="1" colSpan="1" width="" />
+        </tr>
+        <eocrepeatallrecords>
+            <tr>
+                <td selected="false" rowSpan="1" colSpan="1">
+                    <eocfield name="resource_unit" />
+                </td>
+                <td selected="true" rowSpan="1" colSpan="1" width="">
+                    <eocfield name="remove" />
+                </td>
+                <td selected="false">
+                    <boardpermission name="Edit">
+                        <viewlink class="webeoc-link" type="link" name="input_units" target="dialog">
+                            <i class="icon-edit" />Edit
+                        </viewlink>
+                    </boardpermission>
+                </td>
+            </tr>
+        </eocrepeatallrecords>
+    </table>
+</body>
+</html>
