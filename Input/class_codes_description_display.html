@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport"/>
+    <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" media="all" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" media="all" href="//webeocboardfiles.juvare.com/board/1.0/css/material-kit.min.css" path="/css/material-kit.min.css"/>
+  </head>
+  <body class="bg-faded-grey-light" data-webeocdatetimeformat="{data/@webeocdatetimeformat}">
+    <form aria-label="Data" class="mb-0" id="input-form">
+      <insertfields>
+        <field name="_webeoc_delete_flag">'no'</field>
+      </insertfields>
+      <nav class="navbar navbar-default navbar-expand-lg" aria-label="Navigation">
+        <header class="container-fluid" aria-label="Header">
+          <div class="flex">
+            <div class="img-agencyinfo mr-3 mobile-hide-lg">
+              <agencyinfo type="primarylogo"/>
+            </div>
+            <div>
+              <h4>Add/Edit Record</h4>
+              <h6>Board Record</h6>
+            </div>
+          </div>
+        </header>
+      </nav>
+      <main aria-label="Main Section" class="container-fluid container-max-width pt-2 pb-2 mt-2 rounded form-border">
+        <section class="form-section">
+          <div class="form-header" id="iojen">
+            <hr class="horizontal-line-break mt-3 mb-3"/>
+            <h4>
+              <b>Equipment Class Codes and Descriptions from Inventory System</b>
+            </h4>
+          </div>
+          <div class="form-row">
+            <div class="form-group bmd-form-group col-md-6" id="i9oeji">
+              <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="tlcode" id="itkbrg">TLCode</label>
+              <input name="tlcode" type="text" class="form-control" label="TLCode" id="tlcode"/>
+            </div>
+            <div class="form-group bmd-form-group col-md-6" id="i5h1mi">
+              <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="class_description" id="ihuto2">Class Description</label>
+              <input name="class_description" type="text" class="form-control" label="Class Description" id="class_description"/>
+            </div>
+          </div>
+        </section>
+        <section class="text-right" aria-label="Footer">
+          <returnbutton button="return-button" class="btn btn-sm btn-outline-primary mr-2">Cancel</returnbutton>
+          <savebutton class="btn btn-sm btn-primary">Save</savebutton>
+        </section>
+      </main>
+      <div class="input-delete-flag">
+        <boardpermission name="Delete">
+          <input type="hidden" name="_webeoc_delete_flag" value="no"/>
+        </boardpermission>
+      </div>
+    </form>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/core/jquery.min.js" path="/js/core/jquery.min.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/core/popper.min.js" path="/js/core/popper.min.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/core/bootstrap-material-design.min.js" path="/js/core/bootstrap-material-design.min.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/moment.min.js" path="/js/plugins/moment.min.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/bootstrap-datetimepicker.js" path="/js/plugins/bootstrap-datetimepicker.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/nouislider.min.js" path="/js/plugins/nouislider.min.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/bootstrap-tagsinput.js" path="/js/plugins/bootstrap-tagsinput.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/bootstrap-selectpicker.js" path="/js/plugins/bootstrap-selectpicker.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/jasny-bootstrap.min.js" path="/js/plugins/jasny-bootstrap.min.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/jquery.flexisel.js" path="/js/plugins/jquery.flexisel.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/jquery.sharrre.js" path="/js/plugins/jquery.sharrre.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/material-kit.min.js" path="/js/material-kit.min.js"/>
+    <script src="//webeocboardfiles.juvare.com/board/1.0/js/ux-webeoc-board-standards.js" path="/js/ux-webeoc-board-standards.js"/>
+  </body>
+</html>
