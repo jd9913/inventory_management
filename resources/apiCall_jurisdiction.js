@@ -9,6 +9,6 @@ const agencyData=requestData({
     let allData=JSON.parse(data);
     let allJuris=document.getElementById("agency_jurisdiction");
     allData.forEach(function(key){
-        allJuris.innerHTML+='<option values="'+key.agency_name+'"name="'+key.agency_name+'">'+key.agency_name+'</option>';
+        allJuris.innerHTML+= '<option values=" ' + key.agency_name + 'name=" ' + key.agency_name + ' " > ' + key.agency_name + ' </option> ' ;
     });
 });
