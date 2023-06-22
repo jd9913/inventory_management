@@ -1,0 +1,635 @@
+<html lang="en" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <head>
+    <title>Inventory</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://webeocboardfiles.juvare.com/board/1.0/css/material-kit.min.css" />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/js/core/jquery.min.js" />
+    <link rel="stylesheet" href="https://webeocboardfiles.juvare.com/board/1.0/lib/flatpickr/flatpickr.min.css" />
+    <style type="text/css">
+			.container-fluid {
+				padding: 0px !important;
+			}
+			main &gt; div {
+				width: 100%;
+			}
+			div.badge {
+				white-space: normal;
+			}
+		</style>
+  </head>
+  <xsl:variable name="filterCount" select="count(/data/currentfilter/viewfilters/viewfilter[@name != '' and (not(@remove) or @remove != 'true')]) + count(/data/currentfilter/searchfilters/searchfilter)" />
+  <body>
+    <span class="media-breakpoint-state" />
+    <section class="d-none">
+      <span button="search-button">
+        <searchbutton />
+      </span>
+      <span button="clearsearch-button">
+        <clearsearchbutton />
+      </span>
+      <span button="pdf-button">
+        <pdflink enablemediaquery="true" enablejs="true" orientation="landscape">PDF</pdflink>
+      </span>
+      <span button="export-button">
+        <exportbutton>
+          <field name="dataid" label="Inventory Num" />
+          <field name="resource_name" label="Resource Name" />
+          <field name="resource_quantity" label="Quantity" />
+          <field name="resource_unit" label="Unit of Measure" />
+          <field name="resource_status" label="Status" />
+          <field name="resource_description" label="Description" />
+          <field name="resource_serial_number" label="Serial Num" />
+          <field name="resource_location_name" label="Location Name" />
+          <field name="resource_location_address" label="Location Address" />
+          <field name="resource_location" label="Location Coordinates" />
+          <field name="resource_poc_name" label="POC Name" />
+          <field name="resource_poc_phone" label="POC Phone" />
+          <field name="resource_poc_email" label="POC Email" />
+          <field name="resource_owner" label="Resource Owner" />
+          <field name="resource_jurisdiction" label="Resource Jurisdiction" />
+          <field name="resource_actual_cost" label="Actual Cost" />
+          <field name="resource_actual_cost_rate" label="Cost Rate" />
+          <field name="resource_reimbursement_amount" label="Reimbursement Amount" />
+          <field name="resource_reimbursement_rate" label="Reimbursement Rate" />
+        </exportbutton>
+      </span>
+    </section>
+    <main id="list-view-main-section" aria-label="Main Section" data-activate-panel="detail-panel-x" class="page-wrap flex flex-row">
+      <div class="flex flex-column">
+        <section class="section-navigation-board mobile-hide print-hide pb-2 pl-3">
+          <nav class="nav">
+            <viewlink name="List - Inventory" ignoreerrors="true" class="nav-link active">Inventory</viewlink>
+            <boardpermission name="Requests - View">
+              <viewlink name="List - Request" ignoreerrors="true" class="nav-link">Requests/Tasks</viewlink>
+            </boardpermission>
+            <boardpermission name="Deployments - View">
+              <viewlink name="List - Deployment" ignoreerrors="true" class="nav-link">Deployments</viewlink>
+            </boardpermission>
+            <boardpermission name="Finance - View">
+              <viewlink name="List - Finance" ignoreerrors="true" class="nav-link">Finance</viewlink>
+            </boardpermission>
+            <viewlink name="Dashboard" ignoreerrors="true" class="nav-link">Dashboard</viewlink>
+          </nav>
+        </section>
+        <nav class="navbar navbar-default navbar-expand-md px-3" aria-label="Navigation">
+          <header class="container-fluid" aria-label="Header">
+            <div class="flex">
+              <div class="img-agencyinfo mr-3 mobile-hide-lg">
+                <agencyinfo type="primarylogo" />
+              </div>
+              <div>
+                <h1 class="boardname">
+                  <b>Inventory</b>
+                </h1>
+                <h2 class="incidentname">
+                  <incidentname />
+                </h2>
+              </div>
+            </div>
+            <div>
+              <ul class="navbar-nav ml-auto print-hide d-none d-md-flex">
+                <li class="nav-item mr-2">
+                  <boardpermission name="Inventory - Create">
+                    <viewlink name="Input - Inventory">
+                      <button type="button" class="btn btn-sm btn-primary">
+                        <span>Create New</span>
+                        <i class="material-icons ml-2">add</i>
+                      </button>
+                    </viewlink>
+                  </boardpermission>
+                </li>
+                <li class="nav-item mr-2">
+                  <viewlink name="Report - Inventory">
+                    <button type="button" class="btn btn-sm btn-outline-primary">
+                      <span>Report</span>
+                      <i class="material-icons ml-2">description</i>
+                    </button>
+                  </viewlink>
+                </li>
+                <li class="nav-item mr-2" updatesection="true" id="main-filter-toggle">
+                  <button type="button" data-toggle="modal" data-target="#filter-modal" class="btn btn-sm btn-outline-primary">Filter/Search
+												<if test="$filterCount &gt; 0"><xsl:text>(</xsl:text><value-of select="$filterCount" /><xsl:text>)</xsl:text></if><i class="material-icons ml-2">filter_list</i></button>
+                </li>
+                <li class="dropdown nav-item flex flex-center">
+                  <i class="material-icons cursor-pointer faded-grey" data-toggle="dropdown">more_horiz</i>
+                  <div class="dropdown-menu dropdown-menu-right cursor-pointer navbar-dropdown-override">
+                    <a button="print-button" class="dropdown-item">Print Page</a>
+                    <a activate="pdf-button" class="dropdown-item">Export to PDF</a>
+                    <a activate="export-button" class="dropdown-item">Export to Excel</a>
+                    <boardpermission name="Inventory - Import">
+                      <viewlink name="Import Inventory" class="dropdown-item">Import Inventory</viewlink>
+                    </boardpermission>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </header>
+        </nav>
+        <section class="container-fluid scrollable-area">
+          <div class="flex flex-column js-target-map-move">
+            <if test="/data/@pdf = 'false'">
+              <section id="map-panel-y-wrapper" class="map-panel-y-wrapper" aria-label="Map">
+                <div id="map-panel-y" class="d-none" data-panel-type="map-panel" data-panel-axis="y">
+                  <embedmap id="embedmap" scrolling="no" height="350px" width="100%" page-data="enabled" side-menu="disabled" enableheader="false" />
+                </div>
+                <div class="flex flex-center">
+                  <div button="open-map-panel-y" class="map-panel-button map-panel-button-y">
+                    <i class="material-icons">arrow_drop_down</i>
+                  </div>
+                  <div button="close-map-panel-y" class="map-panel-button map-panel-button-y d-none">
+                    <i class="material-icons">arrow_drop_up</i>
+                  </div>
+                </div>
+              </section>
+            </if>
+            <div id="content-wrapper" class="flex-grow" updatesection="true">
+              <div id="detail-panel-x-main" class="detail-panel-x-main pl-1">
+                <section class="col mt-2" aria-label="Table">
+                  <section aria-label="Expressions">
+                    <div class="row">
+                      <div class="col-12 mobile-center-md text-right" id="expression-div" data-apply-class-to-children="button:btn btn-sm btn-round exp-wrapper mr-2">
+                        <filterbutton name="Available Inventory" group="statusFilters">
+                          <on>
+                            <attribute name="class">bg-success text-white</attribute>
+                            <span class="badge badge-pill badge-expression-dark mr-2">
+                              <expression name="exp_total_avail" useboardlevelfilters="true" usegrouplevelfilters="true" useuserlevelfilters="false">isnull(sum(case when [resource_status] = 'Available' or [resource_status] = '' then 1 else 0 end), 0)</expression>
+                            </span>Available
+															</on>
+                          <off>
+                            <span class="badge badge-pill bg-success text-white mr-2">
+                              <expression name="exp_total_avail" useboardlevelfilters="true" usegrouplevelfilters="true" useuserlevelfilters="false">isnull(sum(case when [resource_status] = 'Available' or [resource_status] = '' then 1 else 0 end), 0)</expression>
+                            </span>Available
+															</off>
+                        </filterbutton>
+                        <filterbutton name="Unavailable Inventory" group="statusFilters">
+                          <on>
+                            <attribute name="class">bg-danger text-white</attribute>
+                            <span class="badge badge-pill badge-expression-dark mr-2">
+                              <expression name="exp_total_unavail" useboardlevelfilters="true" usegrouplevelfilters="true" useuserlevelfilters="false">isnull(sum(case when [resource_status] = 'Committed' or [resource_status] = 'Decommissioned' or [resource_status] = 'In Use' or [resource_status] = 'Out of Service' or [resource_status] = 'Temporarily Unavailable' then 1 else 0 end), 0)</expression>
+                            </span>Unavailable
+															</on>
+                          <off>
+                            <span class="badge badge-pill bg-danger text-white mr-2">
+                              <expression name="exp_total_unavail" useboardlevelfilters="true" usegrouplevelfilters="true" useuserlevelfilters="false">isnull(sum(case when [resource_status] = 'Committed' or [resource_status] = 'Decommissioned' or [resource_status] = 'In Use' or [resource_status] = 'Out of Service' or [resource_status] = 'Temporarily Unavailable' then 1 else 0 end), 0)</expression>
+                            </span>Unavailable
+															</off>
+                        </filterbutton>
+                      </div>
+                    </div>
+                  </section>
+                  <table class="table table-striped table-sm mt-1 sticky-header">
+                    <thead>
+                      <tr>
+                        <th class="d-lg-none bg-white" />
+                        <th class="mobile-hide-md bg-white">
+                          <sortlink field="dataid">Inventory<space />#</sortlink>
+                        </th>
+                        <th class="bg-white">
+                          <sortlink field="resource_name">Resource</sortlink>
+                        </th>
+                        <th class="mobile-hide-lg bg-white">
+                          <sortlink field="resource_serial_number">Serial<space />#</sortlink>
+                        </th>
+                        <th class="mobile-hide-lg bg-white">
+                          <sortlink field="resource_location_name">Location</sortlink>
+                        </th>
+                        <th class="bg-white">
+                          <sortlink field="resource_quantity">Quantity</sortlink>
+                        </th>
+                        <th class="mobile-hide-md bg-white">
+                          <sortlink field="resource_owner">Owner</sortlink>
+                        </th>
+                        <th class="mobile-hide-md bg-white">
+                          <boardpermission name="Show Agency Fields">
+                            <sortlink field="resource_jurisdiction">Agency</sortlink>
+                            <notapplied>
+                              <sortlink field="resource_jurisdiction">Jurisdiction</sortlink>
+                            </notapplied>
+                          </boardpermission>
+                        </th>
+                        <th class="mobile-hide-lg bg-white">
+                          <sortlink field="resource_status">Status</sortlink>
+                        </th>
+                        <th class="mobile-hide-lg bg-white">
+                          <sortlink field="entrydate">Last Updated</sortlink>
+                        </th>
+                        <th class="bg-white" width="5%" />
+                      </tr>
+                    </thead>
+                    <tbody id="main-table" updatesection="true">
+                      <eocrepeatallrecords aria-label="Data">
+                        <tr class="cursor-pointer js-viewlink-delegate" data-panel-id="detail-panel" data-panel-default-viewname="Blank Panel" data-panel-ignore-clicks=".dropdown, .js-expander">
+                          <td class="d-lg-none print-hide">
+                            <div class="js-expander">
+                              <a class="custom-link d-block print-hide" role="button">
+                                <i class="material-icons faded-grey" data-toggle="tooltip" data-placement="right" title="Click to expand">expand_more</i>
+                              </a>
+                            </div>
+                          </td>
+                          <td class="mobile-hide-md">
+                            <eocfield disableclick="true" name="dataid" />
+                          </td>
+                          <td>
+                            <eocfield disableclick="true" name="resource_name" />
+                          </td>
+                          <td class="mobile-hide-lg">
+                            <eocfield disableclick="true" name="resource_serial_number" />
+                          </td>
+                          <td class="mobile-hide-lg">
+                            <eocfield disableclick="true" name="resource_location_name" />
+                          </td>
+                          <td>
+                            <eocfield disableclick="true" name="resource_quantity" />
+                            <space/>
+                            <eocfield disableclick="true" name="resource_unit" />
+                          </td>
+                          <td class="mobile-hide-md">
+                            <eocfield disableclick="true" name="resource_owner" />
+                          </td>
+                          <td class="mobile-hide-md">
+                            <eocfield disableclick="true" name="resource_jurisdiction" />
+                          </td>
+                          <td class="mobile-hide-md">
+                            <if test="false()">
+                              <eocfield name="resource_status" />
+                            </if>
+                            <div>
+                              <attribute name="class">
+                                <choose>
+                                  <when test="@resource_status='Available'">badge badge-success priority-badge</when>
+                                  <when test="@resource_status='Committed'">badge badge-warning text-dark priority-badge</when>
+                                  <when test="@resource_status='Decommissioned'">badge badge-dark priority-badge</when>
+                                  <when test="@resource_status='In Use'">badge badge-danger priority-badge</when>
+                                  <when test="@resource_status='Out of Service'">badge badge-info priority-badge</when>
+                                  <when test="@resource_status='Temporarily Unavailable'">badge badge-info priority-badge</when>
+                                </choose>
+                              </attribute>
+                              <choose>
+                                <when test="@resource_status=''">Unknown</when>
+                                <when test="contains(@resource_status, ' ')">
+                                  <span class="text-nowrap">
+                                    <value-of select="substring-before(@resource_status, ' ')" />
+                                    <space />
+                                  </span>
+                                  <span>?</span>
+                                  <span class="text-nowrap">
+                                    <value-of select="substring-after(@resource_status, ' ')" />
+                                  </span>
+                                </when>
+                                <otherwise>
+                                  <value-of select="@resource_status" />
+                                </otherwise>
+                              </choose>
+                            </div>
+                          </td>
+                          <td class="mobile-hide-lg">
+                            <eocfield disableclick="true" name="entrydate" />
+                          </td>
+                          <td class="text-right">
+                            <viewlink name="Details - Inventory" target="sidePanel" class="mobile-hide-lg viewlink-panel">
+                              <viewparameter name="presentation">panel</viewparameter>
+                            </viewlink>
+                            <div class="dropdown cursor-pointer">
+                              <a class="custom-link d-block print-hide" data-toggle="dropdown">
+                                <i class="material-icons faded-grey">more_horiz</i>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right cursor-pointer">
+                                <viewlink name="Details - Inventory" class="dropdown-item viewlink-default">
+                                  <span>View</span>
+                                </viewlink>
+                                <boardpermission name="Inventory - Update Position">
+                                  <if test="@resource_owner = /data/@positionname">
+                                    <viewlink name="Input - Inventory" class="dropdown-item">
+                                      <span>Edit</span>
+                                    </viewlink>
+                                  </if>
+                                  <notapplied>
+                                    <boardpermission name="Inventory - Update Agency">
+                                      <if test="/data/groups[contains(@name,current()/@originating_agency_group)] or @resource_owner = /data/@positionname">
+                                        <viewlink name="Input - Inventory" class="dropdown-item">
+                                          <span>Edit</span>
+                                        </viewlink>
+                                      </if>
+                                      <notapplied>
+                                        <boardpermission name="Inventory - Update All">
+                                          <viewlink name="Input - Inventory" class="dropdown-item">
+                                            <span>Edit</span>
+                                          </viewlink>
+                                        </boardpermission>
+                                      </notapplied>
+                                    </boardpermission>
+                                  </notapplied>
+                                </boardpermission>
+                                <feature type="link" class="dropdown-item" name="resource_location" label-field="resource_name" status-field="resource_status" address="resource_location_address" data-map-move="#embedmap" data-toggle="feature-map-move" data-dataid="{@dataid}" target="">Map Zoom</feature>
+                                <boardpermission name="Inventory - Delete">
+                                  <div class="dropdown-divider" />
+                                  <viewlink name="Remove Inventory Record" class="dropdown-item text-danger">Delete</viewlink>
+                                </boardpermission>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <if test="false()">
+                          <eocfield name="resource_description" />
+                          <eocfield name="resource_location_address" />
+                          <eocfield name="resource_poc_name" />
+                          <eocfield name="resource_poc_phone" />
+                          <eocfield name="resource_poc_email" />
+                          <eocfield name="resource_actual_cost" />
+                          <eocfield name="resource_actual_cost_rate" />
+                          <eocfield name="resource_reimbursement_amount" />
+                          <eocfield name="resource_reimbursement_rate" />
+                        </if>
+                      </eocrepeatallrecords>
+                    </tbody>
+                  </table>
+                </section>
+              </div>
+              <script>
+								(function applyExpressionButtonClasses(){
+									Array.prototype.slice.call(document.querySelectorAll('#expression-div button')).forEach(function(button) {
+										button.classList.add('btn', 'btn-sm', 'btn-round', 'exp-wrapper', 'mr-2');
+									});
+								}());
+									</script>
+            </div>
+          </div>
+        </section>
+        <footer class="mobile-banner bg-primary text-white mobile-flex-md flex-justify" aria-label="Mobile Menu">
+          <boardpermission name="Inventory - Create">
+            <viewlink name="Input - Inventory" class="text-white" refreshid="main-table">
+              <div class="flex flex-col">
+                <i class="material-icons cursor-pointer">add</i>
+                <span>CREATE NEW</span>
+              </div>
+            </viewlink>
+          </boardpermission>
+          <div class="flex flex-col cursor-pointer" data-toggle="modal" data-target="#filter-modal">
+            <i class="material-icons">filter_list</i>
+            <span>FILTERS</span>
+          </div>
+          <viewlink name="Report - Inventory" class="text-white">
+            <div class="flex flex-col cursor-pointer">
+              <i class="material-icons cursor-pointer">description</i>
+            </div>REPORT
+							</viewlink>
+          <div class="flex flex-col dropup cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">more_horiz</i>
+            <span>ACTIONS</span>
+            <div class="dropdown-menu cursor-pointer">
+              <boardpermission name="Requests - View">
+                <viewlink name="List - Request" ignoreerrors="true" class="dropdown-item">Requests/Tasks</viewlink>
+              </boardpermission>
+              <boardpermission name="Deployments - View">
+                <viewlink name="List - Deployment" class="dropdown-item">Deployments</viewlink>
+              </boardpermission>
+              <boardpermission name="Finance - View">
+                <viewlink name="List - Finance" class="dropdown-item">Finance</viewlink>
+              </boardpermission>
+              <viewlink name="Dashboard" class="dropdown-item">Dashboard</viewlink>
+              <a activate="pdf-button" class="dropdown-item">Export to PDF</a>
+              <a activate="export-button" class="dropdown-item">Export to Excel</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </main>
+    <section id="detail-panel" class="modal fade drawer click-through right-align mobile-hide-lg" aria-label="Detail Panel" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false" data-keyboard="true">
+      <div class="modal-dialog" role="document" style="max-width: 600px">
+        <button type="button" class="close drawer-close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">close</i>
+        </button>
+        <div class="modal-content">
+          <embedview view="Blank Panel" id="sidePanel" width="100%" height="100%" />
+          <viewlink name="Blank Panel" target="sidePanel" type="hidden" />
+        </div>
+      </div>
+    </section>
+    <section class="modal fade" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="filter-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-bold" id="filter-modal-label">Filter and Search</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" />
+              <i class="material-icons">close</i>
+            </button>
+          </div>
+          <div class="horizontal-line-break mt-3" />
+          <div class="modal-body">
+            <div class="row">
+              <ul class="nav nav-pills nav-pills-icons" role="tablist">
+                <li class="nav-item nav-item-inline">
+                  <a class="nav-link active" href="#filter-tab" role="tab" data-toggle="tab">
+                    <i class="material-icons">filter_list</i>Filter
+											</a>
+                </li>
+                <li class="nav-item nav-item-inline">
+                  <a class="nav-link" href="#search-tab" role="tab" data-toggle="tab">
+                    <i class="material-icons">search</i>Search
+											</a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content">
+              <div class="tab-pane active" id="filter-tab">
+                <div class="row" aria-labelledby="filter-heading">
+                  <div class="col">
+                    <h4 class="title mt-3" id="filter-heading">Filter Criteria <small>(Automatically<space />Applied)</small></h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg" aria-labelledby="filterdropdown-filters">
+                    <div class="form-row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label class="form-label filterdropdown-filters">Status</label>
+                          <filterlistdropdown defaulttext="View All" list="RID - Inventory - Status" field="resource_status" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <boardpermission name="Show Agency Fields">
+                      <div class="form-row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label class="form-label filterdropdown-filters">Agency</label>
+                            <select name="agency_dropdown_filter" id="agency-dropdown-filter" class="form-control">
+                              <option value="">View All</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </boardpermission>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="search-tab">
+                <div class="row" aria-labelledby="search-heading">
+                  <div class="col">
+                    <h4 class="title mt-3" id="search-heading">Search Criteria</h4>
+                  </div>
+                </div>
+                <div class="row" aria-labelledby="free-text-search">
+                  <div class="col-lg" data-apply-class-to-children="input:form-control">
+                    <div class="form-group">
+                      <label class="form-label" id="free-text-search">Free text search</label>
+                      <search exact="false">
+                        <field name="dataid" />
+                        <field name="resource_name" />
+                        <field name="resource_serial_number" />
+                        <field name="resource_location_name" />
+                        <field name="resource_owner" />
+                        <field name="resource_jurisdiction" />
+                      </search>
+                      <small class="form-text">Search inventory number, resource name, serial number, location name, owner and jurisdiction.</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg">
+                    <div class="flex flex-justify-end">
+                      <button type="link" activate="clearsearch-button" class="btn btn-sm btn-outline-primary">Clear all</button>
+                      <button class="btn btn-sm btn-primary" activate="search-button" updatesection="true" id="filter-apply-button">Apply</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer flex flex-justify-end">
+            <button data-dismiss="modal" class="btn btn-sm btn-primary btn-link">Dismiss</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="modal fade" id="close-panel-modal" tabindex="-1" role="dialog" aria-labelledby="close-panel-modal-label" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-bold" id="close-panel-modal-label">Confirmation</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" />
+              <i class="material-icons">close</i>
+            </button>
+          </div>
+          <div class="modal-body">Are you sure you want to close the panel? Unsaved changes will be lost</div>
+          <div class="modal-footer">
+            <a data-dismiss="modal" class="custom-link mr-4">Cancel</a>
+            <div data-dismiss="modal" button="close-detail-panel" class="btn btn-sm btn-primary">Yes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <grouplist />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/js/core/popper.min.js" />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/js/core/bootstrap-material-design.min.js" />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/js/plugins/moment.min.js" type="text/javascript" />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/js/plugins/bootstrap-datetimepicker.js" type="text/javascript" />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/js/plugins/nouislider.min.js" type="text/javascript" />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/js/material-kit.min.js" type="text/javascript" />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/lib/flatpickr/flatpickr.min.js" />
+    <script src="https://webeocboardfiles.juvare.com/board/1.0/js/ux-webeoc-board-standards.min.js" />
+    <boardpermission name="Show Agency Fields">
+      <script type="text/javascript">
+				(function(window, $){
+					$(function(){
+						const getGroups = async () => {
+							const urlCurrentLocation = new URL(location.href).pathname;
+							const urlWebEOC = urlCurrentLocation.split('/boards/')[0] + "/api/rest.svc";
+							const urlGroups = urlWebEOC + '/groups';
+							const data = await fetch(urlGroups, {
+								method: "GET",
+								headers: {
+									"Accept": "application/json",
+									"Content-Type": "application/json"
+								}
+							});
+							return await data.json();
+						}
+						
+						async function getAgencyGroups() {
+							const allGroups = await getGroups();
+							const agencyGroups = $.grep(allGroups, function(item, index){
+								return (item.indexOf('Agency - ') === 0);
+							});
+							buildAgencyDropdown(agencyGroups);
+						}
+						
+						function buildAgencyDropdown(agencyGroups){
+							for(var i = 0; i &lt; agencyGroups.length; i++){
+								var agencyName = agencyGroups[i].replace('Agency - ', '');
+								$('&lt;option/&gt;').val(agencyGroups[i]).html(agencyName).appendTo('#agency-dropdown-filter');
+							}
+							wireAgencyDropdown();
+							var agencyFilterVal = '<value-of select="/data/currentfilter/searchfilters/searchfilter/sqlpredicate[@fieldname='originating_agency_group']/@value" />';
+							$('#agency-dropdown-filter option[value="' + agencyFilterVal + '"]').prop('selected', true);
+						}
+						
+						function wireAgencyDropdown(){
+							$('#agency-dropdown-filter').on('change', function(){
+								var selection = $(this).val();
+								if(selection == "View All"){
+									selection = '';
+								}
+								BoardScript.ApplyOrFilter('originating_agency_group', [selection]);
+							});
+						}
+						
+						getAgencyGroups();
+					});
+				}(window, jQuery));
+			</script>
+    </boardpermission>
+    <script type="text/javascript">
+			(function(window, $){
+				$(function(){
+					$('#list-view-main-section').on('click', 'div.js-expander', function(){
+						var cell = $(this).closest('td');
+						var tr = cell.closest('tr');
+						var hiddenDataArray = [];
+
+						tr.find('td:not(:visible):not(:first-child)').each(function(){	//GET TEXT FROM HIDDEN CELLS (SKIPPING FIRST CELL)
+							hiddenDataArray.push($(this).html());
+						});
+
+						var hiddenLabelsArray = [];
+						$('#list-view-main-section table thead th:not(:visible):not(:first-child)').each(function(){	//GET TEXT FROM HIDDEN TH (SKIPPING FIRST TH)
+							hiddenLabelsArray.push($(this).text());
+						});
+
+						if(hiddenDataArray.length){	//ONLY RUN IF THERE ARE ANY HIDDEN CELLS
+							if(tr.hasClass('has-child')){
+								tr.removeClass('has-child').next('tr.child-row').remove();
+								cell.find('i.material-icons').tooltip('hide').attr('data-original-title', 'Click to expand').text('expand_more');
+							}else{
+								var colspan = tr.find('td:visible').length;
+								//TAKE CLASS[ES] FROM js-expander CELL AND APPLY TO CHILD ROW
+								var mobileClass = cell.attr('class');
+									mobileClass = mobileClass.replace('js-expander', '').trim();
+								var content = $('&lt;tr class="child-row ' + mobileClass + '"&gt;&lt;td colspan="' + colspan + '"&gt;&lt;div class="container"&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;');
+
+								//THIS LOOP CREATES THE CONTENT OF THE CHILD ROW MADE UP OF ANY HIDDEN DATA
+								$.each(hiddenDataArray, function(index, value){
+									var line = $('&lt;div class="row m-0"&gt;&lt;div class="col-12 d-flex justify-content-start align-items-center"&gt;&lt;/div&gt;&lt;/div&gt;');
+									var label = $('&lt;span class="faded-grey mr-2"&gt;' + hiddenLabelsArray[index] + ':&lt;/span&gt;');
+									var innerDiv = line.find('div:not(:has("*"))');
+									innerDiv.append(label);
+									innerDiv.append(value);
+									content.find('div.container').append(line);
+								});
+								tr.after(content);
+								tr.addClass('has-child');
+								cell.find('i.material-icons').tooltip('hide').attr('data-original-title', 'Click to collapse').text('expand_less');
+								$('[data-toggle="tooltip"]').tooltip();
+							}
+						}
+					});
+				});
+			}(window, jQuery));
+		</script>
+  </body>
+</html>

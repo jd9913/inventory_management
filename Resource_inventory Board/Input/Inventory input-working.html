@@ -1,0 +1,1020 @@
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport"/>
+        <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+        <link rel="stylesheet" media="all" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+        <link href="//webeocboardfiles.juvare.com/board/1.0/lib/flatpickr/flatpickr.min.css" rel="stylesheet" media="screen"/>
+        <title>Create Inventory Record</title>
+        <link rel="stylesheet" media="all" href="//webeocboardfiles.juvare.com/board/1.0/css/material-kit.min.css" path="/css/material-kit.min.css"/>
+    </head>
+    <body class="bg-faded-grey-light" data-webeocdatetimeformat="{data/@webeocdatetimeformat}">
+        <form aria-label="Data" class="mb-0" id="input-form">
+            <insertfields id="i7735">
+                <field name="_webeoc_delete_flag">'no'</field>
+            </insertfields>
+            <nav class="navbar navbar-default navbar-expand-lg" aria-label="Navigation">
+                <header class="container-fluid" aria-label="Header">
+                    <div class="flex">
+                        <div class="img-agencyinfo mr-3 mobile-hide-lg">
+                            <agencyinfo type="primarylogo"/>
+                        </div>
+                        <div>
+                            <h4>Create Inventory Record</h4>
+                        </div>
+                    </div>
+                </header>
+            </nav>
+            <main aria-label="Main Section" class="container-fluid container-max-width pt-2 pb-2 mt-2 rounded form-border">
+                <section aria-label="Data" class="mb-0" id="input-form-2">
+                    <section class="form-section">
+                        <div class="form-header" id="iu7lc">
+                            <hr class="horizontal-line-break mt-3 mb-3"/>
+                            <h4>
+                                <b>Basic Inventory Details</b>
+                            </h4>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group bmd-form-group col-md-12" id="itlcph">
+                                <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="date_record_created" id="igilpw">Date record created<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Date the record was created" style="line-height: .5; font-size: 1.6em;" id="iu00kg">help</i></div></label>
+                                <input name="date_record_created" type="text" class="form-control dpickr hide-default-calendar cursor-pointer" fieldtype="datetime" label="Date record created" id="date_record_created" autocomplete="off" value="_currentdatetime"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group bmd-form-group col-md-12" id="iu9lao">
+                                <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="resource_name" id="ifbt08">Resource Name<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Name of the resource" style="line-height: .5; font-size: 1.6em;" id="igyf53j">help</i></div></label>
+                                <input name="resource_name" type="text" class="form-control" label="Resource Name" id="resource_name-2"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group bmd-form-group col-md-12" id="ijs7cr">
+                                <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="resource_description" id="i31n62">Resource Description</label>
+                                <textarea name="resource_description" rows="4" class="form-control" id="resource_description" label="Resource Description" format="bbcode"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group bmd-form-group col-md-6" id="iw957v2">
+                                <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="last_inventory_date" id="ifp7u7p">Last Inventory Date</label>
+                                <input name="last_inventory_date" type="date" class="form-control dpickr" fieldtype="datetime" label="Last Inventory Date" id="last_inventory_date"/>
+                            </div>
+                            <div class="form-group bmd-form-group col-md-6" id="i8ebi5s">
+                                <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="record_last_modified" id="ig30n96">Record Last Modified</label>
+                                <input name="record_last_modified" type="date" class="form-control dpickr" fieldtype="datetime" label="Record Last Modified" id="record_last_modified"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group bmd-form-group col-md-12" id="in70ux">
+                                <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="generic_notes" id="i4beh3">Generic Notes</label>
+                                <textarea name="generic_notes" rows="4" class="form-control" id="generic_notes" label="Generic Notes"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group bmd-form-group col-md-6" id="iy0v00q">
+                                <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="trailer_number" id="ik23tbn">RCC Trailer and Bin #</label>
+                                <select name="trailer_number" class="form-control" label="RCC Trailer and Bin #" id="trailer_number" list="RID -  Trailer Number"/>
+                            </div>
+                            <div class="form-group bmd-form-group col-md-6" id="iblxot">
+                                <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="address_of_equipment" id="i2f7fz">Home Location of Equipment</label>
+                                <div class="input-group">
+                                    <input name="address_of_equipment" type="text" class="form-control"/>
+                                    <div class="input-group-append">
+                                        <feature name="equipment_location" address="address_of_equipment" autopopulate="address" type="button" class="btn btn-sm btn-primary m-0 rounded-right">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                Map
+                                                <i class="material-icons ml-1">room</i>
+                                            </div>
+                                        </feature>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <section class="form-panel col-md-12" id="ixfj7za">
+                                <div class="form-header" id="i9ook1">
+                                    <hr class="horizontal-line-break mt-3 mb-3"/>
+                                    <h4>
+                                        <b>Calibration Information</b>
+                                    </h4>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-4" id="i4wore">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="calibrator_name" id="i0fnp2">Calibrator Name</label>
+                                        <input name="calibrator_name" type="text" class="form-control" label="Calibrator Name" id="calibrator_name"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="icv9t7s">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="last_calibration_date" id="iryk5pn">Last Calibration Date</label>
+                                        <input name="last_calibration_date" type="date" class="form-control dpickr" fieldtype="datetime" label="Last Calibration Date" id="last_calibration_date"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="ip62ndr">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="corrected_last_calibration_date" id="ifpnoli">corrected last calibration date</label>
+                                        <input name="corrected_last_calibration_date" type="date" class="form-control dpickr" fieldtype="datetime" label="corrected last calibration date" id="corrected_last_calibration_date"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="ib30sl8">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="calibration_due" id="iqhvhn8">Calibration Due</label>
+                                        <input name="calibration_due" type="date" class="form-control dpickr" fieldtype="datetime" label="Calibration Due" id="calibration_due"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="iiaykpo">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="date_of_last_far" id="if810ji">Date of last FAR</label>
+                                        <input name="date_of_last_far" type="date" class="form-control dpickr" fieldtype="datetime" label="Date of last FAR" id="date_of_last_far"/>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </section>
+                <section class="form-section">
+                    <div class="form-header" id="i73ri6-2">
+                        <hr class="horizontal-line-break mt-3 mb-3"/>
+                        <h4>
+                            <b>Owners and Operators</b>
+                        </h4>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="isdkxg">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="agency_jurisdiction" id="izhp3i">Agency or Jurisdiction Owner<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="The Agency or Jurisdiction who owns and maintains the equipment" style="line-height: .5; font-size: 1.6em;" id="idw1rf">help</i></div></label>
+                            <select name="agency_jurisdiction" class="form-control" label="Agency or Jurisdiction Owner" id="agency_jurisdiction" list="Resource Inventory - Agency/Jurisdiction2020" defaulttext="please select an agency">
+                                <option value="">Agency or Jurisdiction</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-6" id="ihrlf8l">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="operator_last_name" id="i5vg77f">Operator Last Name</label>
+                            <input name="operator_last_name" type="text" class="form-control" label="Operator Last Name" id="operator_last_name"/>
+                        </div>
+                        <div class="form-group bmd-form-group col-md-6" id="im5usu3">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="operator_first_name" id="ihrgvne">Operator First Name</label>
+                            <input name="operator_first_name" type="text" class="form-control" label="Operator First Name" id="operator_first_name"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="id4gyjf">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="operator_agency_id" id="iwg3pzu">Operator Agency ID<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Operator Agency ID and Serial Number" style="line-height: .5; font-size: 1.6em;" id="i92qf62">help</i></div></label>
+                            <input name="operator_agency_id" type="text" class="form-control" label="Operator Agency ID" id="operator_agency_id"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="i4ilujx">
+                            <div class="form-check">
+                                <label class="form-check-label d-flex align-items-center form-label" for="stc_information_only">
+                                    <input type="checkbox" name="stc_information_only" class="form-check-input form-control" value="Yes" label="STC Information Only" id="stc_information_only"/>
+                                    STC Information Only
+                                    <span class="form-check-sign">
+                                        <span class="check"/>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <section class="form-panel col-md-12" id="i6zj3lq">
+                            <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"i6zj3lq","field":{"tag":"input","type":"checkbox","name":"stc_information_only","label":"STC Information Only"},"value":"true"}');});}())</script>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="itgbm3h">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="acceptance_checklist_completed">
+                                            <input type="checkbox" name="acceptance_checklist_completed" class="form-check-input form-control" value="Yes" label="Acceptance Checklist Completed" id="acceptance_checklist_completed"/>
+                                            Acceptance Checklist Completed
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="ittkqli">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="warning_days" id="ikkty24">Warning Days</label>
+                                    <input name="warning_days" type="text" class="form-control" label="Warning Days" id="warning_days"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-4" id="iwfrvfj">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="user_notified">
+                                            <input type="checkbox" name="user_notified" class="form-check-input form-control" value="Yes" label="User Notified" id="user_notified"/>
+                                            User Notified
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-4" id="i23uvol">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="representative_notified">
+                                            <input type="checkbox" name="representative_notified" class="form-check-input form-control" value="Yes" label="Representative Notified" id="representative_notified"/>
+                                            Representative Notified
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-4" id="isde1qs">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="admin_notified">
+                                            <input type="checkbox" name="admin_notified" class="form-check-input form-control" value="Yes" label="Admin Notified" id="admin_notified"/>
+                                            Admin Notified
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="ibznh5">
+                            <div class="form-check">
+                                <label class="form-check-label d-flex align-items-center form-label" for="private_entity_owned_">
+                                    <input type="checkbox" name="private_entity_owned_" class="form-check-input form-control" value="Yes" label="Private entity owned?" id="private_entity_owned_"/>
+                                    <strong class="text-primary">
+                                        <em>Private entity owned?</em>
+                                    </strong>
+                                    <span class="form-check-sign">
+                                        <span class="check"/>
+                                    </span>
+                                </label>
+                            </div>
+                            <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"ibznh5","field":{"tag":"select","name":"agency_jurisdiction","label":"Agency or Jurisdiction"},"value":"Other"}');});}())</script>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <section class="form-panel col-md-12" id="iy7n7l">
+                            <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"iy7n7l","field":{"tag":"input","type":"checkbox","name":"private_entity_owned_","label":"Private entity owned?"},"value":"true"}');});}())</script>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="ib3c28">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="private_entity_name" id="ix1tuy">private entity name</label>
+                                    <input name="private_entity_name" type="text" class="form-control" label="private entity name" id="private_entity_name"/>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="iioodm">
+                            <div class="form-check">
+                                <label class="form-check-label d-flex align-items-center form-label" for="deployment_information">
+                                    <input type="checkbox" name="deployment_information" class="form-check-input form-control" value="Yes" label="Add Deployment Considerations" id="deployment_information"/>
+                                    <strong class="text-primary">
+                                        <em>Add Deployment Considerations</em>
+                                    </strong>
+                                    <span class="form-check-sign">
+                                        <span class="check"/>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <section class="form-panel col-md-12" id="igvw0s">
+                            <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"igvw0s","field":{"tag":"input","type":"checkbox","name":"deployment_information","label":"Deployment Information"},"value":"true"}');});}())</script>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="ihzaaie">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="eta_deployment_time" id="iy30mun">ETA Deployment Time</label>
+                                    <input name="eta_deployment_time" type="text" class="form-control" label="ETA Deployment Time" id="eta_deployment_time"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="ibudfk2">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="equipment_status" id="iprfyug">Service Status</label>
+                                    <input name="equipment_status" type="text" class="form-control" label="Service Status" id="service_status"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="ia2cx5n">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="need_to_deploy_with_other_equipment">
+                                            <input type="checkbox" name="need_to_deploy_with_other_equipment" class="form-check-input form-control" value="Yes" label="Need to deploy with other equipment" id="need_to_deploy_with_other_equipment"/>
+                                            <strong class="text-primary">
+                                                <em>Need to deploy with other equipment</em>
+                                            </strong>
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                            <div class="help-text-container ml-2">
+                                                <i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Add up to 3 additional pieces of equipment that this resource needs to deploy with" style="line-height: .5; font-size: 1.6em;" id="inp645k">help</i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="form-panel col-md-12" id="iv4gzki">
+                                <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"iv4gzki","field":{"tag":"input","type":"checkbox","name":"need_to_deploy_with_other_equipment","label":"Need to deploy with other equipment"},"value":"true"}');});}())</script>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="iwok93i">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="linked_equipment_1" id="ij5y2ih">Linked equipment 1<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="If the item needs deployed with additional equipment add it here" style="line-height: .5; font-size: 1.6em;" id="iehj5ml">help</i></div></label>
+                                        <select name="linked_equipment_1" class="form-control" label="Linked equipment 1" id="linked_equipment_1"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="iy1e135">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="linked_equipment_2" id="iz3odbq">Linked Equipment 2</label>
+                                        <select name="linked_equipment_2" class="form-control" label="Linked Equipment 2" id="linked_equipment_2"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="iwncs7h">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="linked_equipment_3" id="izuyp2i">Linked Equipment 3</label>
+                                        <select name="linked_equipment_3" class="form-control" label="Linked Equipment 3" id="linked_equipment_3"/>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
+                    <div class="form-header" id="i9ook1-2">
+                        <hr class="horizontal-line-break mt-3 mb-3"/>
+                        <h4>
+                            <b>POC Information</b>
+                        </h4>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-6" id="i4wore-2">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="poc_last_name" id="i0fnp2-2">POC Last Name</label>
+                            <input name="poc_last_name" type="text" class="form-control" label="POC Last Name" id="poc_last_name"/>
+                        </div>
+                        <div class="form-group bmd-form-group col-md-6" id="ip8ifm">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="poc_first_name" id="ioil1h">POC First Name</label>
+                            <input name="poc_first_name" type="text" class="form-control" label="POC First Name" id="poc_first_name"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-4" id="iiyeqk">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="poc_office_phone" id="ihyo01">POC Office Phone</label>
+                            <input name="poc_office_phone" type="tel" class="form-control" label="POC Office Phone" id="poc_office_phone"/>
+                        </div>
+                        <div class="form-group bmd-form-group col-md-4" id="iz6gsh">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="poc_cell_phone" id="ih21xi">POC Cell Phone</label>
+                            <input name="poc_cell_phone" type="tel" class="form-control" label="POC Cell Phone" id="poc_cell_phone"/>
+                        </div>
+                        <div class="form-group bmd-form-group col-md-4" id="id82li">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="poc_other_phone" id="i3azqq">POC Other phone<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="phone number that might be relevant for equipment if primary POC is unavailable (such as main agency phone number)" style="line-height: .5; font-size: 1.6em;" id="irj5vy">help</i></div></label>
+                            <input name="poc_other_phone" type="tel" class="form-control" label="POC Other phone" id="poc_other_phone"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="i4kvbj">
+                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="poc_email" id="is267x">POC Email</label>
+                            <input name="poc_email" type="email" class="form-control" label="POC Email" id="poc_email"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="izt32oz">
+                            <div class="form-check">
+                                <label class="form-check-label d-flex align-items-center form-label" for="add_tracking_information">
+                                    <input type="checkbox" name="add_tracking_information" class="form-check-input form-control" value="Yes" label="Add Tracking Information" id="add_tracking_information"/>
+                                    Add Tracking Information
+                                    <span class="form-check-sign">
+                                        <span class="check"/>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <section class="form-panel col-md-12" id="i2y1ezt">
+                            <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"i2y1ezt","field":{"tag":"input","type":"checkbox","name":"add_tracking_information","label":"Add Tracking Information"},"value":"true"}');});}())</script>
+                            <div class="form-header" id="iky5ugy">
+                                <hr class="horizontal-line-break mt-3 mb-3"/>
+                                <h4>
+                                    <b>All the different types of tracking numbers</b>
+                                </h4>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="i68c8j">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="manufacturer_vin_or_serial_number" id="ick94e">VIN</label>
+                                    <input name="manufacturer_vin_or_serial_number" type="text" class="form-control" label="VIN" id="manufacturer_vin_or_serial_number"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="iech79">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="resource_serial_number" id="i7w60p">Serial Number</label>
+                                    <input name="resource_serial_number" type="text" class="form-control" label="Serial Number" id="resource_serial_number-2"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="iz2n8kq">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="dhs_asset_tag" id="itgkl4u">DHS Asset Tag</label>
+                                    <input name="dhs_asset_tag" type="text" class="form-control" label="DHS Asset Tag" id="dhs_asset_tag"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="i07hz1g">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="fixed_asset" id="iowke5f">Fixed Asset #</label>
+                                    <input name="fixed_asset" type="text" class="form-control" label="Fixed Asset #" id="fixed_asset"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="ixzdil">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="item_number" id="igmig5">Item Number</label>
+                                    <input name="item_number" type="text" class="form-control" label="Item Number" id="item_number"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="ig9vhc1">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="riid" id="i13110n">RIID#</label>
+                                    <input name="riid" type="text" class="form-control" label="RIID#" id="riid"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="iftwdr">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="lot_number" id="i5t5us">Lot Number</label>
+                                    <input name="lot_number" type="text" class="form-control" label="Lot Number" id="lot_number"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="iuput3u">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="barcode_number" id="ibhxk0g">Barcode Number</label>
+                                    <input name="barcode_number" type="text" class="form-control" label="Barcode Number" id="barcode_number"/>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="i5g7rg">
+                            <div class="form-check">
+                                <label class="form-check-label d-flex align-items-center form-label" for="fill_out_equipment_specifications_">
+                                    <input type="checkbox" name="fill_out_equipment_specifications_" class="form-check-input form-control" value="Yes" label="Add Basic Equipment Specifications" id="fill_out_equipment_specifications_"/>
+                                    <strong class="text-primary">
+                                        <em>Add Basic Equipment Specifications</em>
+                                    </strong>
+                                    <span class="form-check-sign">
+                                        <span class="check"/>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <section class="form-panel col-md-12" id="ic0xbn">
+                            <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"ic0xbn","field":{"tag":"input","type":"checkbox","name":"fill_out_equipment_specifications_","label":"Fill out Equipment Specifications?"},"value":"true"}');});}())</script>
+                            <div class="form-header" id="isfo0e">
+                                <hr class="horizontal-line-break mt-3 mb-3"/>
+                                <h4>
+                                    <b>Equipment Specs</b>
+                                </h4>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="i1zczg-2">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="manufacturer" id="ixjwh4-2">Manufacturer</label>
+                                    <input name="manufacturer" type="text" class="form-control" label="Manufacturer" id="manufacturer-2"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="ityepu">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="model" id="ixhjeg">Model</label>
+                                    <input name="model" type="text" class="form-control" label="Model" id="model"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="i3rb2d">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto">Chassis Type</label>
+                                    <div class="form-check form-check-radio">
+                                        <label class="form-check-label"><input type="radio" name="chassis_type" value="4x2" label="Chassis Type" class="form-check-input"/>4x2<span class="circle"><span class="check"/></span></label>
+                                    </div>
+                                    <div class="form-check form-check-radio">
+                                        <label class="form-check-label"><input type="radio" name="chassis_type" value="4x4" label="Chassis Type" class="form-check-input"/>4x4<span class="circle"><span class="check"/></span></label>
+                                    </div>
+                                    <div class="form-check form-check-radio">
+                                        <label class="form-check-label"><input type="radio" name="chassis_type" value="not_available" label="Chassis Type" class="form-check-input"/>Not Available/Does Not Apply<span class="circle"><span class="check"/></span></label>
+                                    </div>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="is0cyb">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto">Equipment Type</label>
+                                    <div class="form-check form-check-radio">
+                                        <label class="form-check-label"><input type="radio" name="equipment_type" value="portable" label="Equipment Type" class="form-check-input"/>Portable<span class="circle"><span class="check"/></span></label>
+                                    </div>
+                                    <div class="form-check form-check-radio">
+                                        <label class="form-check-label"><input type="radio" name="equipment_type" value="rigid" label="Equipment Type" class="form-check-input"/>Rigid<span class="circle"><span class="check"/></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="i6fsp5">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="inventory_class" id="i13xyx">Inventory Class</label>
+                                    <input name="inventory_class" type="text" class="form-control" label="Inventory Class" id="inventory_class"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="itez9r">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="inventory_type_description" id="ign8oh">Inventory Type Description</label>
+                                    <input name="inventory_type_description" type="text" class="form-control" label="Inventory Type Description" id="inventory_type_description"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="i4uhrz">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="fuel_type" id="il688r">Fuel Type</label>
+                                    <select name="fuel_type" class="form-control" label="Fuel Type" id="fuel_type" list="inventory_fuel_type" defaulttext="Not Available"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="ihmjo8">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="horespower" id="i70yli">Horespower</label>
+                                    <input name="horespower" type="text" class="form-control" label="Horespower" id="horespower"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="ixoafj">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="gvw" id="imbm8v">GVW</label>
+                                    <input name="gvw" type="text" class="form-control" label="GVW" id="gvw"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-4" id="i4ngjb">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="height" id="ieez1k">Height</label>
+                                    <input name="height" type="text" class="form-control" label="Height" id="height"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-4" id="iq1pqc">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="length" id="icp39p">Length</label>
+                                    <input name="length" type="text" class="form-control" label="Length" id="length"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-4" id="i971qk">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="weight" id="ip3tx6">Weight</label>
+                                    <input name="weight" type="text" class="form-control" label="Weight" id="weight"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="ikhll7">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="license_plate" id="i214m7">License Plate</label>
+                                    <input name="license_plate" type="text" class="form-control" label="License Plate" id="license_plate"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="itflnl">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="add_additional_equipment_information_">
+                                            <input type="checkbox" name="add_additional_equipment_information_" class="form-check-input form-control" value="Yes" label="Add Additional Equipment Information" id="add_additional_equipment_information_"/>
+                                            <strong class="text-primary">
+                                                <em>Add Additional Equipment Information</em>
+                                            </strong>
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="form-panel col-md-12" id="ioouaq">
+                                <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"ioouaq","field":{"tag":"input","type":"checkbox","name":"add_additional_equipment_information_","label":"Add Additional Equipment Information?"},"value":"true"}');});}())</script>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-4" id="iu9ffo">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="weight_limits" id="iwor83">Weight Limits</label>
+                                        <input name="weight_limits" type="text" class="form-control" label="Weight Limits" id="weight_limits"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="i19q2l">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="payload_capacity" id="ia7ofk">Payload Capacity</label>
+                                        <input name="payload_capacity" type="text" class="form-control" label="Payload Capacity" id="payload_capacity"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="iyytwr">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="width" id="i5ggfw">Width</label>
+                                        <input name="width" type="text" class="form-control" label="Width" id="width"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-4" id="icjv7g">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="water_capacity" id="i6g7vk">water capacity</label>
+                                        <input name="water_capacity" type="text" class="form-control" label="water capacity" id="water_capacity"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="ik4yyc">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="water_capacity_unit" id="igciac">water capacity unit</label>
+                                        <input name="water_capacity_unit" type="text" class="form-control" label="water capacity unit" id="water_capacity_unit"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="i3r2e8">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="gallons_per_minute" id="iae0hc">Gallons Per Minute (GPM)</label>
+                                        <input name="gallons_per_minute" type="text" class="form-control" label="Gallons Per Minute (GPM)" id="gallons_per_minute"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-6" id="i1exmi">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto">Air Conditioning equiped</label>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="air_conditioning_equiped" value="yes" label="Air Conditioning equiped" class="form-check-input"/>Yes<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="air_conditioning_equiped" value="no" label="Air Conditioning equiped" class="form-check-input"/>No<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="air_conditioning_equiped" value="unknown" label="Air Conditioning equiped" class="form-check-input"/>Unknown/Not relevant<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-6" id="iau2qj">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="personnel_capacity" id="ib25md">Personnel Capacity</label>
+                                        <input name="personnel_capacity" type="text" class="form-control" label="Personnel Capacity" id="personnel_capacity"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-6" id="i128hv">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto">Specialized Crew Needed to operate</label>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="specialized_crew_needed" value="Yes" label="Specialized Crew Needed to operate" class="form-check-input"/>Yes<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="specialized_crew_needed" value="No" label="Specialized Crew Needed to operate" class="form-check-input"/>No<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="specialized_crew_needed" value="unknown" label="Specialized Crew Needed to operate" class="form-check-input"/>Unknown<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-6" id="ixgaj3">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="operator_type" id="izwn78">operator type</label>
+                                        <input name="operator_type" type="text" class="form-control" label="operator type" id="operator_type"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="i0qayu">
+                                        <div class="form-check">
+                                            <label class="form-check-label d-flex align-items-center form-label" for="wheelchair_lift_equiped">
+                                                <input type="checkbox" name="wheelchair_lift_equiped" class="form-check-input form-control" value="Yes" label="Wheelchair Lift equiped" id="wheelchair_lift_equiped"/>
+                                                Wheelchair Lift equiped
+                                                <span class="form-check-sign">
+                                                    <span class="check"/>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="iiuwbk">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="wheelchair_capacity" id="i1lvrr">Wheelchair Capacity</label>
+                                        <input name="wheelchair_capacity" type="text" class="form-control" label="Wheelchair Capacity" id="wheelchair_capacity"/>
+                                        <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"iiuwbk","field":{"tag":"input","type":"checkbox","name":"wheelchair_lift_equiped","label":"Wheelchair Lift equiped"},"value":"true"}');});}())</script>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="iz13ip">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="acquisition_information">
+                                            <input type="checkbox" name="acquisition_information" class="form-check-input form-control" value="Yes" label="Acquisition and Replacement Information" id="acquisition_information"/>
+                                            <strong class="text-primary">
+                                                <em>Acquisition and Replacement Information</em>
+                                            </strong>
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="form-panel col-md-12" id="ioio9s">
+                                <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"ioio9s","field":{"tag":"input","type":"checkbox","name":"acquisition_information","label":"Acquisition Information"},"value":"true"}');});}())</script>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="imbkfkl">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="received_from" id="i06p2l9">Received From</label>
+                                        <input name="received_from" type="text" class="form-control" label="Received From" id="received_from"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="ibk7t8h">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="date_first_received" id="i95rkdo">Date first received<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="The date on which the equipment was first received" style="line-height: .5; font-size: 1.6em;" id="i5drljc">help</i></div></label>
+                                        <input name="date_first_received" type="date" class="form-control dpickr" fieldtype="datetime" label="Date first received" id="date_first_received"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="isw00hb">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="warranty_end_date" id="ipfc2a6">Warranty End Date</label>
+                                        <input name="warranty_end_date" type="date" class="form-control dpickr" fieldtype="datetime" label="Warranty End Date" id="warranty_end_date"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-4" id="i5y73l">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="date_manufacture" id="i31fhu">Date Equipment was manufactured<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="date of manufacture" style="line-height: .5; font-size: 1.6em;" id="i7gyyai">help</i></div></label>
+                                        <input name="date_manufacture" type="text" class="form-control dpickr" fieldtype="datetime" label="Date Equipment was manufactured" id="date_manufacture"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="iuctp9">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="expiration_date" id="idc6x7">Expiration Date</label>
+                                        <input name="expiration_date" type="text" class="form-control dpickr" fieldtype="datetime" label="Expiration Date" id="expiration_date"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="iywhqkj">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="expected_end_of_life_date" id="iz1yzce">Expected End of Life Date</label>
+                                        <input name="expected_end_of_life_date" type="date" class="form-control dpickr" fieldtype="datetime" label="Expected End of Life Date" id="expected_end_of_life_date"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-4" id="ibvb1d">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="date_inService" id="i3pbnz">In Service date<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Date the equipment was placed in service" style="line-height: .5; font-size: 1.6em;" id="iq7aq6t">help</i></div></label>
+                                        <input name="date_inService" type="text" class="form-control" label="In Service date" id="date_inService"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="iejbbog">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto">Meter Types<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Type of meter used" style="line-height: .5; font-size: 1.6em;">help</i></div></label>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="meter_types" value="Odometer Mileage" label="Meter Types" class="form-check-input"/>Odometer Mileage<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="meter_types" value="Hour Meter" label="Meter Types" class="form-check-input"/>Hour Meter<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="meter_types" value="No Meter" label="Meter Types" class="form-check-input"/>No Meter<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="iu85of">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="current_meter_reading" id="iqn9wm">Current meter reading<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Current meter reading as of date of entry" style="line-height: .5; font-size: 1.6em;" id="irs2a0a">help</i></div></label>
+                                        <input name="current_meter_reading" type="number" class="form-control" fieldtype="int" label="Current meter reading" id="current_meter_reading"/>
+                                        <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":"false","id":"iu85of","field":{"tag":"input","type":"radio","name":"meter_types","label":"Meter Types"},"value":"No Meter"}');});}())</script>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                        <div class="form-group bmd-form-group col-md-12" id="in46gz">
+                            <div class="form-check">
+                                <label class="form-check-label d-flex align-items-center form-label" for="nims_information">
+                                    <input type="checkbox" name="nims_information" class="form-check-input form-control" value="Yes" label="Enter NIMS Information" id="nims_information"/>
+                                    <strong class="text-primary">
+                                        <em>Enter NIMS Information</em>
+                                    </strong>
+                                    <span class="form-check-sign">
+                                        <span class="check"/>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <section class="form-panel col-md-12" id="iot67k">
+                            <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"iot67k","field":{"tag":"input","type":"checkbox","name":"nims_information","label":"Enter NIMS Information"},"value":"true"}');});}())</script>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-6" id="izyy7d">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="nims_group" id="iogkkq">NIMS Group<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="NIMS Type.  Use this to provide the definition  Use API to refer back to NIMS display in inventory board" style="line-height: .5; font-size: 1.6em;" id="issbbx">help</i></div></label>
+                                    <select name="nims_group" class="form-control" label="NIMS Group" id="nims_group"/>
+                                </div>
+                                <div class="form-group bmd-form-group col-md-6" id="ixmft2">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="nims_definition" id="idedzd">NIMS Definition<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Should automatically fill based on the value placed in NIMS Group" style="line-height: .5; font-size: 1.6em;" id="ihcscj">help</i></div></label>
+                                    <textarea name="nims_definition" rows="2" class="form-control" id="nims_definition" label="NIMS Definition" format="bbcode"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="it4bu1">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="nims_type" id="i26pea">NIMS Type</label>
+                                    <select name="nims_type" class="form-control" label="NIMS Type" id="nims_type" list="inventory_nims_type"/>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="form-group bmd-form-group col-md-12" id="iwtmvj">
+                            <div class="form-check">
+                                <label class="form-check-label d-flex align-items-center form-label" for="enter_cost_information">
+                                    <input type="checkbox" name="enter_cost_information" class="form-check-input form-control" value="Yes" label="Enter Cost information" id="enter_cost_information"/>
+                                    <strong class="text-primary">
+                                        <em>Enter Cost information</em>
+                                    </strong>
+                                    <span class="form-check-sign">
+                                        <span class="check"/>
+                                    </span>
+                                    <div class="help-text-container ml-2">
+                                        <i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="Enter any cost information associated with the inventory item, including FEMA Cost Codes, grant funding information etc" style="line-height: .5; font-size: 1.6em;" id="izayil">help</i>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <section class="form-panel col-md-12" id="ibblef">
+                            <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"ibblef","field":{"tag":"input","type":"checkbox","name":"enter_cost_information","label":"Enter Cost information"},"value":"true"}');});}())</script>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="iovmzei">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="county_cost_information">
+                                            <input type="checkbox" name="county_cost_information" class="form-check-input form-control" value="Yes" label="County Cost Information" id="county_cost_information"/>
+                                            County Cost Information
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <section class="form-panel col-md-12" id="iywfraw">
+                                    <div class="form-row">
+                                        <div class="form-group bmd-form-group col-md-3" id="i62xz7h">
+                                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="accounting_string" id="iy3ugaf">Accounting String</label>
+                                            <input name="accounting_string" type="text" class="form-control" label="Accounting String" id="accounting_string"/>
+                                        </div>
+                                        <div class="form-group bmd-form-group col-md-3" id="igqzz5p">
+                                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="purchasing_authority" id="iefrfdo">Purchasing Authority</label>
+                                            <input name="purchasing_authority" type="text" class="form-control" label="Purchasing Authority" id="purchasing_authority"/>
+                                        </div>
+                                        <div class="form-group bmd-form-group col-md-3" id="imaww3r">
+                                            <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="line_description" id="ic6y1ao">Line Description<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="FLIR RIID Last three of SN" style="line-height: .5; font-size: 1.6em;" id="iugblka">help</i></div></label>
+                                            <input name="line_description" type="text" class="form-control" label="Line Description" id="line_description"/>
+                                        </div>
+                                        <div class="form-group bmd-form-group col-md-3" id="is541im">
+                                            <div class="form-check">
+                                                <label class="form-check-label d-flex align-items-center form-label" for="submitted_in_advantage">
+                                                    <input type="checkbox" name="submitted_in_advantage" class="form-check-input form-control" value="Yes" label="Submitted in Advantage" id="submitted_in_advantage"/>
+                                                    Submitted in Advantage
+                                                    <span class="form-check-sign">
+                                                        <span class="check"/>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"iywfraw","field":{"tag":"input","type":"checkbox","name":"county_cost_information","label":"County Cost Information"},"value":"true"}');});}())</script>
+                                </section>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="ifkkmf">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="fema_cost_information">
+                                            <input type="checkbox" name="fema_cost_information" class="form-check-input form-control" value="Yes" label="FEMA Cost Information" id="fema_cost_information"/>
+                                            <strong class="text-primary">
+                                                <em> FEMA Cost Information</em>
+                                            </strong>
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="form-panel col-md-12" id="ihypqq">
+                                <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"ihypqq","field":{"tag":"input","type":"checkbox","name":"fema_cost_information","label":"FEMA Cost Information"},"value":"true"}');});}())</script>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-4" id="isaslx">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="fema_cost_code" id="i98tvf">FEMA cost Code</label>
+                                        <select name="fema_cost_code" class="form-control" label="FEMA cost Code" id="fema_cost_code" list="inventory_fema_cost_code"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="ib0yvp">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="fema_equipment_rate" id="iy0mna">FEMA Equipment Rate (whole numbers only)</label>
+                                        <input name="fema_equipment_rate" type="number" class="form-control" fieldtype="int" label="FEMA Equipment Rate (whole numbers only)" id="fema_equipment_rate"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="it5j51">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="fema_rate_unit" id="i4q1ea">FEMA Rate Unit</label>
+                                        <select name="fema_rate_unit" class="form-control" label="FEMA Rate Unit" id="fema_rate_unit" list="inventory_fema_rate_unit" defaulttext="hour"/>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="i1g26k">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="mou_or_other_purchase_agreement_active_">
+                                            <input type="checkbox" name="mou_or_other_purchase_agreement_active_" class="form-check-input form-control" value="Yes" label="MOU or other purchase agreement active?" id="mou_or_other_purchase_agreement_active_"/>
+                                            <strong class="text-primary">
+                                                <em>MOU or other purchase agreement active?</em>
+                                            </strong>
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="i6ldl3g">
+                                    <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="mou_tracking_info" id="ix6tvtu">Enter MOU and/or purchase agreement tracking information<div class="help-text-container ml-2"><i class="material-icons cursor-default faded-grey" data-toggle="tooltip" data-placement="right" title="could be the agency name, or purchase order number or any other information that associates this item with a specific MOU and/or standing purchase agreement" style="line-height: .5; font-size: 1.6em;" id="i9jha8x">help</i></div></label>
+                                    <input name="mou_tracking_info" type="text" class="form-control" label="Enter MOU and/or purchase agreement tracking information" id="mou_tracking_info"/>
+                                    <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"i6ldl3g","field":{"tag":"input","type":"checkbox","name":"mou_or_other_purchase_agreement_active_","label":"MOU or other purchase agreement active?"},"value":"true"}');});}())</script>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="i61lth">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="funding_source">
+                                            <input type="checkbox" name="funding_source" class="form-check-input form-control" value="Yes" label="Funding Source" id="funding_source"/>
+                                            <strong class="text-primary">
+                                                <em>Funding Source</em>
+                                            </strong>
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="form-panel col-md-12" id="ihzvgj">
+                                <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"ihzvgj","field":{"tag":"input","type":"checkbox","name":"grant_funded","label":"Grant Funded?"},"value":"true"}');});}())</script>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-4" id="iiobin">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto">Grant Type</label>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="grant_type" value="grant_uasi" label="Grant Type" class="form-check-input"/>UASI<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="grant_type" value="grant_shsgp" label="Grant Type" class="form-check-input"/>SHSGP<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="grant_type" value="grant_empg" label="Grant Type" class="form-check-input"/>EMPG<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="grant_type" value="grant_stc" label="Grant Type" class="form-check-input"/>STC<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                        <div class="form-check form-check-radio">
+                                            <label class="form-check-label"><input type="radio" name="grant_type" value="grant_other" label="Grant Type" class="form-check-input"/>Unknown/Other<span class="circle"><span class="check"/></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="i1iu8y">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="grant_year" id="ikfiqk">Grant Year</label>
+                                        <input name="grant_year" type="text" class="form-control" label="Grant Year" id="grant_year"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-4" id="i1p15d">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="grant_number" id="iw2059">Grant Number</label>
+                                        <input name="grant_number" type="text" class="form-control" label="Grant Number" id="grant_number"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="ixkhnuc">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="notes_about_funding_source" id="in09d73">Notes about Funding Source</label>
+                                        <input name="notes_about_funding_source" type="text" class="form-control" label="Notes about Funding Source" id="notes_about_funding_source"/>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-12" id="iqvxgj">
+                                    <div class="form-check">
+                                        <label class="form-check-label d-flex align-items-center form-label" for="add_wildland_fire_information">
+                                            <input type="checkbox" name="add_wildland_fire_information" class="form-check-input form-control" value="Yes" label="Add Wildland Fire information" id="add_wildland_fire_information"/>
+                                            <strong class="text-primary">
+                                                <em>Add Wildland Fire information</em>
+                                            </strong>
+                                            <span class="form-check-sign">
+                                                <span class="check"/>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="form-panel col-md-12" id="i2s6jf">
+                                <script conditional="true">(function(){document.addEventListener("DOMContentLoaded", function(event) {__designStudio__.registerConditional('{"enabled":true,"id":"i2s6jf","field":{"tag":"input","type":"checkbox","name":"add_wildland_fire_information","label":"Add Wildland Fire information"},"value":"true"}');});}())</script>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-12" id="iokpa5">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="nwcg_definition" id="i2db5d">NWCG Definition</label>
+                                        <input name="nwcg_definition" type="text" class="form-control" label="NWCG Definition" id="nwcg_definition"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group bmd-form-group col-md-6" id="i2dg0g">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="state_foresters_reimbursement_rate" id="icg3ue">State Forester's Reimbursement Rate</label>
+                                        <input name="state_foresters_reimbursement_rate" type="number" class="form-control" fieldtype="int" label="State Forester's Reimbursement Rate" id="state_foresters_reimbursement_rate"/>
+                                    </div>
+                                    <div class="form-group bmd-form-group col-md-6" id="ic3zwh">
+                                        <label class="form-label d-flex align-items-center" style="pointer-events: auto" for="rate_unit" id="i914yj">Rate Unit</label>
+                                        <select name="rate_unit" class="form-control" label="Rate Unit" id="rate_unit" list="inventory_rate_unit" defaulttext="hour"/>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group bmd-form-group col-md-12" id="isete8p">
+                            <div class="form-check">
+                                <label class="form-check-label d-flex align-items-center form-label" for="remove_record">
+                                    <input type="checkbox" name="remove_record" class="form-check-input form-control" value="Yes" label="Remove record" id="remove_record"/>
+                                    Remove record
+                                    <span class="form-check-sign">
+                                        <span class="check"/>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="text-right" aria-label="Footer">
+                    <returnbutton button="return-button" class="btn btn-sm btn-outline-primary mr-2">Cancel</returnbutton>
+                    <savebutton class="btn btn-sm btn-primary">Save</savebutton>
+                </section>
+            </main>
+            <div class="input-delete-flag">
+                <boardpermission name="Delete">
+                    <input type="hidden" name="_webeoc_delete_flag" value="no"/>
+                </boardpermission>
+            </div>
+        </form>
+        <script type="text/javascript">const baseURL='https://webeoc.maricopa.gov/eoc7/api/rest.svc';
+
+
+const agencyURL="/board/Agencies/display/agency_list_display";
+          
+     
+
+    
+ 
+ let popAgency=document.getElementById("agency_jurisdiction");
+           
+        let DataAgency=listAgency();
+
+        popAgency.innerHTML = DataAgency;
+        
+     async function listAgency() {
+
+    let response = await fetch(baseURL+agencyURL);
+    let agency = await response.json();
+    let elmts=agency;
+    
+
+    
+    for(let i=0; i&lt;elmts.length; i++){
+        let optn=elmts[i].agency_name;
+        let el=document.createElement("option")
+        el.textContent=optn;
+        el.value=optn;
+      	
+        popAgency.appendChild(el);
+    
+    }
+    
+       console.log(agency);
+       
+    return;
+     };</script>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/core/jquery.min.js" path="/js/core/jquery.min.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/core/popper.min.js" path="/js/core/popper.min.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/core/bootstrap-material-design.min.js" path="/js/core/bootstrap-material-design.min.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/moment.min.js" path="/js/plugins/moment.min.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/bootstrap-datetimepicker.js" path="/js/plugins/bootstrap-datetimepicker.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/nouislider.min.js" path="/js/plugins/nouislider.min.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/bootstrap-tagsinput.js" path="/js/plugins/bootstrap-tagsinput.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/bootstrap-selectpicker.js" path="/js/plugins/bootstrap-selectpicker.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/jasny-bootstrap.min.js" path="/js/plugins/jasny-bootstrap.min.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/jquery.flexisel.js" path="/js/plugins/jquery.flexisel.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/plugins/jquery.sharrre.js" path="/js/plugins/jquery.sharrre.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/material-kit.min.js" path="/js/material-kit.min.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/lib/flatpickr/flatpickr.min.js"/>
+        <script src="//webeocboardfiles.juvare.com/board/1.0/js/ux-webeoc-board-standards.js" path="/js/ux-webeoc-board-standards.js"/>
+        <script boardresource="_webeoc_dst_conditional_js" data-dst-global="true"/>
+    </body>
+</html>
